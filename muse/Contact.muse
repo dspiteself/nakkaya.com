@@ -1,0 +1,15 @@
+#title Contact Information
+
+[[images/nurullahAkkaya.jpg]]
+
+
+<literal style="html"><br></literal>
+<literal style="html"><br></literal>
+I can be reached at
+
+ [[mailto:nurullah@nakkaya.com][nurullah@nakkaya.com]]
+
+<literal style="html"><br></literal>
+<literal style="html"><br></literal>
+
+Back to [[index][Home]] 
