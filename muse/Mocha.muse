@@ -54,7 +54,7 @@ in order to create a jar file use target jar after target linux..
 
 <literal style="html"><br></literal>
 ** Download
- - Application - [[src/mocha/bin/Mocha.dmg][Mac OS X]] [[src/mocha/bin/mocha.jar][Linux]]
+ - Application - [[http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.0.dmg][Mac OS X]] [[http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.0.jar][Linux]]
  - [[http://github.com/nakkaya/mocha/tree/master][Source Code]] ( Released under GPL via GitHub )
 
 <literal style="html"><br></literal>
