@@ -55,13 +55,18 @@ in order to create a jar file use target jar after target linux..
 <literal style="html"><br></literal>
 ** Download
  - Application - [[src/mocha/bin/Mocha.dmg][Mac OS X]] [[src/mocha/bin/mocha.jar][Linux]]
- - [[src/mocha/mochaV1.zip][Source Code]] ( Released under GPL )
+ - [[http://github.com/nakkaya/mocha/tree/master][Source Code]] ( Released under GPL via GitHub )
 
 <literal style="html"><br></literal>
 ** Screenshots
-[[images/mocha/gui1.png]] [[images/mocha/gui2.png]]
+<literal style="html"><br></literal>
+[[images/mocha/gui1.png]]
+[[images/mocha/gui2.png]]
+
 
 ** Changelog
+ - May 31, 2009  - New interface, Option to import/export arp table,
+   Notifications can now be delivered via mail.
  - April 12, 2009 - Added option to suppress new host messages.
  - December 20 , 2008 - Added Network info window.
  - November 14 , 2008 - New version with minor bug fixes and debian
