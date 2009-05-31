@@ -22,8 +22,8 @@ systems but i only tested on,
 
 
 ** Download
- - [[http://nakkaya.com/src/regexBuilder_jar.zip][Jar File]]
- - [[http://nakkaya.com/src/regexBuilder_src.zip][Source Code]]
+ - [[http://cloud.github.com/downloads/nakkaya/regexBuilder/regexBuilder.jar][Jar File]]
+ - [[http://github.com/nakkaya/regexBuilder/tree/master][Source Code via GitHub]]
 
 *** For bug reports/fixes/help See [[Contact]]
 

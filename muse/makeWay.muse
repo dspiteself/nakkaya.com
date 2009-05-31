@@ -32,7 +32,7 @@ your self. Only depency is pcap library.
 
 * Download
 
- - [[src/makeWay/makeWayV1.0.zip][Source Code]] (Released Under GPL)
+ - [[http://github.com/nakkaya/makeWay/tree/master][Source Code]] (Released Under GPL via GitHub)
 
 **** Supported OS's
  - Linux - Debian Lenny, Ubuntu 8.10
