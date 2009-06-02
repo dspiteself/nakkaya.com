@@ -6,7 +6,7 @@
 	  (insert-file "~/Projects/nakkaya.com/muse/gpl.licence")
 	  (insert "\n\n")
 	  (end-of-buffer)
-	  (insert-file "~/.myEmacs/int/nmap.el")
+	  (insert-file "~/Projects/emacs/int/nmap.el")
 	  (buffer-substring-no-properties (point-min) (point-max)))
 </lisp>
 

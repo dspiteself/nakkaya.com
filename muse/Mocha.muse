@@ -31,7 +31,8 @@ System Preferences -> Security -> Firewall
  to the following...
 
 <example>
-/sbin/iptables -A INPUT -j LOG --log-prefix "IPTABLES: " -m limit --limit $LOGLIMIT --limit-burst $LOGLIMITBURST
+/sbin/iptables -A INPUT -j LOG --log-prefix "IPTABLES: " \
+ -m limit --limit $LOGLIMIT --limit-burst $LOGLIMITBURST
 </example>
 
 <literal style="html"><br></literal>
@@ -60,10 +61,14 @@ in order to create a jar file use target jar after target linux..
 <literal style="html"><br></literal>
 ** Screenshots
 <literal style="html"><br></literal>
+***** Network View 
+<literal style="html"><br></literal>
 [[images/mocha/gui1.png]]
+***** Arp Table 
+<literal style="html"><br></literal>
 [[images/mocha/gui2.png]]
 
-
+<literal style="html"><br></literal>
 ** Changelog
  - May 31, 2009  - New interface, Option to import/export arp table,
    Notifications can now be delivered via mail.

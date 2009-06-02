@@ -609,7 +609,8 @@ to the following...</p></li>
 </ul>
 
 <pre class="example">
-/sbin/iptables -A INPUT -j LOG --log-prefix &quot;IPTABLES: &quot; -m limit --limit $LOGLIMIT --limit-burst $LOGLIMITBURST
+/sbin/iptables -A INPUT -j LOG --log-prefix &quot;IPTABLES: &quot; \
+ -m limit --limit $LOGLIMIT --limit-burst $LOGLIMITBURST
 </pre>
 
 <br>
@@ -652,8 +653,18 @@ in order to create a jar file use target jar after target linux..</p>
 <h3>Screenshots</h3>
 
 <br>
+<h5>Network View</h5>
+
+<br>
 <img src="images/mocha/gui1.png" alt="">
+
+
+<h5>Arp Table</h5>
+
+<br>
 <img src="images/mocha/gui2.png" alt="">
+
+<br>
 
 
 
@@ -755,7 +766,7 @@ compatibility.</li>
 	  <div id="themeinfo">
 
 	    Last updated on
-	    Sunday, May 31, 2009
+	    Tuesday, June 2, 2009
 
 	    - Powered By 
 	    <a href="http://mwolson.org/projects/EmacsMuse.html">Muse</a> , 

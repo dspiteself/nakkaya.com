@@ -6,7 +6,7 @@
 	  (insert-file "~/Projects/nakkaya.com/muse/gpl.licence")
 	  (insert "\n\n")
 	  (end-of-buffer)
-	  (insert-file "~/Projects/aristo/trunk/com/blooby/macOs/StartUpItem.java")
+	  (insert-file "~/Projects/aristo/com/blooby/macOs/StartUpItem.java")
 	  (buffer-substring-no-properties (point-min) (point-max)))
 </lisp>
 
