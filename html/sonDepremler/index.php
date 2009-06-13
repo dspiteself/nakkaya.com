@@ -339,5 +339,14 @@ function initializeQuakes( ){
   </head>
   <body onload="initialize()" onunload="GUnload()">
     <div id="map_canvas" style="width: 100%; height: 100%"></div>
+
+<script src="http://www.google-analytics.com/urchin.js" 
+  type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-87333-8";
+urchinTracker();
+</script>
+
   </body>
 </html>
