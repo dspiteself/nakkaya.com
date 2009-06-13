@@ -1,7 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://gmpg.org/xfn/11">
 
-
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -624,7 +625,7 @@ public class StartUpItem{
 	}
 
 	public String toString(){
-	    return &quot;Path = &quot; + path.toString() + &quot;\nHide = &quot; + hide + &quot;\n&quot;;
+	    return &quot;Path = &quot; + path.toString() + &quot;\tHide = &quot; + hide;
 	}
     }
 
@@ -656,10 +657,12 @@ public class StartUpItem{
 		//parse path
 		index = line.indexOf(&quot;Path = &quot;);
 		if (  index != -1 ){
-		    String capture = line.substring( index + 8 , line.length()-2 );
+		    String capture = line.substring( line.indexOf(&quot;\&quot;&quot;) + 1 , 
+						     line.lastIndexOf(&quot;\&quot;&quot;) );
 		    item.path = capture;
 		    //item created add to list move on to a new one
 		    itemList.add( item );
+		    logger.finest(&quot;==&gt; &quot; + item );
 		    item = new Item();
 		}
 	    }
@@ -677,6 +680,8 @@ public class StartUpItem{
 	    Process p = Runtime.getRuntime().exec
 		(&quot;defaults delete loginwindow AutoLaunchedApplicationDictionary&quot;);
 	    p.waitFor();
+	    
+	    logger.finest(&quot;Done&quot;);
 	}catch( Exception e ) { 
 	    logger.warning( e.toString() );
 	    return false;
@@ -711,6 +716,7 @@ public class StartUpItem{
 		command = command + &quot;&lt;key&gt;Path&lt;/key&gt;&lt;string&gt;&quot; 
 		    + item.path + &quot;&lt;/string&gt;&lt;/dict&gt;'&quot;;
 		
+		logger.finest(&quot;==&gt; &quot; + command );
 		stdin.write( command.getBytes() );
 		stdin.write( &quot;exit&quot;.getBytes() );
 		stdin.flush();
@@ -831,7 +837,7 @@ public class StartUpItem{
 	  <div id="themeinfo">
 
 	    Last updated on
-	    Tuesday, June 2, 2009
+	    Saturday, June 13, 2009
 
 	    - Powered By 
 	    <a href="http://mwolson.org/projects/EmacsMuse.html">Muse</a> , 
