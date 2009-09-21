@@ -17,6 +17,7 @@
     (render-page file)))
 
 (defroutes enik
+  ;;blog related routes
   (GET "/:year/:month/:day/:title/"
        (or (enik-serve-post (:year params)
 			    (:month params)
@@ -27,10 +28,12 @@
   (GET "/rss-feed"
        (or [(content-type "text/xml")
 	    @rss-feed] :next))
+  ;;site related routes
   (GET "/*" 
        (or (enik-serve-file (params :*)) :next))
   (GET "/*" 
        (or (serve-file (params :*)) :next))
+  ;;layout related routes
   (GET "/*.css"        
        (or [(content-type "text/css")
 	    (read-file (str "layouts/" (params :*) ".css"))] :next))
