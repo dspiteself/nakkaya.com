@@ -1,7 +1,7 @@
 <project name="default" default="run"> 
 
 <property name="extLibs.dir" location="extLibs"/>
-<property name="extLibs.file" value="extLibs.zip"/>
+<property name="extLibs.file" value="enik.zip"/>
 <property name="extLibs.url" value="http://cloud.github.com/downloads/nakkaya/nakkaya.com/${extLibs.file}"/>
 
   <target name="run" depends="">
@@ -20,7 +20,6 @@
 	<pathelement location="extLibs/jetty.jar"/>
 	<pathelement location="extLibs/jetty-util.jar"/>
 	<pathelement location="extLibs/servlet-api.jar"/>
-	<pathelement location="extLibs/js.jar"/>
 	<pathelement location="extLibs/markdownj.jar"/>
       </classpath>
       
