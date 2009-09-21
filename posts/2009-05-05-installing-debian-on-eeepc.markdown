@@ -6,8 +6,10 @@ title: Installing Debian on EeePc
 Following documents the experience i had while installing Debian on my EeePC
 701. This page servers as a reference to myself cause i rarely re format
 my linux or mac boxes. Installation was smooth. All hardware  on my
-eee was supported  out of the box. [[http://wiki.debian.org/DebianEeePC/][debian.org]] has a great wiki with more
-instructions tips and tricks also model specific data. 
+eee was supported  out of the box. 
+[debian.org](http://wiki.debian.org/DebianEeePC/) 
+has a great wiki with more instructions tips and tricks 
+also model specific data. 
 
 ## On Mac
  - Plug in your USB drive.
