@@ -1,6 +1,7 @@
 (ns enik
   (:use :reload-all compojure)
   (:use :reload-all app.util)
+  (:use :reload-all app.rss)
   (:use :reload-all app.markdown)
   (:use :reload-all app.post))
 
@@ -23,6 +24,9 @@
 			    (:title params)) :next))
   (GET "/latest-posts"
        (or (latest-posts) :next))
+  (GET "/rss-feed"
+       (or [(content-type "text/xml")
+	    @rss-feed] :next))
   (GET "/*" 
        (or (enik-serve-file (params :*)) :next))
   (GET "/*" 

@@ -1,26 +1,12 @@
 (ns app.post
   (:use compojure)
+  (:use :reload-all clojure.contrib.prxml)
   (:use :reload-all app.util)
   (:use :reload-all app.template)
-  (:use :reload-all app.markdown)
-  (:import (java.io File)))
+  (:use :reload-all app.markdown))
 
 (defn post-snippet [url title snippet]
-  (html [:h2 [:a {:href url} title]] [:p snippet]))
-
-(defn post-list-by-date []
-  (let [dir (new File "posts/")]
-    (reverse
-     (sort
-      (loop [files (.list dir)
-	     list  []]
-	(if (empty? files)
-	  list
-	  (recur (rest files) (conj list (first files)))))))))
-
-(defn file-to-url [file]
-  (let [name (.replaceAll file ".markdown" "") ] 
-    (str (apply str (interleave (repeat \/) (.split name "-" 4))) "/")))
+  (html [:h2 [:a {:href url} title]] [:p snippet] [:br][:br]))
 
 (defn render-snippet [file]
   (let [post (read-markdown (str "posts/" file))
