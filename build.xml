@@ -1,0 +1,39 @@
+<project name="default" default="run"> 
+
+<property name="extLibs.dir" location="extLibs"/>
+<property name="extLibs.file" value="extLibs.zip"/>
+<property name="extLibs.url" value="http://cloud.github.com/downloads/nakkaya/nakkaya.com/${extLibs.file}"/>
+
+  <target name="run" depends="">
+    <java classname="clojure.main" 
+	  fork="true" failonerror="true">  
+      <classpath>
+	<pathelement path="./" />  
+	<pathelement location="extLibs/clojure.jar"/>
+	<pathelement location="extLibs/clojure-contrib.jar"/>
+	<pathelement location="extLibs/compojure.jar"/>
+	<pathelement location="extLibs/commons-codec"/>
+	<pathelement location="extLibs/commons-fileupload.jar"/>
+	<pathelement location="extLibs/commons-io.jar"/>
+	<pathelement location="extLibs/grizzly-http-servlet.jar"/>
+	<pathelement location="extLibs/grizzly-http-webserver.jar"/>
+	<pathelement location="extLibs/jetty.jar"/>
+	<pathelement location="extLibs/jetty-util.jar"/>
+	<pathelement location="extLibs/servlet-api.jar"/>
+	<pathelement location="extLibs/js.jar"/>
+	<pathelement location="extLibs/markdownj.jar"/>
+      </classpath>
+      
+      <arg value="enik.clj" />
+    </java>  
+  </target>
+
+  <target name="deps" description="Download dependencies and unzip">
+    <get usetimestamp="true" description="Clojure dependencies." src="${extLibs.url}" dest="${extLibs.file}"/>
+    <unzip src="${extLibs.file}" dest="."/>
+    
+    <delete file="${extLibs.file}"/>
+    <delete dir="__MACOSX"/>
+  </target>
+
+</project>
