@@ -10,6 +10,7 @@ requests to flow through as long as you can lookup host names, you can
 create your self a channel.
 
 For this to work you need a couple of things,
+
  - A registered domain name ( suc as example.com )
  - DNS server (or a registerer that provides DNS service)
  - A machine on the outside that can run a fake DNS server.
@@ -20,9 +21,10 @@ Choose a subdomain for you domain, you need to create two DNS
 records. One NS and one A.
 
 #### NS (Name Servers)
- - tunnel <---> ns-dtun.example.com
+> tunnel <---> ns-dtun.example.com
+
 #### A (Host)
- - ns-dtun.example.com  <--->  67.222.1.241
+> ns-dtun.example.com  <--->  67.222.1.241
 
 The idea here is that all requests to a certain subdomain will be
 delegated to another nameserver which is running our fake DNS server.
@@ -33,19 +35,23 @@ fake DNS service.
 
 You need Perl in order to use ozymandns and a couple of extra modules.
 
- - Enter the CPAN shell:
-  - perl -MCPAN -e shell 
+ Enter the CPAN shell:
+    
+    perl -MCPAN -e shell 
 
- - To re-configure the environment:
-  - conf init 
+ To re-configure the environment:
 
- - Upgrade CPAN:
-  - perl -MCPAN -e 'install Bundle::CPAN' 
+    conf init 
 
- - Install modules:
-  - perl -MCPAN -e 'install MIME::Base32'
-  - perl -MCPAN -e 'install Net::DNS'
-  - perl -MCPAN -e 'install Digest::CRC' 
+ Upgrade CPAN:
+
+    perl -MCPAN -e 'install Bundle::CPAN' 
+
+ Install modules:
+
+    perl -MCPAN -e 'install MIME::Base32'
+    perl -MCPAN -e 'install Net::DNS'
+    perl -MCPAN -e 'install Digest::CRC' 
 
 
 ## Server Setup
@@ -54,7 +60,7 @@ You need Perl in order to use ozymandns and a couple of extra modules.
  - Start the server:
 
 
-    sudo ./nomde.pl -i 0.0.0.0 tunnel.example.com
+>   sudo ./nomde.pl -i 0.0.0.0 tunnel.example.com
 
 
 Make sure your firewall allows port 53 in bound for TCP and UDP.

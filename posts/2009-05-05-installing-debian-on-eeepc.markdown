@@ -18,7 +18,7 @@ also model specific data.
  - Unmount the drive.( Not Eject )
  - Switch to terminal and type
 
-    sudo dd if=<full path to>/debian-eeepc.img of=/dev/<diskIdentifier>
+>    sudo dd if=<full path to>/debian-eeepc.img of=/dev/<diskIdentifier>
    
 Double check you disk identifier. Don't erease you main drive or
 external drive.
@@ -31,7 +31,7 @@ boot from the USB drive you prepared.
 ## Installation
 
 Just follow the on screen instructions, and install a basic
-system. You can additional applications later.
+system. You can add additional applications later.
 
 #### Disk Arrangement
 I have a 2 GB internal card and a 8 GB card on the reader.
@@ -50,7 +50,6 @@ I have a 2 GB internal card and a 8 GB card on the reader.
 #### Gnome
 
     apt-get install gnome-core
-
     gconftool-2 -t bool -s /apps/metacity/general/reduced_resources true
 
 
