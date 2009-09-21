@@ -442,6 +442,22 @@ textarea {
 #southsidebar .widget .content p {
     margin-bottom:10px;
 }
+
+#sidebar .widget_feeds {
+	padding:5px 15px 15px;
+}
+
+#sidebar #feedrss {
+	height:25px;
+	line-height:25px;
+	display:block;
+	padding:5px 5px 5px 36px;
+	float:left;
+	text-decoration:none;
+	font-size:11px;
+	background: url(img/feeds.gif) 5px 5px no-repeat;
+}
+
 /* footer START */
 #footer {
     background:url(img/footer.jpg) 0px 0px no-repeat;
