@@ -29,7 +29,9 @@ attempt to the firewall.
  to the following...
 
 
-       add command
+    /sbin/iptables -A INPUT -j LOG --log-prefix "IPTABLES: " \\
+          -m limit --limit \$LOGLIMIT --limit-burst \$LOGLIMITBURST
+
 
 ## Requirements
 
