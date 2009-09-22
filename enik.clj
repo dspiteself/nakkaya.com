@@ -40,4 +40,4 @@
   (ANY "*"
        (page-not-found)))
 
-(run-server {:port 9993} "/*" (servlet enik))
+(run-server {:port 8085} "/*" (servlet enik))
