@@ -19,7 +19,7 @@ applications to do the actual modification.
 
 ## Usage
 
-Download [[StartUpItem]]
+Download [StartUpItem](http://gist.github.com/190989)
 
 ### Reading the list
 
