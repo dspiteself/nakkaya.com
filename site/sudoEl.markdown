@@ -9,7 +9,7 @@ It will allow emacs to start processes as root.
 
 ##Installation
 
-Download [dsniffMode](http://github.com/nakkaya/emacs/blob/master/int/sudo.el)
+Download [sudoEl](http://github.com/nakkaya/emacs/blob/master/int/sudo.el)
 
 just place sudo.el in your load path.
 
