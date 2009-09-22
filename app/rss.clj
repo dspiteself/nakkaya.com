@@ -12,16 +12,15 @@
   (let [post (read-markdown (str "posts/" file))
 	metadata (:metadata post)
 	content  (:content post)]
-    (with-out-str
-     (prxml [:item 
-	     [:title (metadata "title")]
-	     [:link  (str site-url (file-to-url file))]
-	     [:description content]]))))
+    [:item 
+     [:title (metadata "title")]
+     [:link  (str site-url (file-to-url file))]
+     [:description content]]))
 
 (defn posts-feed []
   (loop [posts (post-list-by-date)
 	 post  (first posts)
-	 feed  []]
+	 feed  ()]
     (if (empty? posts)
       feed
       (recur (rest posts)
