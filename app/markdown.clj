@@ -1,7 +1,7 @@
 (ns app.markdown
   (:use :reload-all clojure.contrib.str-utils)
-  (:use :reload-all app.util)
-  (:use :reload-all app.template)
+  (:use :reload-all [app.util :only [read-file]])
+  (:use :reload-all [app.template :only [render-template]])
   (:import (com.petebevin.markdown MarkdownProcessor)))
 
 (def markdown-processor (MarkdownProcessor.))

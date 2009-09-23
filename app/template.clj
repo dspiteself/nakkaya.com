@@ -1,5 +1,5 @@
 (ns app.template
-  (:use :reload-all app.util))
+  (:use :reload-all [app.util :only [read-file]]))
 
 
 (defn replace-content [content template]

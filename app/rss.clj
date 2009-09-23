@@ -2,9 +2,8 @@
   (:use compojure)
   (:use :reload-all clojure.contrib.prxml)
   (:use :reload-all app.config)
-  (:use :reload-all app.util)
-  (:use :reload-all app.markdown)
-  (:use :reload-all app.template))
+  (:use :reload-all [app.util :only [file-to-url post-list-by-date]])
+  (:use :reload-all [app.markdown :only [read-markdown]]))
 
 (def rss-feed (ref ""))
 

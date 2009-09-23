@@ -1,9 +1,9 @@
 (ns enik
   (:use :reload-all compojure)
-  (:use :reload-all app.util)
-  (:use :reload-all app.rss)
-  (:use :reload-all app.markdown)
-  (:use :reload-all app.post))
+  (:use :reload-all [app.util :only [read-file]])
+  (:use :reload-all [app.rss :only [rss-feed]])
+  (:use :reload-all [app.markdown :only [render-page]])
+  (:use :reload-all [app.post :only [latest-posts]]))
 
 (defn enik-serve-file [file]
   (let [full-path (str "site/" file)]
@@ -23,8 +23,8 @@
 			    (:month params)
 			    (:day params) 
 			    (:title params)) :next))
-  (GET "/latest-posts"
-       (or (latest-posts) :next))
+  (GET "/latest-posts/:page/"
+       (or (latest-posts (:page params)) :next))
   (GET "/rss-feed"
        (or [(content-type "text/xml")
 	    @rss-feed] :next))
