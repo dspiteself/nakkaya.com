@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Installing Debian on EeePc
 ---
 
