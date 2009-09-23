@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Compiling Java apps that use MRJ on a non-Apple computer
 ---
 

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Java & OS X Integration
 ---
 
