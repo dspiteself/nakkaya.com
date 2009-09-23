@@ -34,6 +34,6 @@
 	    [:title site-title]
 	    [:link site-url]
 	    [:description site-desc]
-	    (posts-feed)]])))
+	    (reverse (posts-feed))]])))
 
 (dosync (ref-set rss-feed (update-rss)))
