@@ -5,21 +5,21 @@
   (:use :reload-all [app.markdown :only [render-page]])
   (:use :reload-all [app.post :only [latest-posts]]))
 
-(defn enik-serve-file [file]
+(defn serve-site [file]
   (let [full-path (str "site/" file)]
     (cond
      (.endsWith full-path "/") (render-page 
 				(str full-path "index.markdown"))
      (.endsWith full-path ".markdown") (render-page  full-path)) ))
 
-(defn enik-serve-post [year month day title]
+(defn serve-post [year month day title]
   (let [file (str "posts/" year "-" month "-" day "-" title".markdown")]
     (render-page file)))
 
 (defroutes enik
   ;;blog related routes
   (GET "/:year/:month/:day/:title/"
-       (or (enik-serve-post (:year params)
+       (or (serve-post (:year params)
 			    (:month params)
 			    (:day params) 
 			    (:title params)) :next))
@@ -30,7 +30,7 @@
 	    @rss-feed] :next))
   ;;site related routes
   (GET "/*" 
-       (or (enik-serve-file (params :*)) :next))
+       (or (serve-site (params :*)) :next))
   (GET "/*" 
        (or (serve-file (params :*)) :next))
   ;;layout related routes
