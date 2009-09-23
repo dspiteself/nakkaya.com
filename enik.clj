@@ -1,7 +1,7 @@
 (ns enik
   (:use :reload-all compojure)
   (:use :reload-all [app.util :only [read-file cmd cmdout]])
-  (:use :reload-all [app.rss :only [update-rss rss-feed]])
+  (:use :reload-all [app.rss :only [rss-feed]])
   (:use :reload-all [app.markdown :only [render-page]])
   (:use :reload-all [app.post :only [latest-posts]]))
 
@@ -17,9 +17,7 @@
     (render-page file)))
 
 (defn github-hook []
-  (println "Pulling Changes...")
-  (cmdout (cmd "git pull"))
-  (dosync (ref-set rss-feed (update-rss))))
+  (cmd "git pull"))
 
 (defroutes enik
   (POST "/github-hook"
@@ -34,7 +32,7 @@
        (or (latest-posts (:page params)) :next))
   (GET "/rss-feed"
        (or [(content-type "text/xml")
-	    @rss-feed] :next))
+	    (rss-feed)] :next))
   ;;site related routes
   (GET "/*" 
        (or (serve-site (params :*)) :next))
