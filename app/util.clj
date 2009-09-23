@@ -1,5 +1,5 @@
 (ns app.util
-  (:import (java.io BufferedReader FileReader File)))
+  (:import (java.io BufferedReader FileReader File InputStreamReader)))
 
 
 (defn read-file [file]
@@ -22,3 +22,11 @@
 (defn file-to-url [file]
   (let [name (.replaceAll file ".markdown" "") ] 
     (str (apply str (interleave (repeat \/) (.split name "-" 4))) "/")))
+
+(defn cmd [p] (.. Runtime getRuntime (exec (str p))))
+
+(defn cmdout [o]
+  (let [r (BufferedReader.
+             (InputStreamReader.
+               (.getInputStream o)))]
+    (dorun (map println (line-seq r)))))
