@@ -5,8 +5,7 @@
   (:use :reload-all [app.util :only [file-to-url post-list-by-date]])
   (:use :reload-all [app.markdown :only [read-markdown]]))
 
-(def feed (ref ""))
-(def feed-last-updated (ref 0 ))
+(def rss-feed (ref ""))
 
 (defn post-xml [file]
   (let [post (read-markdown (str "posts/" file))
@@ -37,10 +36,4 @@
 	    [:description site-desc]
 	    (posts-feed)]])))
 
-(defn rss-feed []
-  (let  [ current-time (System/currentTimeMillis) 
-	 time-elapsed (- current-time @feed-last-updated) ]
-    (if  (>  time-elapsed (* 15 60000 )  )
-      (dosync (ref-set feed (update-rss))
-	      (ref-set feed-last-updated current-time)))
-    @feed))
+(dosync (ref-set rss-feed (update-rss)))
