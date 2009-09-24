@@ -51,5 +51,5 @@
   (let [begin (* (Integer. page) posts-per-page) 
 	end   (+ begin posts-per-page)]
     (render-template 
-     {:metadata {"title" "Latest Posts" "layout" "default"}
+     {:metadata {"title" site-title "layout" "default"}
       :content (render-snippets begin end)})))
