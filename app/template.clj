@@ -4,15 +4,20 @@
 (def content-regex "\\{\\{.*?content.*?\\}\\}")
 (def title-regex "\\{\\{.*?page.title.*?\\}\\}")
 (def tags-regex "\\{\\{.*?tags.*?\\}\\}")
-(def tags-regex "\\{\\{.*?description.*?\\}\\}")
+(def description-regex "\\{\\{.*?description.*?\\}\\}")
 (def preprocess-regex "\\{\\{.*?\\}\\}")
 
 (defn replace-content [content page]
   (.replaceAll page content-regex content))
 
 (defn replace-tags [metadata page]
+  (if (not(nil? (metadata "tags")))
+    (.replaceAll page tags-regex (metadata "tags"))
+    page))
+
+(defn replace-description [metadata page]
   (if (not(nil? (metadata "description")))
-    (.replaceAll page tags-regex (metadata "description"))
+    (.replaceAll page description-regex (metadata "description"))
     page))
 
 (defn replace-title [metadata page]
@@ -28,5 +33,6 @@
 
     ((comp  #(replace-preprocess %)	    
 	    #(replace-content content %)
+	    #(replace-description metadata %)
 	    #(replace-tags metadata %)
 	    #(replace-title metadata template) ))  ))
