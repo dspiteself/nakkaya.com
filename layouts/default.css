@@ -94,22 +94,6 @@ textarea {
     border:1px solid #A6A6A6;
     padding:2px 1px;
 }
-.boxcaption {
-    background:#E3E4E6 url(images/layout/default/box.gif) 0 0 no-repeat;
-    padding:6px 12px;
-    border-bottom:1px solid #CCC;
-}
-.boxcaption h3 {
-    font-size:12px;
-    font-family:Verdana,"BitStream vera Sans";
-    letter-spacing:0em;
-}
-.box {
-    background:#F4F5F7 url(images/layout/default/box.gif) 100% 100% no-repeat;
-    padding:8px 12px;
-    margin-bottom:10px;
-}
-
 
 #wrap {
     background:url(images/layout/default/light.gif) center top no-repeat;
@@ -267,12 +251,12 @@ textarea {
     padding:5px 15px 15px;
     float:left;
 }
-#notice {
-    color:#080;
+
+.dateCustom {
+    margin-left:15px;
+    float:right
 }
-#notice a {
-    text-decoration:underline;
-}
+
 .post h2 {
     display:block;
     margin-top:10px;
@@ -288,64 +272,7 @@ textarea {
 .post h2 a.title:hover {
     color:#2970A6;
 }
-.post .info {
-    margin:5px;
-}
-.post .info span.first {
-    margin-left:0;
-}
-.post .date, 
-.post .tags, 
-.post .author, 
-.post .categories, 
-.post .editpost, 
-.post .readingblinds, 
-.post .comments, 
-.post .addcomment, 
-.post .editlinks {
-    background:url(images/layout/default/icons.gif) no-repeat;
-    padding-left:22px;
-    height:16px;
-    line-height:16px;
-    display:block;
-    font-size:11px;
-}
-.post .act {
-    height:16px;
-    float:right;
-}
-.post .act span {
-    float:left;
-    margin-left:15px;
-}
-.post .tags {
-    background-position:0 -16px;
-}
-.post .categories {
-    background-position:0 -32px;
-}
-.post .author {
-    background-position:0 -176px;
-}
-.post .date {
-    background-position:0 -48px;
-    float:left;
-}
-.post .editpost {
-    background-position:0 -64px;
-}
-.post .readingblinds {
-    background-position:0 -80px;
-}
-.post .comments {
-    background-position:0 -96px;
-}
-.post .addcomment {
-    background-position:0 -112px;
-}
-.post .editlinks {
-    background-position:0 -192px;
-}
+
 .post .content {
     padding:5px 0 5px 5px;
     line-height:145%;
@@ -397,13 +324,6 @@ textarea {
 }
 .post .content .box {
     background-image:url(images/layout/default/postbox.gif);
-}
-#postpath {
-    background:url(images/layout/default/icons.gif) 0 -208px no-repeat;
-    height:16px;
-    line-height:16px;
-    margin:5px 0;
-    padding-left:22px;
 }
 
 /* sidebar START */
@@ -468,25 +388,20 @@ textarea {
     line-height:145%;
     width:100%;
 }
+
 #footer a {
     color:#2A2A2A;
 }
+
 #copyright {
     margin-top:12px;
     margin-left:20px;
 }
+
 #themeinfo {
     margin-left:20px;
 }
-a#powered {
-    background:url(images/layout/default/wp-logo.png) no-repeat;
-    display:block;
-    width:92px;
-    height:57px;
-    float:left;
-    margin:0 10px 0 5px;
-    text-indent:-999em;
-}
+
 a#gotop {
     background:url(images/layout/default/icons.gif) 0 -304px no-repeat;
     float:right;
