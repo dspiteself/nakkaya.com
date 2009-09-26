@@ -1,6 +1,7 @@
 ---
 layout: default
 title: regexBuilder
+tags: java
 ---
 
 regexBuilder is a swing application that i wrote to test and build

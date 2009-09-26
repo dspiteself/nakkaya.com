@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Emacs Nmap Interface
+tags: nmap emacs
+description: Emacs Nmap Interface
 ---
 
 

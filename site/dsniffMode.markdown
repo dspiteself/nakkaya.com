@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Emacs Dsniff Interface
+tags: emacs dsniff
+description: Emacs Dsniff Interface
 ---
 
 an interface to dsniff.

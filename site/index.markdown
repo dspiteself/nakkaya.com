@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Nurullah Akkaya's Home
+description: Nurullah Akkaya's Home
+tags: mocha makeWay
 ---
 
 ## Java

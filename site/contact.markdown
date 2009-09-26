@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Contact Information
+description: About Nurullah Akkaya
 ---
 
 ![Nurullah Akkaya](images/nurullahAkkaya.jpg "Nurullah Akkaya")
