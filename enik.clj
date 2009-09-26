@@ -53,6 +53,7 @@
        (or [(content-type "text/css")
 	    (read-file (str "layouts/" (params :*) ".css"))] :next))
   (ANY "*"
-       (page-not-found)))
+       [(content-type "text/html")
+	(page-not-found)]))
 
 (run-server {:port 8085} "/*" (servlet enik))
