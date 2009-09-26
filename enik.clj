@@ -3,23 +3,31 @@
   (:use :reload-all [app.util :only [read-file cmd cmdout]])
   (:use :reload-all [app.rss :only [update-rss rss-feed]])
   (:use :reload-all [app.markdown :only [render-page]])
-  (:use :reload-all [app.post :only [latest-posts]]))
+  (:use :reload-all [app.post :only [latest-posts]])
+  (:import (java.io File)))
 
 (defn serve-site [file]
   (let [full-path (str "site/" file)]
-    (cond
-     (.endsWith full-path "/") (render-page 
-				(str full-path "index.markdown"))
-     (.endsWith full-path ".markdown") (render-page  full-path)) ))
+    (if (.exists (File. full-path))
+      (cond
+       (.endsWith full-path "/") (render-page 
+				  (str full-path "index.markdown"))
+       (.endsWith full-path ".markdown") (render-page  full-path)))))
 
 (defn serve-post [year month day title]
   (let [file (str "posts/" year "-" month "-" day "-" title".markdown")]
-    (render-page file)))
+    (if (.exists (File. file))
+      (render-page file)) ))
+
+(defn cache-markdown []
+  (memoize serve-site)
+  (memoize serve-post))
 
 (defn github-hook []
   (println "Pulling Changes...")
-  (cmdout (cmd "git pull"))
-  (dosync (ref-set rss-feed (update-rss))))
+  (cmd "git pull")
+  (dosync (ref-set rss-feed (update-rss)))
+  (cache-markdown))
 
 (defroutes enik
   (POST "/github-hook"
