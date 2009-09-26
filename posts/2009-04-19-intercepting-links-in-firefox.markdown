@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Intercepting Links in Firefox
+tags: firefox
 ---
 
 While working on a Firefox extension i needed to intercept links Firefox

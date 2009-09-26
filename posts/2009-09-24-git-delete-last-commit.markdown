@@ -1,6 +1,7 @@
 ---
 title: Git Delete Last Commit
 layout: post
+tags: git
 ---
 
 Once in a while late at night when i ran out of coffee, i commit stuff

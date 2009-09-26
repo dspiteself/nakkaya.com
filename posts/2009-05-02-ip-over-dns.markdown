@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Ip Over Dns
+tags: ip dns
 ---
 
 Ip over DNS will encapsulate all IP traffic inside DNS requests,

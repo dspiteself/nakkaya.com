@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Installing Debian on EeePc
+tags: linux debian
 ---
 
 Following documents the experience i had while installing Debian on my EeePC

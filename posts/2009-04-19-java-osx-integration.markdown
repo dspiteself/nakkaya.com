@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Java & OS X Integration
+tags: java apple
 ---
 
 Apple provides an Application class that allows you to integrate your

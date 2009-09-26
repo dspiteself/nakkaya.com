@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Compiling Emacs on Debian
+tags: emacs debian linux
 ---
 
 #### Required Packages

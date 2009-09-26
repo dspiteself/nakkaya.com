@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Compiling Java apps that use MRJ on a non-Apple computer
+tags: java apple
 ---
 
 I use multiple OS's for development mostly OS X and Linux.  If you
