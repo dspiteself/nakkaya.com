@@ -4,16 +4,29 @@
   (:use :reload-all app.config)
   (:use :reload-all [app.util :only [post-list-by-date file-to-url]])
   (:use :reload-all [app.template :only [render-template]])
-  (:use :reload-all [app.markdown :only [read-markdown]]))
+  (:use :reload-all [app.markdown :only [read-markdown]])
+  (:import (java.text SimpleDateFormat)))
 
-(defn post-snippet [url title snippet]
-  (html [:h2 [:a {:href url} title]] [:p snippet] [:br][:br]))
+(defn file-name-to-date [file]
+  (let  [parse-format (SimpleDateFormat. "yy-mm-dd")
+	 date (.parse parse-format (re-find #"\d*-\d*-\d*" file)) 
+	 print-format (SimpleDateFormat. "EEEE, dd - MMMM - yyyy")]
+    (.format print-format date)))
+
+(defn post-snippet [url date title snippet]
+  (html [:h2
+	 [:a {:href url} title]] 
+	[:h5 {:class "post-date"}  date]
+	[:p snippet] [:br][:br]))
 
 (defn render-snippet [file]
   (let [post (read-markdown (str "posts/" file))
 	metadata (:metadata post)
 	content  (:content post)]
-    (post-snippet (file-to-url file) (metadata "title") content) ))
+    (post-snippet (file-to-url file) 
+		  (file-name-to-date file)
+		  (metadata "title") 
+		  content) ))
 
 (defn paging [begin end content]
   (let [content (StringBuilder. content)
