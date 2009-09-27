@@ -21,7 +21,8 @@
 
 (defn cache-markdown []
   (def mem-serve-site (memoize serve-site))
-  (def mem-serve-post (memoize serve-post)))
+  (def mem-serve-post (memoize serve-post))
+  (def mem-latest-posts (memoize latest-posts)))
 
 (cache-markdown)
 
@@ -41,7 +42,7 @@
 			    (:day params) 
 			    (:title params)) :next))
   (GET "/latest-posts/:page/"
-       (or (latest-posts (:page params)) :next))
+       (or (mem-latest-posts (:page params)) :next))
   (GET "/rss-feed"
        (or [(content-type "text/xml")
 	    @rss-feed] :next))
