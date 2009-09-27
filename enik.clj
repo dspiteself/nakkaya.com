@@ -20,8 +20,8 @@
       (render-page file)) ))
 
 (defn cache-markdown []
-  (memoize serve-site)
-  (memoize serve-post))
+  (def mem-serve-site (memoize serve-site))
+  (def mem-serve-post (memoize serve-post)))
 
 (cache-markdown)
 
@@ -36,7 +36,7 @@
        (or (github-hook) :next))
   ;;blog related routes
   (GET "/:year/:month/:day/:title/"
-       (or (serve-post (:year params)
+       (or (mem-serve-post (:year params)
 			    (:month params)
 			    (:day params) 
 			    (:title params)) :next))
@@ -47,7 +47,7 @@
 	    @rss-feed] :next))
   ;;site related routes
   (GET "/*" 
-       (or (serve-site (params :*)) :next))
+       (or (mem-serve-site (params :*)) :next))
   (GET "/*" 
        (or (serve-file (params :*)) :next))
   ;;layout related routes
