@@ -23,6 +23,8 @@
   (memoize serve-site)
   (memoize serve-post))
 
+(cache-markdown)
+
 (defn github-hook []
   (println "Pulling Changes...")
   (cmd "git pull")
