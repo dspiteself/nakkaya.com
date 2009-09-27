@@ -5,7 +5,7 @@ tags: emacs
 ---
 
 
-[Emacs](www.gnu.org/software/emacs/) provides term-mode, 
+[Emacs](http://www.gnu.org/software/emacs/) provides term-mode, 
 which is terminal emulation for emacs. Since
 term-mode is real terminal emulation it allows you to run any console
 application you want (even ncurses based ones). But it does not provide
