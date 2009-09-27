@@ -8,7 +8,7 @@
   (:import (java.text SimpleDateFormat)))
 
 (defn file-name-to-date [file]
-  (let  [parse-format (SimpleDateFormat. "yy-mm-dd")
+  (let  [parse-format (SimpleDateFormat. "yyyy-MM-dd")
 	 date (.parse parse-format (re-find #"\d*-\d*-\d*" file)) 
 	 print-format (SimpleDateFormat. "EEEE, dd - MMMM - yyyy")]
     (.format print-format date)))
