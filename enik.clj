@@ -4,7 +4,7 @@
   (:use :reload-all [app.rss :only [update-rss rss-feed]])
   (:use :reload-all [app.markdown :only [render-page]])
   (:use :reload-all [app.post :only [latest-posts]])
-  (:use :reload-all [app.tags :only [tags]])
+  (:use :reload-all [app.tags :only [tags tags-page]])
   (:import (java.io File)))
 
 (defn serve-site [file]
@@ -23,21 +23,22 @@
 (defn cache-markdown []
   (def mem-serve-site (memoize serve-site))
   (def mem-serve-post (memoize serve-post))
-  (def mem-latest-posts (memoize latest-posts)))
+  (def mem-latest-posts (memoize latest-posts))
+  (dosync (ref-set tags-page (tags)))
+  (dosync (ref-set rss-feed (update-rss))))
 
 (cache-markdown)
 
 (defn github-hook []
   (println "Pulling Changes...")
   (cmd "git pull")
-  (dosync (ref-set rss-feed (update-rss)))
   (cache-markdown))
 
 (defroutes enik
   (POST "/github-hook"
        (or (github-hook) :next))
   (GET "/tags/"
-       (or (tags) :next))
+       (or @tags-page :next))
   ;;blog related routes
   (GET "/:year/:month/:day/:title/"
        (or (mem-serve-post (:year params)

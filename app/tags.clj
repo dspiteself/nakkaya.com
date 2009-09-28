@@ -5,6 +5,8 @@
   (:use :reload-all [app.template :only [render-template]])
   (:use :reload-all [app.markdown :only [read-markdown]]))
 
+(def tags-page (ref ""))
+
 (defn tag-post [post]
   (let [metadata (:metadata (read-markdown (str "posts/" post)))
 	url      (file-to-url post)] 
@@ -35,3 +37,5 @@
     (render-template 
      {:metadata {"title" "Tags" "layout" "default"}
       :content  (tag-page-content tag-set tag-distinct)})))
+
+(dosync (ref-set tags-page (tags)))
