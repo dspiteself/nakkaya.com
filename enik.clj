@@ -4,6 +4,7 @@
   (:use :reload-all [app.rss :only [update-rss rss-feed]])
   (:use :reload-all [app.markdown :only [render-page]])
   (:use :reload-all [app.post :only [latest-posts]])
+  (:use :reload-all [app.tags :only [tags]])
   (:import (java.io File)))
 
 (defn serve-site [file]
@@ -35,6 +36,8 @@
 (defroutes enik
   (POST "/github-hook"
        (or (github-hook) :next))
+  (GET "/tags/"
+       (or (tags) :next))
   ;;blog related routes
   (GET "/:year/:month/:day/:title/"
        (or (mem-serve-post (:year params)
