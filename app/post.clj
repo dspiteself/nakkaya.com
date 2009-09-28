@@ -13,17 +13,18 @@
 	 print-format (SimpleDateFormat. "EEEE, dd - MMMM - yyyy")]
     (.format print-format date)))
 
-(defn post-snippet [url date title snippet]
+(defn post-snippet [url tags date title snippet]
   (html [:h2
 	 [:a {:href url} title]] 
 	[:h5 {:class "post-date"}  date]
-	[:p snippet] [:br][:br]))
+	[:p snippet] [:br] [:a {:href "/tags/"} "Tags: "] tags [:br]))
 
 (defn render-snippet [file]
   (let [post (read-markdown (str "posts/" file))
 	metadata (:metadata post)
 	content  (:content post)]
     (post-snippet (file-to-url file) 
+		  (metadata "tags")
 		  (file-name-to-date file)
 		  (metadata "title") 
 		  content) ))
