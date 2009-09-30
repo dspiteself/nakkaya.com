@@ -25,17 +25,18 @@
 
 (defn tag-page-content [tag-set tag-distinct]
   (html
-   (reduce 
-    (fn [h v] 
+   (reduce
+    (fn [h v]
       (conj h [:h4 (:tag v)] (tag-list (:tag v) tag-set)  ))
-    [:div ] tag-set)))
+    [:div ] tag-distinct)))
 
 (defn tags []
   (let [tag-set      (apply union (map tag-post (post-list-by-date)))
 	tag-distinct (project tag-set [:tag])
 	content      (tag-page-content tag-set tag-distinct)]
+
     (render-template 
      {:metadata {"title" "Tags" "layout" "default"}
-      :content  (tag-page-content tag-set tag-distinct)})))
+      :content  (tag-page-content tag-set tag-distinct)}) ))
 
 (dosync (ref-set tags-page (tags)))
