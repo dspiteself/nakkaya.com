@@ -26,8 +26,9 @@
      (html
       [:h5 "Archives"]
       (reduce (fn [h v]
-		(conj h [:li [:a {:href (key v)} (format-time (key v))] 
-			 " (" (val v)")"]))
+		(let [month (format-time (key v))
+		      url (str "/" (.replaceAll (key v) "-" "/") "/")]
+		  (conj h [:li [:a {:href url} month] " (" (val v)")"])))
 	      [:ul] months))  )))
 
 (defn replace-post-cost-by-tags [page]
