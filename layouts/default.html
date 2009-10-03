@@ -42,18 +42,28 @@
 		   href="/">Home
 		</a>
 	      </li>
+
 	      <li class="page_item page-item-2">
 		<a 
-		   href="/contact.markdown" 
-		   title="About">About
+		   href="/mocha.markdown" 
+		   title="Mocha">Mocha
 		</a>
 	      </li>
+
 	      <li class="page_item page-item-2">
 		<a 
-		   href="/latest-posts/0/" 
-		   title="Latest Posts">Weblog
+		   href="/makeWay.markdown" 
+		   title="makeWay">makeWay
 		</a>
 	      </li>
+
+	      <li class="page_item page-item-2">
+		<a 
+		   href="/experiments.markdown" 
+		   title="Experiments">Experiments
+		</a>
+	      </li>
+
 	      <li>
 		<a class="lastmenu" href="javascript:void(0);"></a>
 	      </li>
@@ -84,7 +94,10 @@
 	    <div class="post" id="post-1">
 	      <h2>{{ page.title }}</h2>
 	      <div class="content">
+
+
 		{{ content }}
+
 		<p class="under">
 		</p>
 		<div class="fixed"></div>
@@ -115,36 +128,13 @@
 	      </div>
 
 	      <div class="widget">
-		<h5>Lisp</h5>
-		<ul>
-		  <li><a href="/nmapMode.markdown">nmapMode</a></li>
-		  <li><a href="/dsniffMode.markdown">dsniffMode</a></li>
-		  <li><a href="/sudoEl.markdown">sudoEl</a></li>
-		</ul>
-
-		<br/>
-		<h5>Java</h5>
-		<ul>
-		  <li><a href="/mocha.markdown">Mocha</a></li>
-		  <li><a href="/regexBuilder.markdown">regexBuilder</a></li>
-		  <li><a href="/startUpItemApi.markdown">StartUpItem API</a></li>
-		</ul>
-
-		<br/>
-		<h5>C/C++</h5>
-		<ul>
-		  <li><a href="/makeWay.markdown">makeWay</a></li>
-		</ul>
+		{{ post.count.by.mount }}
 	      </div>
 
-	      <!-- Start of Flickr Badge -->
-	      <!-- <br/> -->
-	      <!-- <br/> -->
-	      <!-- <center> -->
-	      <!-- 	<script type="text/javascript" -->
-	      <!-- 		src="http://www.flickr.com/badge_code_v2.gne?count=1&display=random&size=t&layout=v&source=user&user=77255876%40N00"></script> -->
-	      <!-- </center> -->
-	      <!-- End of Flickr Badge -->	      
+	      <div class="widget">
+		{{ post.count.by.tags }}
+	      </div>
+	      
 	    </div>
 	  </div>
 	  <!-- sidebar END -->
@@ -177,5 +167,6 @@
       _uacct = "UA-87333-8";
       urchinTracker();
     </script>
+
   </body>
 </html>
