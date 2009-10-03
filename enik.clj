@@ -20,7 +20,10 @@
 
 (defn serve-lastest-posts [page]
   (render-template 
-   {:metadata {"title" site-title "layout" "default"}
+   {:metadata {"title" site-title 
+	       "layout" "default-no-header"
+	       "tags" "nurullah akkaya"
+	       "description" "Nurullah Akkaya's Home" }
     :content (latest-posts page)}))
 
 (defn serve-tags-page []
@@ -60,6 +63,8 @@
        (or (github-hook) :next))
   (GET "/tags/"
        (or (mem-serve-tags-page) :next))
+  (GET "/latest-posts/:page/"
+       (or (mem-serve-latest-posts (:page params)) :next))
   (GET "/:year/:month/"
        (or (mem-serve-posts-by-month (:year params) (:month params)) :next))
   ;;blog related routes
@@ -68,8 +73,6 @@
 			   (:month params)
 			   (:day params) 
 			   (:title params)) :next))
-  (GET "/latest-posts/:page/"
-       (or (mem-serve-latest-posts (:page params)) :next))
   (GET "/rss-feed"
        (or [(content-type "text/xml")
 	    @rss-feed] :next))
