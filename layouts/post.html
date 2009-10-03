@@ -42,18 +42,28 @@
 		   href="/">Home
 		</a>
 	      </li>
+
 	      <li class="page_item page-item-2">
 		<a 
-		   href="/contact.markdown" 
-		   title="About">About
+		   href="/mocha.markdown" 
+		   title="Mocha">Mocha
 		</a>
 	      </li>
+
 	      <li class="page_item page-item-2">
 		<a 
-		   href="/latest-posts/0/" 
-		   title="Latest Posts">Weblog
+		   href="/makeWay.markdown" 
+		   title="makeWay">makeWay
 		</a>
 	      </li>
+
+	      <li class="page_item page-item-2">
+		<a 
+		   href="/experiments.markdown" 
+		   title="Experiments">Experiments
+		</a>
+	      </li>
+
 	      <li>
 		<a class="lastmenu" href="javascript:void(0);"></a>
 	      </li>
@@ -123,6 +133,9 @@
 		{{ post.count.by.mount }}
 	      </div>
 
+	      <div class="widget">
+		{{ post.count.by.tags }}
+	      </div>
 	      
 	    </div>
 	  </div>

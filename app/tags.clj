@@ -32,7 +32,8 @@
   (html
    (reduce
     (fn [h v]
-      (conj h [:h4 (:tag v)] (tag-list (:tag v) tag-set)  ))
+      (conj h [:h4 [:a {:name (:tag v)} (:tag v)]] 
+	    (tag-list (:tag v) tag-set)  ))
     [:div ] tag-distinct)))
 
 (defn tags-page []
