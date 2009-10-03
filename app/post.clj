@@ -16,7 +16,7 @@
   (html [:h2
 	 [:a {:href url} title]] 
 	[:h5 {:class "post-date"}  date]
-	[:p snippet] [:br] [:a {:href "/tags/"} "Tags: "] tags [:br]))
+	[:p snippet]  [:h4 [:a {:href "/tags/"} "Tags: "] tags] ))
 
 (defn render-snippet [file]
   (let [post (read-markdown (str "posts/" file))
