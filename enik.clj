@@ -5,7 +5,7 @@
   (:use :reload-all [app.rss :only [update-rss rss-feed]])
   (:use :reload-all [app.markdown :only [read-markdown]])
   (:use :reload-all [app.template :only [render-template]])
-  (:use :reload-all [app.post :only [latest-posts]])
+  (:use :reload-all [app.post :only [latest-posts posts-by-month]])
   (:use :reload-all [app.tags :only [tags-page]])
   (:import (java.io File)))
 
@@ -28,6 +28,11 @@
    {:metadata {"title" "Tags" "layout" "default"}
     :content  (tags-page)}))
 
+(defn serve-posts-by-month [year month]
+  (render-template 
+   {:metadata {"title" "Archives" "layout" "default"}
+    :content  (posts-by-month (str year "-" month) ) }))
+
 (defn serve-site [file]
   (let [full-path (str "site/" file)]
     (if (.exists (File. full-path))
@@ -40,6 +45,7 @@
   (def mem-serve-post (memoize serve-post))
   (def mem-serve-latest-posts (memoize serve-lastest-posts))
   (def mem-serve-tags-page (memoize serve-tags-page))
+  (def mem-serve-posts-by-month (memoize serve-posts-by-month))
   (dosync (ref-set rss-feed (update-rss))))
 
 (cache-markdown)
@@ -54,12 +60,14 @@
        (or (github-hook) :next))
   (GET "/tags/"
        (or (mem-serve-tags-page) :next))
+  (GET "/:year/:month/"
+       (or (mem-serve-posts-by-month (:year params) (:month params)) :next))
   ;;blog related routes
   (GET "/:year/:month/:day/:title/"
        (or (mem-serve-post (:year params)
-			    (:month params)
-			    (:day params) 
-			    (:title params)) :next))
+			   (:month params)
+			   (:day params) 
+			   (:title params)) :next))
   (GET "/latest-posts/:page/"
        (or (mem-serve-latest-posts (:page params)) :next))
   (GET "/rss-feed"

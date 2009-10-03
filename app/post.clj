@@ -74,3 +74,9 @@
 		     count (get months date 0)]
 		(assoc months date (+ 1 count) )
 		)) {} posts) ))
+
+(defn posts-by-month [time]
+  (let [posts (filter #(.startsWith % time) (post-list-by-date))]
+    (html 
+     (reduce (fn[h v]
+	       (conj h (render-snippet v))) [:div] posts)) ))
