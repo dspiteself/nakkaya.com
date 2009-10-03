@@ -3,7 +3,6 @@
   (:use :reload-all clojure.contrib.prxml)
   (:use :reload-all app.config)
   (:use :reload-all [app.util :only [post-list-by-date file-to-url]])
-  (:use :reload-all [app.template :only [render-template]])
   (:use :reload-all [app.markdown :only [read-markdown]])
   (:import (java.text SimpleDateFormat)))
 
@@ -64,6 +63,14 @@
 (defn latest-posts [page]
   (let [begin (* (Integer. page) posts-per-page) 
 	end   (+ begin posts-per-page)]
-    (render-template 
-     {:metadata {"title" site-title "layout" "default"}
-      :content (render-snippets begin end)})))
+    (render-snippets begin end)))
+
+
+(defn post-count-by-mount []
+  (let [posts (post-list-by-date)]
+    (reduce (fn [months post]
+	      (let  [v (.split post "-" 3)
+		     date (str (first v) "-" (second v))
+		     count (get months date 0)]
+		(assoc months date (+ 1 count) )
+		)) {} posts) ))

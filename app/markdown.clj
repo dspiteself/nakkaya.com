@@ -1,7 +1,6 @@
 (ns app.markdown
   (:use :reload-all clojure.contrib.str-utils)
   (:use :reload-all [app.util :only [read-file]])
-  (:use :reload-all [app.template :only [render-template]])
   (:import (com.petebevin.markdown MarkdownProcessor)))
 
 (def markdown-processor (MarkdownProcessor.))
@@ -28,7 +27,3 @@
 	metadata (prepare-metadata (:metadata page))
 	html (render-markdown (:content page))]
     {:metadata metadata :content html} ))
-
-(defn render-page [file]
-  (let  [content (read-markdown file)]
-    (render-template content)))

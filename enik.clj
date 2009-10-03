@@ -1,11 +1,17 @@
 (ns enik
   (:use :reload-all compojure)
+  (:use :reload-all app.config)
   (:use :reload-all [app.util :only [read-file cmd cmdout]])
   (:use :reload-all [app.rss :only [update-rss rss-feed]])
-  (:use :reload-all [app.markdown :only [render-page]])
+  (:use :reload-all [app.markdown :only [read-markdown]])
+  (:use :reload-all [app.template :only [render-template]])
   (:use :reload-all [app.post :only [latest-posts]])
   (:use :reload-all [app.tags :only [tags tags-page]])
   (:import (java.io File)))
+
+(defn render-page [file]
+  (let  [content (read-markdown file)]
+    (render-template content)))
 
 (defn serve-site [file]
   (let [full-path (str "site/" file)]
@@ -20,10 +26,15 @@
     (if (.exists (File. file))
       (render-page file)) ))
 
+(defn serve-lastest-posts [page]
+  (render-template 
+   {:metadata {"title" site-title "layout" "default"}
+    :content (latest-posts page)}))
+
 (defn cache-markdown []
   (def mem-serve-site (memoize serve-site))
   (def mem-serve-post (memoize serve-post))
-  (def mem-latest-posts (memoize latest-posts))
+  (def mem-serve-latest-posts (memoize serve-lastest-posts))
   (dosync (ref-set tags-page (tags)))
   (dosync (ref-set rss-feed (update-rss))))
 
@@ -46,7 +57,7 @@
 			    (:day params) 
 			    (:title params)) :next))
   (GET "/latest-posts/:page/"
-       (or (mem-latest-posts (:page params)) :next))
+       (or (mem-serve-latest-posts (:page params)) :next))
   (GET "/rss-feed"
        (or [(content-type "text/xml")
 	    @rss-feed] :next))
