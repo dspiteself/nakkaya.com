@@ -13,14 +13,6 @@
   (let  [content (read-markdown file)]
     (render-template content)))
 
-(defn serve-site [file]
-  (let [full-path (str "site/" file)]
-    (if (.exists (File. full-path))
-      (cond
-       (.endsWith full-path "/") (render-page 
-				  (str full-path "index.markdown"))
-       (.endsWith full-path ".markdown") (render-page  full-path)))))
-
 (defn serve-post [year month day title]
   (let [file (str "posts/" year "-" month "-" day "-" title".markdown")]
     (if (.exists (File. file))
@@ -35,6 +27,13 @@
   (render-template 
    {:metadata {"title" "Tags" "layout" "default"}
     :content  (tags-page)}))
+
+(defn serve-site [file]
+  (let [full-path (str "site/" file)]
+    (if (.exists (File. full-path))
+      (cond
+       (.endsWith full-path "/") (serve-lastest-posts 0)
+       (.endsWith full-path ".markdown") (render-page  full-path)))))
 
 (defn cache-markdown []
   (def mem-serve-site (memoize serve-site))
