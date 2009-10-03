@@ -1,7 +1,8 @@
 (ns app.template
   (:use compojure)
   (:use :reload-all [app.util :only [read-file]])
-  (:use :reload-all [app.post :only [post-count-by-mount]]))
+  (:use :reload-all [app.post :only [post-count-by-mount]])
+  (:use :reload-all [app.tags :only [post-count-by-tags]]))
 
 (def content-regex "\\{\\{.*?content.*?\\}\\}")
 (def title-regex "\\{\\{.*?page.title.*?\\}\\}")

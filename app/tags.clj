@@ -2,10 +2,7 @@
   (:use compojure)
   (:use clojure.set)
   (:use :reload-all [app.util :only [post-list-by-date file-to-url]])
-  (:use :reload-all [app.template :only [render-template]])
   (:use :reload-all [app.markdown :only [read-markdown]]))
-
-(def tags-page (ref ""))
 
 (defn tag-post [post]
   (let [metadata (:metadata (read-markdown (str "posts/" post)))
@@ -23,6 +20,14 @@
        (conj h [:li [:a {:href (:url (:post v))} (:title (:post v))]]  ))
      [:ul ] posts) ))
 
+(defn post-count-by-tags []
+  (let [tag-set      (apply union (map tag-post (post-list-by-date)))]
+    (reduce
+     (fn [h v]
+       (let [tag (:tag v)
+	     count (get h tag 0)] 
+	 (assoc h tag (+ 1 count) ))) {} tag-set) ))
+
 (defn tag-page-content [tag-set tag-distinct]
   (html
    (reduce
@@ -30,13 +35,8 @@
       (conj h [:h4 (:tag v)] (tag-list (:tag v) tag-set)  ))
     [:div ] tag-distinct)))
 
-(defn tags []
+(defn tags-page []
   (let [tag-set      (apply union (map tag-post (post-list-by-date)))
 	tag-distinct (project tag-set [:tag])
 	content      (tag-page-content tag-set tag-distinct)]
-
-    (render-template 
-     {:metadata {"title" "Tags" "layout" "default"}
-      :content  (tag-page-content tag-set tag-distinct)}) ))
-
-(dosync (ref-set tags-page (tags)))
+    (tag-page-content tag-set tag-distinct)))

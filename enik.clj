@@ -6,7 +6,7 @@
   (:use :reload-all [app.markdown :only [read-markdown]])
   (:use :reload-all [app.template :only [render-template]])
   (:use :reload-all [app.post :only [latest-posts]])
-  (:use :reload-all [app.tags :only [tags tags-page]])
+  (:use :reload-all [app.tags :only [tags-page]])
   (:import (java.io File)))
 
 (defn render-page [file]
@@ -31,11 +31,16 @@
    {:metadata {"title" site-title "layout" "default"}
     :content (latest-posts page)}))
 
+(defn serve-tags-page []
+  (render-template 
+   {:metadata {"title" "Tags" "layout" "default"}
+    :content  (tags-page)}))
+
 (defn cache-markdown []
   (def mem-serve-site (memoize serve-site))
   (def mem-serve-post (memoize serve-post))
   (def mem-serve-latest-posts (memoize serve-lastest-posts))
-  (dosync (ref-set tags-page (tags)))
+  (def mem-serve-tags-page (memoize serve-tags-page))
   (dosync (ref-set rss-feed (update-rss))))
 
 (cache-markdown)
@@ -49,7 +54,7 @@
   (POST "/github-hook"
        (or (github-hook) :next))
   (GET "/tags/"
-       (or @tags-page :next))
+       (or (mem-serve-tags-page) :next))
   ;;blog related routes
   (GET "/:year/:month/:day/:title/"
        (or (mem-serve-post (:year params)
