@@ -54,8 +54,8 @@ in order to create a jar file use target jar after target linux.
 
 ## Download
  - Application - 
-[Mac OS X](http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.0.dmg)
-[Linux](http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.0.jar)
+[Mac OS X](http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.1.dmg)
+[Linux](http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.1.jar)
  - [Source Code](http://github.com/nakkaya/mocha/tree/master) 
 (Released under GPL via GitHub)
 
@@ -66,6 +66,7 @@ in order to create a jar file use target jar after target linux.
 ![Arp Table](images/mocha/gui2.png "Arp Table")
 
 ## Changelog
+ - Oct 10, 2009 - Minor Bug Fixes.
  - May 31, 2009  - New interface, Option to import/export arp table,
    Notifications can now be delivered via mail.
  - April 12, 2009 - Added option to suppress new host messages.
