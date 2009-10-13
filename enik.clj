@@ -7,7 +7,8 @@
   (:use :reload-all [app.template :only [render-template]])
   (:use :reload-all [app.post :only [latest-posts posts-by-month]])
   (:use :reload-all [app.tags :only [tags-page]])
-  (:import (java.io File)))
+  (:import (java.io File)
+	   (java.text SimpleDateFormat)))
 
 (defn render-page [file]
   (let  [content (read-markdown file)]
@@ -31,10 +32,13 @@
    {:metadata {"title" "Tags" "layout" "default"}
     :content  (tags-page)}))
 
-(defn serve-posts-by-month [year month]
+(defn serve-posts-by-month [year month]  
+  (let [time (.format 
+	      (SimpleDateFormat. "MMMM yyyy")
+	      (.parse (SimpleDateFormat. "yyyy-MM") (str year "-" month)))]
   (render-template 
-   {:metadata {"title" "Archives" "layout" "default"}
-    :content  (posts-by-month (str year "-" month) ) }))
+   {:metadata {"title" (str "Archives - " time) "layout" "default"}
+    :content  (posts-by-month (str year "-" month) ) })))
 
 (defn serve-site [file]
   (let [full-path (str "site/" file)]
