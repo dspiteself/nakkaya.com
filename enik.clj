@@ -59,7 +59,7 @@
 
 (defn github-hook []
   (println "Pulling Changes...")
-  (cmd "git pull")
+  (try (cmd "git pull") (catch Exception e))
   (cache-markdown))
 
 (defroutes enik
