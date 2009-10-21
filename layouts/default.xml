@@ -7,14 +7,14 @@
 	  title="Nurullah Akkaya" media="screen,projection" />
     <link rel="alternate" type="application/rss+xml" 
 	  title="Nurullah Akkaya's Home - RSS" 
-	  href="http://nakkaya.com/rss-feed" />
+	  href="/rss-feed" />
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="keywords" content=" {{ tags }} " />
-    <meta name="description" content=" {{ description }} " />
+    <meta name="keywords" content=" $tags " />
+    <meta name="description" content=" $description " />
 
-    <title>{{ page.title }}</title>
+    <title>$title</title>
 
   </head>
   <body>
@@ -99,11 +99,11 @@
 	  <!-- main START -->
 	  <div id="main">
 	    <div class="post" id="post-1">
-	      <h2>{{ page.title }}</h2>
+	      <h2>$title</h2>
 	      <div class="content">
 
 
-		{{ content }}
+		$content
 
 		<p class="under">
 		</p>
@@ -134,12 +134,33 @@
 		</div>
 	      </div>
 
-	      <div class="widget">
-		{{ post.count.by.mount }}
+	      <div class="widget">		
+		<h5>Archives</h5>
+		<ul>
+		  #foreach( $key in $post-count-by-mount.keySet() )
+		  <li>
+		    <a href="/$key.replaceAll("-" , "/")/">
+		      #set ($date = $dateIn.parse($key))
+		      $dateOut.format($date)
+		    </a> 
+		    ($post-count-by-mount.get($key))
+		  </li>
+		  #end
+		</ul>
 	      </div>
 
 	      <div class="widget">
-		{{ post.count.by.tags }}
+		<h5>Tags</h5>
+		<ul>
+		  #foreach( $key in $post-count-by-tags.keySet() )
+		  <li>
+		    <a href="/tags/#$key">
+		      $key
+		    </a> 
+		    ($post-count-by-tags.get($key))
+		  </li>
+		  #end
+		</ul>
 	      </div>
 	      
 	    </div>

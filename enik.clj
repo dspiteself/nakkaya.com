@@ -1,18 +1,10 @@
 (ns enik
   (:use :reload-all compojure)
-  (:use :reload-all app.config)
-  (:use :reload-all [app.util :only [read-file cmd cmdout]])
-  (:use :reload-all [app.rss :only [update-rss rss-feed]])
-  (:use :reload-all [app.markdown :only [read-markdown]])
-  (:use :reload-all [app.template :only [render-template]])
-  (:use :reload-all [app.post :only [latest-posts posts-by-month]])
-  (:use :reload-all [app.tags :only [tags-page]])
+  (:use :reload-all app.util)
+  (:use :reload-all [app.template :only [render-template render-page]])
+  (:use :reload-all [app.html :only [rss tags latest-posts archives]])
   (:import (java.io File)
 	   (java.text SimpleDateFormat)))
-
-(defn render-page [file]
-  (let  [content (read-markdown file)]
-    (render-template content)))
 
 (defn serve-post [year month day title]
   (let [file (str "posts/" year "-" month "-" day "-" title".markdown")]
@@ -22,23 +14,22 @@
 (defn serve-lastest-posts [page]
   (render-template 
    {:metadata {"title" site-title 
-	       "layout" "default-no-header"
+	       "layout" "default"
 	       "tags" "nurullah akkaya"
 	       "description" "Nurullah Akkaya's Home" }
     :content (latest-posts page)}))
 
 (defn serve-tags-page []
   (render-template 
-   {:metadata {"title" "Tags" "layout" "default"}
-    :content  (tags-page)}))
+   {:metadata {"title" "Tags" "layout" "default"} :content  (tags)}))
 
-(defn serve-posts-by-month [year month]  
+(defn serve-archives [year month]  
   (let [time (.format 
 	      (SimpleDateFormat. "MMMM yyyy")
 	      (.parse (SimpleDateFormat. "yyyy-MM") (str year "-" month)))]
   (render-template 
    {:metadata {"title" (str "Archives - " time) "layout" "default"}
-    :content  (posts-by-month (str year "-" month) ) })))
+    :content  (archives (str year "-" month) ) })))
 
 (defn serve-site [file]
   (let [full-path (str "site/" file)]
@@ -52,8 +43,7 @@
   (def mem-serve-post (memoize serve-post))
   (def mem-serve-latest-posts (memoize serve-lastest-posts))
   (def mem-serve-tags-page (memoize serve-tags-page))
-  (def mem-serve-posts-by-month (memoize serve-posts-by-month))
-  (dosync (ref-set rss-feed (update-rss))))
+  (def mem-serve-archives (memoize serve-archives)))
 
 (cache-markdown)
 
@@ -70,7 +60,7 @@
   (GET "/latest-posts/:page/"
        (or (mem-serve-latest-posts (:page params)) :next))
   (GET "/:year/:month/"
-       (or (mem-serve-posts-by-month (:year params) (:month params)) :next))
+       (or (mem-serve-archives (:year params) (:month params)) :next))
   ;;blog related routes
   (GET "/:year/:month/:day/:title/"
        (or (mem-serve-post (:year params)
@@ -79,7 +69,7 @@
 			   (:title params)) :next))
   (GET "/rss-feed"
        (or [(content-type "text/xml")
-	    @rss-feed] :next))
+	    (rss)] :next))
   ;;site related routes
   (GET "/*" 
        (or (mem-serve-site (params :*)) :next))
