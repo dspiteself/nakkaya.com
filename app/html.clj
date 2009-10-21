@@ -4,8 +4,10 @@
   (:use :reload-all clojure.contrib.prxml)
   (:use :reload-all app.util)
   (:use :reload-all app.storage)
+  (:use :reload-all app.template)
   (:use :reload-all [app.markdown :only [read-markdown]])
-  (:import (java.text SimpleDateFormat)))
+  (:import (java.text SimpleDateFormat)
+	   (java.io File)))
 
 
 (defn- post-xml [file]
@@ -55,8 +57,9 @@
 (defn tags []
   (let [tag-set      (tag-set)
 	tag-distinct (project tag-set [:tag])
+	metadata     {"title" "Tags" "layout" "default"}
 	content      (tag-page-content tag-set tag-distinct)]
-    (tag-page-content tag-set tag-distinct)))
+    (render-template {:metadata metadata  :content content  })))
 
 (defn- file-name-to-date [file]
   (let  [parse-format (SimpleDateFormat. "yyyy-MM-dd")
@@ -114,11 +117,29 @@
 
 (defn latest-posts [page]
   (let [begin (* (Integer. page) posts-per-page) 
-	end   (+ begin posts-per-page)]
-    (render-snippets begin end)))
+	end   (+ begin posts-per-page)
+	metadata {"title" site-title 
+		  "layout" "default"
+		  "tags" "nurullah akkaya"
+		  "description" "Nurullah Akkaya's Latest Posts" }
+	content (render-snippets begin end)]
+    (render-template {:metadata metadata  :content content })))
 
-(defn archives [time]
-  (let [posts (filter #(.startsWith % time) (post-list-by-date))]
-    (html 
-     (reduce (fn[h v]
-	       (conj h (render-snippet v))) [:div] posts)) ))
+(defn archives [year month]
+  (let [time  (convert-date "MMMM yyyy" "yyyy-MM" (str year "-" month))
+	metadate {"title" (str "Archives - " time) "layout" "default"}
+	posts (filter #(.startsWith % (str year "-" month)) (post-list-by-date))
+	content (html
+		 (reduce (fn[h v]
+			   (conj h (render-snippet v))) [:div] posts))]
+    (render-template {:metadata metadate  :content content})))
+
+(defn post [year month day title]
+  (let [file (str "posts/" year "-" month "-" day "-" title".markdown")]
+    (if (.exists (File. file))
+      (render-page file)) ))
+
+(defn site [file]
+  (let [full-path (str "site/" file)]
+    (if (.exists (File. full-path))
+      (render-page  full-path))))

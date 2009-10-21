@@ -1,10 +1,15 @@
 (ns app.util
-  (:import (java.io BufferedReader FileReader File InputStreamReader)))
+  (:import (java.io BufferedReader FileReader File InputStreamReader)
+	   (java.text SimpleDateFormat)))
 
 (def site-title "cat /dev/brain")
 (def site-url   "http://nakkaya.com")
 (def site-desc  "useless homepage for pointless projects.")
 (def posts-per-page 2)
+
+(defn convert-date [in-format out-format date]
+  (.format (SimpleDateFormat. in-format)
+	   (.parse (SimpleDateFormat. out-format) date)))
 
 (defn read-file [file]
   (apply str
