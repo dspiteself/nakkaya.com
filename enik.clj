@@ -16,7 +16,7 @@
    {:metadata {"title" site-title 
 	       "layout" "default"
 	       "tags" "nurullah akkaya"
-	       "description" "Nurullah Akkaya's Home" }
+	       "description" "Nurullah Akkaya's Latest Posts" }
     :content (latest-posts page)}))
 
 (defn serve-tags-page []
@@ -43,7 +43,8 @@
   (def mem-serve-post (memoize serve-post))
   (def mem-serve-latest-posts (memoize serve-lastest-posts))
   (def mem-serve-tags-page (memoize serve-tags-page))
-  (def mem-serve-archives (memoize serve-archives)))
+  (def mem-serve-archives (memoize serve-archives))
+  (def mem-serve-rss (memoize rss)))
 
 (cache-markdown)
 
@@ -69,7 +70,7 @@
 			   (:title params)) :next))
   (GET "/rss-feed"
        (or [(content-type "text/xml")
-	    (rss)] :next))
+	    (mem-serve-rss)] :next))
   ;;site related routes
   (GET "/*" 
        (or (mem-serve-site (params :*)) :next))
