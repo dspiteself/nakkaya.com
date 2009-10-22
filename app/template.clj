@@ -39,7 +39,3 @@
 
     (.merge template context writer)
     (.toString writer) ))
-
-(defn render-page [file]
-  (let  [content (read-markdown file)]
-    (render-template content)))

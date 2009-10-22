@@ -137,9 +137,17 @@
 (defn post [year month day title]
   (let [file (str "posts/" year "-" month "-" day "-" title".markdown")]
     (if (.exists (File. file))
-      (render-page file)) ))
+      (let [page  (read-markdown file)
+	    metadata (:metadata page)
+	    title    (metadata "title")
+	    content  (str (html [:h2 title]) (:content page))]
+	(render-template {:metadata metadata :content content})))))
 
 (defn site [file]
   (let [full-path (str "site/" file)]
     (if (.exists (File. full-path))
-      (render-page  full-path))))
+      (let [page  (read-markdown full-path)
+	    metadata (:metadata page)
+	    title    (metadata "title")
+	    content  (str (html [:h2 title]) (:content page))]
+	(render-template {:metadata metadata :content content})))))
