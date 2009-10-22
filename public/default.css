@@ -49,8 +49,14 @@ a:hover {
 .post .content .wp-caption p {
     margin:0;
 }
-blockquote, pre {
+blockquote {
     background:#F4F5F7 url(images/layout/default/blockquote.gif) 3px 3px no-repeat;
+    border:1px dashed #CCC;
+    padding:8px 12px 8px 36px;
+    margin:5px 0;
+}
+
+pre {
     border:1px dashed #CCC;
     padding:8px 12px 8px 36px;
     margin:5px 0;
@@ -88,7 +94,7 @@ blockquote, pre {
 .fixed, .clear {
     clear:both;
 }
-input.textfield, 
+input.textfield,
 textarea {
     background:#FFF url(images/layout/default/textfield.gif) top repeat-x;
     border:1px solid #A6A6A6;
@@ -155,7 +161,7 @@ textarea {
 #menus li a:hover {
     background-position:0 -31px;
 }
-#menus li.current_page_item a, 
+#menus li.current_page_item a,
 #menus li.current-cat a {
     background-position:0 -62px;
 }
@@ -296,11 +302,11 @@ textarea {
 .post .content img {
     max-width:600px;
 }
-.post .content ul, 
+.post .content ul,
 .post .content ol {
     padding-bottom:10px;
 }
-.post .content ul li, 
+.post .content ul li,
 .post .content ol li {
     list-style-position:inside;
     padding-left:20px;
@@ -342,7 +348,7 @@ textarea {
     margin-top:5px;
 /*font-size:95%;*/
 }
-#sidebar .content, 
+#sidebar .content,
 #sidebar li {
     font-size:12px;
 }
@@ -350,15 +356,15 @@ textarea {
     background:url(images/layout/default/widgetsep.png) bottom no-repeat;
     padding:10px 15px 19px;
 }
-#northsidebar, 
+#northsidebar,
 #southsidebar {
     font-size:95%;
 }
-#northsidebar .widget h2, 
+#northsidebar .widget h2,
 #southsidebar .widget h2 {
     margin-bottom:10px;
 }
-#northsidebar .widget .content p, 
+#northsidebar .widget .content p,
 #southsidebar .widget .content p {
     margin-bottom:10px;
 }
@@ -414,3 +420,94 @@ a#gotop {
     text-decoration:none;
 }
 /* footer END */
+
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+pre code {
+    display: block;
+    color: #000;
+    background: #f8f8ff
+}
+
+.comment, .template_comment, .diff .header, .javadoc {
+    color: #998;
+    font-style: italic
+}
+
+.keyword, .css .rule .keyword, .winutils, .javascript .title, .lisp .title, .subst {
+    color: #000;
+    font-weight: bold 
+}
+
+.number, .hexcolor {
+    color: #40a070
+}
+
+.string, .attribute .value, .phpdoc {
+    color: #d14
+}
+
+.title, .id {
+    color: #900;
+    font-weight: bold
+}
+
+.javascript .title, .lisp .title, .subst {
+    font-weight: normal
+}
+
+.class .title {
+    color: #458;
+    font-weight: bold
+}
+
+.tag, .css .keyword, .html .keyword, .tag .title, .django .tag .keyword {
+    color: #000080;
+    font-weight: normal
+}
+
+.attribute, .variable, .instancevar, .lisp .body {
+    color: #008080
+}
+
+.regexp {
+    color: #009926
+}
+
+.class {
+    color: #458;
+    font-weight: bold
+}
+
+.symbol, .lisp .keyword {
+    color: #990073
+}
+
+.builtin, .built_in, .lisp .title {
+    color: #0086b3
+}
+
+.preprocessor, .pi, .doctype, .shebang, .cdata {
+    color: #999;
+    font-weight: bold
+}
+
+.deletion {
+    background: #fdd
+}
+
+.addition {
+    background: #dfd
+}
+
+.diff .change {
+    background: #0086b3
+}
+
+.chunk {
+    color: #aaa
+}

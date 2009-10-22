@@ -9,12 +9,16 @@
 	  title="Nurullah Akkaya's Home - RSS" 
 	  href="/rss-feed" />
 
-
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="keywords" content=" $tags " />
     <meta name="description" content=" $description " />
 
     <title>$title</title>
+
+    <script type="text/javascript" src="/highlight.pack.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
 
   </head>
   <body>
