@@ -126,7 +126,7 @@ textarea {
     /*width:250px;*/
     height:30px;
     display:block;
-    font-family:"Trajan Pro";
+    font-family:"Arial";
     letter-spacing:0;
 }
 
@@ -134,7 +134,8 @@ textarea {
     color:#FFF;
     border-top:1px solid #FFF;
     text-decoration:none;
-    font-size:10px;
+    font-family:"Arial";
+    font-size:15px;
     float:left;
     padding:0 3px;
 }
