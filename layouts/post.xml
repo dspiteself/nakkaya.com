@@ -83,13 +83,14 @@
 	    <div id="searchbox">
 	      <form action="http://www.google.com/cse" id="cse-search-box">
 		<div class="content">
-		  <input type="hidden" name="cx" value="011327289396503571951:gmikuqrq7lm" />
+		  <input type="hidden" name="cx"
+			 value="011327289396503571951:gmikuqrq7lm" /> 
 		  <input type="hidden" name="ie" value="UTF-8" />
-		  <input class="textfield" name="q" size="24" value="" type="text">
-		  <span class="switcher">Switcher</span>
+		  <input class="textfield" name="q" size="24"
+			 type="text" value=""/>
+		  <input class="button" type="submit" value=""/>
 		</div>
 	      </form>
-	      <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>
 	    </div>
 	    <!-- searchbox END -->
 	    <div class="fixed"></div>

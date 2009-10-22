@@ -182,26 +182,34 @@ textarea {
     background-position:0 0;
 }
 #searchbox {
-    width:280px;
+    background:transparent url(images/layout/default/searchbox.gif) no-repeat scroll 0 0;
+    display:block;
     float:right;
-    padding:4px 10px;
+    height:23px;
+    margin-right:10px !important;
+    margin-top:4px;
+    padding:2px;
+    width:209px;
 }
 #searchbox .textfield {
-    line-height:16px;
-    width:180px;
-    float:right;
+    background:transparent none repeat scroll 0 0;
+    border:0 none;
+    float:left;
+    margin-right:2px;
+    padding-left:2px;
+    width:185px;
 }
-#searchbox .switcher {
-    background:url(images/layout/default/icons.gif) 0 0 no-repeat;
-    float:right;
+#searchbox .button {
+    background:transparent none repeat scroll 0 0;
+    border:0 none;
+    cursor:pointer;
+    float:left;
+    height:18px;
+    margin-top:1px;
     width:18px;
-    height:22px;
-    line-height:16px;
-    display:block;
-    text-indent:-999em;
-    padding:0 2px;
-    height:16px;
-    margin-top:3px;
+}
+#searchbox .searchtip {
+    color:#999999;
 }
 /* header END */
 
@@ -370,18 +378,18 @@ textarea {
 }
 
 #sidebar .widget_feeds {
-	padding:5px 15px 15px;
+    padding:5px 15px 15px;
 }
 
 #sidebar #feedrss {
-	height:25px;
-	line-height:25px;
-	display:block;
-	padding:5px 5px 5px 36px;
-	float:left;
-	text-decoration:none;
-	font-size:11px;
-	background: url(images/layout/default/feeds.gif) 5px 5px no-repeat;
+    height:25px;
+    line-height:25px;
+    display:block;
+    padding:5px 5px 5px 36px;
+    float:left;
+    text-decoration:none;
+    font-size:11px;
+    background: url(images/layout/default/feeds.gif) 5px 5px no-repeat;
 }
 
 /* footer START */
