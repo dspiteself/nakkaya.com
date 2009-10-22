@@ -2,7 +2,7 @@
   (:import (java.io BufferedReader FileReader File InputStreamReader)
 	   (java.text SimpleDateFormat)))
 
-(def site-title "cat /dev/brain")
+(def site-title "Nurullah Akkaya")
 (def site-url   "http://nakkaya.com")
 (def site-desc  "useless homepage for pointless projects.")
 (def posts-per-page 2)
