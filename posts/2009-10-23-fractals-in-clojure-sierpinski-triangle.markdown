@@ -27,15 +27,15 @@ triangle we are drawing.
 
     (defn midpoints [trig]
       (struct triangle 
-	      (struct point
-		      (int (/ (+ (:x (:bottom trig)) (:x (:left trig))) 2 ))
-		      (int (/ (+ (:y (:bottom trig)) (:y (:left trig))) 2 )))
-	      (struct point
-		      (int (/ (+ (:x (:rigth trig)) (:x (:bottom trig))) 2 ))
-		      (int (/ (+ (:y (:rigth trig)) (:y (:bottom trig))) 2 )))
-	      (struct point
-		      (int (/ (+ (:x (:left trig)) (:x (:rigth trig))) 2 ))
-		      (int (/ (+ (:y (:left trig)) (:y (:rigth trig))) 2 )))))
+              (struct point
+                      (int (/ (+ (:x (:bottom trig)) (:x (:left trig))) 2 ))
+                      (int (/ (+ (:y (:bottom trig)) (:y (:left trig))) 2 )))
+              (struct point
+                      (int (/ (+ (:x (:rigth trig)) (:x (:bottom trig))) 2 ))
+                      (int (/ (+ (:y (:rigth trig)) (:y (:bottom trig))) 2 )))
+              (struct point
+                      (int (/ (+ (:x (:left trig)) (:x (:rigth trig))) 2 ))
+                      (int (/ (+ (:y (:left trig)) (:y (:rigth trig))) 2 )))))
 
 Given a triangle this function will return a new triangle thats half the
 original triangle.
@@ -43,16 +43,16 @@ original triangle.
     (defn create-triangles [trig step depth g]
       (paint-triangle g trig)
       (let  [points (midpoints trig) 
-	     left   (struct 
-		     triangle (:left trig) (:left points) (:bottom points))
+             left   (struct 
+                     triangle (:left trig) (:left points) (:bottom points))
              rigth  (struct 
-		     triangle (:rigth trig) (:rigth points) (:bottom points))
-	     top    (struct 
-		     triangle (:bottom trig) (:rigth points) (:left points)) ]
+                     triangle (:rigth trig) (:rigth points) (:bottom points))
+             top    (struct 
+                     triangle (:bottom trig) (:rigth points) (:left points)) ]
         (if (< step depth )
           (do (create-triangles left  (inc step) depth g)
-	      (create-triangles rigth (inc step) depth g)
-	      (create-triangles top   (inc step) depth g)))))
+              (create-triangles rigth (inc step) depth g)
+              (create-triangles top   (inc step) depth g)))))
 
 create-triangles is a recursive function that will call it self until
 required depth is reached. It first draws the given triangle then
