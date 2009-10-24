@@ -23,7 +23,7 @@
 	<pathelement location="extLibs/markdownj.jar"/>
       </classpath>
       
-      <arg value="enik.clj" />
+      <arg value="app/routes.clj" />
     </java>  
   </target>
 

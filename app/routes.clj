@@ -1,4 +1,4 @@
-(ns enik
+(ns app.routes
   (:use :reload-all compojure)
   (:use :reload-all app.util)
   (:use :reload-all app.html))
