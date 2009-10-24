@@ -57,7 +57,7 @@
 (defn tags []
   (let [tag-set      (tag-set)
 	tag-distinct (project tag-set [:tag])
-	metadata     {"title" "Tags" "layout" "default"}
+	metadata     {"title" "Tags" "layout" "default" :type 'tags}
 	content      (tag-page-content tag-set tag-distinct)]
     (render-template {:metadata metadata  :content content  })))
 
@@ -119,13 +119,16 @@
 	metadata {"title" site-title 
 		  "layout" "default"
 		  "tags" "nurullah akkaya"
-		  "description" "Nurullah Akkaya's Latest Posts" }
+		  "description" "Nurullah Akkaya's Latest Posts"
+		  :type 'latest}
 	content (render-snippets begin end)]
     (render-template {:metadata metadata  :content content })))
 
 (defn archives [year month]
   (let [time  (convert-date "MMMM yyyy" "yyyy-MM" (str year "-" month))
-	metadate {"title" (str "Archives - " time) "layout" "default"}
+	metadate {"title" (str "Archives - " time) 
+		  "layout" "default"
+		  :type 'archives}
 	posts (filter #(.startsWith % (str year "-" month)) (post-list-by-date))
 	content (html
 		 (reduce (fn[h v]
@@ -136,7 +139,7 @@
   (let [file (str "posts/" year "-" month "-" day "-" title".markdown")]
     (if (.exists (File. file))
       (let [page  (read-markdown file)
-	    metadata (:metadata page)
+	    metadata (conj (:metadata page) {:type 'post})
 	    title    (metadata "title")
 	    content  (str (html [:h2 title]) (:content page))]
 	(render-template {:metadata metadata :content content})))))
@@ -145,7 +148,7 @@
   (let [full-path (str "site/" file)]
     (if (.exists (File. full-path))
       (let [page  (read-markdown full-path)
-	    metadata (:metadata page)
+	    metadata (conj (:metadata page) {:type 'page})
 	    title    (metadata "title")
 	    content  (str (html [:h2 title]) (:content page))]
 	(render-template {:metadata metadata :content content})))))

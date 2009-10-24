@@ -3,7 +3,7 @@
   (:use :reload-all app.util)
   (:use :reload-all app.storage))
 
-(defn tags-widget []
+(defn- tags-widget []
   (let [tags (post-count-by-tags)] 
     (html
      [:div {:class "widget"} 
@@ -14,7 +14,7 @@
 	  (conj h [:li [:a {:href (str "/tags/#" (first v))} (first v)]])) 
 	() tags)]])))
 
-(defn archives-widget []
+(defn- archives-widget []
   (let [months (post-count-by-mount)] 
     (html 
      [:div {:class "widget"} 
@@ -28,9 +28,39 @@
 	    (conj h [:li [:a {:href url} date] count])))
 	() months)]])))
 
+(defn- disqus-widget []
+  (html
+   [:div {:id "disqus_thread"}]
+   [:script
+    {:type "text/javascript",
+     :src "http://disqus.com/forums/nakkaya/embed.js"}]
+   [:noscript
+    [:a
+     {:href "http://disqus.com/forums/nakkaya/?url=ref"}
+     "View the discussion thread."]]
+   [:a
+    {:href "http://disqus.com", :class "dsq-brlink"}
+    "blog comments powered by"
+    [:span {:class "logo-disqus"} "Disqus"]]))
+
+(defn- disqus-js []
+  (html
+   [:script
+    {:type "text/javascript"}
+    "//\n(function() {\n\tvar links = document.getElementsByTagName('a');\n\tvar query = '?';\n\tfor(var i = 0; i < links.length; i++) {\n\tif(links[i].href.indexOf('#disqus_thread') >= 0) {\n\t\tquery += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';\n\t}\n\t}\n\tdocument.write('<script charset="
+    'utf-8
+    " type="
+    'text/javascript
+    " src="
+    'http://disqus.com/forums/nakkaya/get_num_replies.js
+    '+
+    'query
+    +
+    '"></' + 'script>');\n})();\n//"]))
+
 (defn render-template [page]
   (let [metadata (:metadata page)
-	content  (:content page)] 
+	content  (:content page)]
     (html
      [:html
       {:xmlns "http://www.w3.org/1999/xhtml"}
@@ -121,7 +151,8 @@
 	    [:div
 	     {:class "content"}
 	     content
-	     [:p {:class "under"}]
+	     [:p {:class "under"} 
+	      (if (= (:type metadata) 'post) (disqus-widget))]
 	     [:div {:class "fixed"}]]]]
 	  [:div
 	   {:id "sidebar"}
@@ -149,11 +180,11 @@
 	  [:a
 	   {:id "gotop", :href "#", :onclick "MGJS.goTop();return false;"}
 	   "Top"]
-	  [:div {:id "copyright"} "Copyright  2009 Nurullah Akkaya"]
+	  [:div {:id "copyright"} "Nurullah Akkaya"]
 	  [:div
 	   {:id "themeinfo"}
-	   "Powered By"
-	   [:a {:href "#"} "enik"]
+	   "Powered By "
+	   [:a {:href "http://github.com/weavejester/compojure"} "compojure"]
 	   ", \n\t    Theme by"
 	   [:a {:href "http://wordpress.org/extend/themes/inove"} "mg12"]
 	   "."]]]]
@@ -162,4 +193,5 @@
 	 :type "text/javascript"}]
        [:script
 	{:type "text/javascript"}
-	"_uacct = " 'UA-87333-8 ";\n      urchinTracker();"]]])))
+	"_uacct = " 'UA-87333-8 ";\n      urchinTracker();"]
+       (if (= (:type metadata) 'post) (disqus-js))]])))
