@@ -22,7 +22,7 @@
       [:ul
        (reduce 
 	(fn [h v]
-	  (let [url (str (.replace (first v) "-" "/") "/")
+	  (let [url (str "/" (.replace (first v) "-" "/") "/")
 		date (convert-date "MMMM yyyy" "yyyy-MM" (first v))
 		count (str " (" (second v) ")")]
 	    (conj h [:li [:a {:href url} date] count])))
