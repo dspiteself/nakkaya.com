@@ -1,5 +1,4 @@
 ---
-layout: default
 title: regexBuilder
 tags: java
 ---

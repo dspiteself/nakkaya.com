@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Intercepting Links in Firefox
 tags: firefox
 ---

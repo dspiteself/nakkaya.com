@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Experiments
 description: Experiments
 ---

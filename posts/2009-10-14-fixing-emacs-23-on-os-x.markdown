@@ -1,6 +1,5 @@
 ---
 title: Fixing Emacs 23 on Mac OS X
-layout: post
 tags: emacs apple
 ---
 

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Ip Over Dns
 tags: ip dns
 ---

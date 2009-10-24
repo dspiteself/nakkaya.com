@@ -1,6 +1,5 @@
 ---
 title: Password Based Encryption Using AES
-layout: post
 tags: java encryption
 ---
 

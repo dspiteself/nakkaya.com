@@ -1,6 +1,5 @@
 ---
 title: Git Delete Last Commit
-layout: post
 tags: git
 ---
 

@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Mocha: ARPWatch / Log Watcher for Mac OS X and Linux
 tags: mocha arp
 description: Mocha: ARPWatch / Log Watcher for Mac OS X and Linux

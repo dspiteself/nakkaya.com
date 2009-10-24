@@ -1,6 +1,5 @@
 ---
 title: Fractals in Clojure - Fractal Fern
-layout: post
 tags: clojure fractal
 ---
 

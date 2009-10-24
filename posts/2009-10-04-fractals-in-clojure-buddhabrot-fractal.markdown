@@ -1,6 +1,5 @@
 ---
 title: Fractals in Clojure - Buddhabrot Fractal
-layout: post
 tags: clojure fractal
 ---
 

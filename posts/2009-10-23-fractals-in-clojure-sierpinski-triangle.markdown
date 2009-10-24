@@ -1,6 +1,5 @@
 ---
-title: Fractals in Clojure Sierpinski Triangle 
-layout: post
+title: Fractals in Clojure - Sierpinski Triangle 
 tags: clojure fractal
 ---
 

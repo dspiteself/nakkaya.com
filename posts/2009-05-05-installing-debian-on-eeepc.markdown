@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Installing Debian on EeePc
 tags: linux debian
 ---

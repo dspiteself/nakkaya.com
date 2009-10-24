@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Contact Information
 description: About Nurullah Akkaya
 ---

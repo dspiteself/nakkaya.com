@@ -1,6 +1,5 @@
 ---
 title: A Guide to Raw Traffic in Clojure
-layout: post
 tags: clojure
 ---
 

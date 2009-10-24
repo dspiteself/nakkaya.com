@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Java & OS X Integration
 tags: java apple
 ---

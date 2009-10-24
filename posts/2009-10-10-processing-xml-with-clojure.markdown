@@ -1,6 +1,5 @@
 ---
 title: Processing XML With Clojure
-layout: post
 tags: clojure xml
 ---
 

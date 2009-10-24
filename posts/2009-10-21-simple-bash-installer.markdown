@@ -1,6 +1,5 @@
 ---
 title: Simple Bash Installer
-layout: post
 tags: bash
 ---
 

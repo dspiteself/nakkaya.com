@@ -1,6 +1,5 @@
 ---
 title: Jump Start Your Clojure Projects
-layout: post
 tags: clojure ant
 ---
 

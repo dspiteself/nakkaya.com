@@ -1,6 +1,5 @@
 ---
 title: Multiple Terminals in Emacs
-layout: post
 tags: emacs
 ---
 

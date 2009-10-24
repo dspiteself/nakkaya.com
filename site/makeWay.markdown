@@ -1,5 +1,4 @@
 ---
-layout: default
 title: makeWay
 tags: makeWay arp
 ---

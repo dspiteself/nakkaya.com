@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Compiling Emacs on Mac OS X
 tags: emacs apple
 ---
