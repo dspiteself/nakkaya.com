@@ -21,8 +21,6 @@
 	<pathelement location="extLibs/jetty-util.jar"/>
 	<pathelement location="extLibs/servlet-api.jar"/>
 	<pathelement location="extLibs/markdownj.jar"/>
-	<pathelement location="extLibs/velocity.jar"/>
-	<pathelement location="extLibs/velocity-dep.jar"/>
       </classpath>
       
       <arg value="enik.clj" />
