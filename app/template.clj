@@ -11,7 +11,9 @@
       [:ul
        (reduce 
 	(fn [h v]
-	  (conj h [:li [:a {:href (str "/tags/#" (first v))} (first v)]])) 
+	  (let [tag (first v)
+		count (str " (" (second v) ")")] 
+	    (conj h [:li [:a {:href (str "/tags/#" tag)} tag] count]))) 
 	() tags)]])))
 
 (defn- archives-widget []
