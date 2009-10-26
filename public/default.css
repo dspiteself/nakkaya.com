@@ -279,6 +279,8 @@ textarea {
     padding:0 5px 3px;
     font-size:16px;
     font-family:Verdana,"BitStream vera Sans";
+    margin-top:20px;
+    margin-bottom:20px;
 }
 .post h2 a.title {
     text-decoration:none;
