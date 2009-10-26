@@ -28,29 +28,20 @@
 	() months)]]))
 
 (defn disqus-widget []
-   [:div {:id "disqus_thread"}]
-   [:script
-    {:type "text/javascript",
-     :src "http://disqus.com/forums/nakkaya/embed.js"}]
-   [:noscript
-    [:a
-     {:href "http://disqus.com/forums/nakkaya/?url=ref"}
-     "View the discussion thread."]]
-   [:a
-    {:href "http://disqus.com", :class "dsq-brlink"}
-    "blog comments powered by"
-    [:span {:class "logo-disqus"} "Disqus"]])
+  "<div id=\"disqus_thread\"></div><script type=\"text/javascript\" src=\"http://disqus.com/forums/nakkaya/embed.js\"></script><noscript><a href=\"http://disqus.com/forums/nakkaya/?url=ref\">View the discussion thread.</a></noscript><a href=\"http://disqus.com\" class=\"dsq-brlink\">blog comments powered by <span class=\"logo-disqus\">Disqus</span></a>")
 
 (defn disqus-js []
-   [:script
-    {:type "text/javascript"}
-    "//\n(function() {\n\tvar links = document.getElementsByTagName('a');\n\tvar query = '?';\n\tfor(var i = 0; i < links.length; i++) {\n\tif(links[i].href.indexOf('#disqus_thread') >= 0) {\n\t\tquery += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';\n\t}\n\t}\n\tdocument.write('<script charset="
-    'utf-8
-    " type="
-    'text/javascript
-    " src="
-    'http://disqus.com/forums/nakkaya/get_num_replies.js
-    '+
-    'query
-    +
-    '"></' + 'script>');\n})();\n//"])
+   "<script type=\"text/javascript\">
+//<![CDATA[
+(function() {
+	var links = document.getElementsByTagName('a');
+	var query = '?';
+	for(var i = 0; i < links.length; i++) {
+	if(links[i].href.indexOf('#disqus_thread') >= 0) {
+		query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+	}
+	}
+	document.write('<script charset=\"utf-8\" type=\"text/javascript\" src=\"http://disqus.com/forums/nakkaya/get_num_replies.js' + query + '\"></' + 'script>');
+})();
+//]]>
+</script>")
