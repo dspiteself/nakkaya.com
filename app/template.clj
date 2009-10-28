@@ -134,10 +134,5 @@
 	   ", \n\t    Theme by"
 	   [:a {:href "http://wordpress.org/extend/themes/inove"} "mg12"]
 	   "."]]]]
-       [:script
-	{:src "http://www.google-analytics.com/urchin.js",
-	 :type "text/javascript"}]
-       [:script
-	{:type "text/javascript"}
-	"_uacct = " 'UA-87333-8 ";\n      urchinTracker();"]
+       (analytics-js)
        (if (= (:type metadata) 'post) (disqus-js))]])))
