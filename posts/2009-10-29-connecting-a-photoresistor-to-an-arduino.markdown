@@ -11,7 +11,7 @@ sense the intensity of light around it. Let's look at the hook up,
 
 Using the
 [playground](http://www.arduino.cc/playground/Learning/PhotoResistor)
-article as reference, resistor and photoresistor are connected in
+article as reference, resistor (100K) and photoresistor are connected in
 series. +5V goes to resistor, ground goes to photoresistor, the junction
 where the resistor and photoresistor meets goes to analog 0. Digital 13
 is used for the LED.
