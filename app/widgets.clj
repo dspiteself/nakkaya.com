@@ -3,7 +3,7 @@
   (:use :reload-all app.storage))
 
 (defn tags-widget []
-  (let [tags (post-count-by-tags)] 
+  (let [tags (reverse (sort (post-count-by-tags)))]
      [:div {:class "widget"} 
       [:h5 "Tags"]
       [:ul
