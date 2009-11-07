@@ -56,7 +56,7 @@
 
 (defn tags []
   (let [tag-set      (tag-set)
-	tag-distinct (project tag-set [:tag])
+	tag-distinct (sort-by :tag (project tag-set [:tag]))
 	metadata     {"title" "Tags" "layout" "default" :type 'tags}
 	content      (tag-page-content tag-set tag-distinct)]
     (render-template {:metadata metadata  :content content  })))
