@@ -1,7 +1,11 @@
 ---
 title: Decoding BEncoded Streams in Clojure
-tags: clojure
+tags: clojure bencode
 ---
+
+> EDIT: I have updated the code to include both decoding and encoding,
+> information on how to encode can be found
+> [here](/2009/11/14/bencoding-objects-in-clojure/)
 
 Bencode is the encoding used by file sharing system BitTorrent. Torrent
 files are simply Bencoded dictionaries. This post will walk you through
@@ -9,8 +13,8 @@ my Bencode decoder, if you want to jump right in to code, it is
 [here](/code/clojure/bencode.clj).
 
 You can read about the BitTorrent specification
-[here](http://www.bittorrent.org/protocol.html) there is also a lot of
-information on
+[here](http://www.bittorrent.org/beps/bep_0003.html) there is also a lot
+of information on
 [theory.org](http://wiki.theory.org/index.php/BitTorrentSpecification)
 of course don't forget to check out the
 [Wikipedia](http://en.wikipedia.org/wiki/Bencode) article.
