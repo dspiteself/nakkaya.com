@@ -1,6 +1,6 @@
 ---
 title: Unit Testing in Clojure
-tags:  clojure unit-testing
+tags: clojure unit-testing
 ---
 
 One thing I love about Clojure is the built in unit tests. Unit tests
