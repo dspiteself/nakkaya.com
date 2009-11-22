@@ -1,0 +1,102 @@
+---
+title: Making Recommendations
+tags: clojure programming-collective-intelligence
+---
+
+Now that the similarity algorithms are in place, it is time to move on
+to making recommendations any one of the previously covered similarity
+scores would work,
+
+ - [Pearson Correlation Score](/2009/11/13/pearson-correlation-score/)
+ - [Euclidean Distance Score](/2009/11/11/euclidean-distance-score/)
+
+We begin with calculating similarity scores for every critic, against
+the person we are looking for, discard anyone whose similarity is below
+0. We can plug either one of the similarity scores.
+
+    (defn similarities [prefs person algo]
+      (filter 
+       #(<= 0 (second %))
+       (reduce 
+        (fn[h p] (assoc h (first p) (algo (prefs person) (second p)))) 
+        {} (dissoc prefs person))))
+
+    user=> (similarities critics "Toby" pearson)
+    (["Jack Matthews" 0.66284898035987] ["Mick LaSalle" 0.9244734516419049] 
+     ["Claudia Puig" 0.8934051474415647] ["Gene Seymour" 0.38124642583151164]
+     ["Lisa Rose" 0.9912407071619299])
+
+Next we filter preferences, remove entries that we already ranked and
+multiple remaining entries with the users similarity score, that way
+their ranks only contribute by how much they are similar to the user we
+are looking for.
+
+    (defn weight-prefs [prefs similarity person]
+      (reduce 
+       (fn [h v]
+         (let [other (first v) score (second v)
+               diff (filter #(not (contains? (prefs person) (key %))) (prefs other))
+               weighted-pref (apply hash-map
+                                    (interleave (keys diff) 
+                                                (map #(* % score) (vals diff))))]
+           (assoc h other weighted-pref))) {} similarity))
+
+    user=> (weight-prefs critics (similarities critics "Toby" pearson)  "Toby")
+    {"Lisa Rose" {"Lady in the Water" 2.4781017679048247, 
+                  "The Night Listener" 2.97372212148579, 
+                  "Just My Luck" 2.97372212148579}, 
+     "Gene Seymour" {"Lady in the Water" 1.143739277494535, 
+                     "The Night Listener" 1.143739277494535, 
+                     "Just My Luck" 0.5718696387472675}, 
+     "Claudia Puig" {"The Night Listener" 4.020323163487041, 
+                     "Just My Luck" 2.680215442324694}, 
+     "Mick LaSalle" {"Lady in the Water" 2.7734203549257144, 
+                     "The Night Listener" 2.7734203549257144, 
+                     "Just My Luck" 1.8489469032838097}, 
+     "Jack Matthews" {"Lady in the Water" 1.9885469410796102, 
+                      "The Night Listener" 1.9885469410796102}}
+
+Using the weighted preferences we calculated, we can build a list of
+movies to recommend by adding all the ranks for the movies,
+
+    (defn sum-scrs [prefs]
+      (reduce (fn [h m] (merge-with #(+ %1 %2) h m)) {} (vals prefs)))
+
+    user=> (sum-scrs (weight-prefs critics (similarities critics "Toby" pearson)  "Toby"))
+    {"Just My Luck" 8.074754105841562, 
+     "The Night Listener" 12.899751858472692, 
+     "Lady in the Water" 8.383808341404684}
+
+In order not to give any advantage to movies that are ranked the most, we
+need to divide rank, to the sum of similarity of all the critics that
+ranked the movie,
+
+    (defn sum-sims [weighted-pref scores sim-users]
+      (reduce (fn [h m]
+                (let [movie (first m)
+                      rated-users (reduce 
+                                   (fn [h m] (if (contains? (val m) movie) 
+                                               (conj h (key m)) h)) 
+                                   [] weighted-pref)
+                      similarities (apply + (map #(sim-users %) rated-users))]
+                  (assoc h movie similarities) ) ) {} scores))
+
+    {Lady in the Water 2.9598095649952163, 
+     The Night Listener 3.853214712436781, 
+     Just My Luck 3.190365732076911}
+
+Now we have everything to make a recommendation to a user, final score
+for a movie is calculated by diving its total score to the total of the
+similarities,
+
+    (defn recommend [prefs person algo]
+      (let [similar-users (into {} (similarities prefs person algo))
+            weighted-prefs (weight-prefs prefs similar-users  person)
+            scores (sum-scrs weighted-prefs)
+            sims (sum-sims weighted-prefs scores similar-users)]
+        (interleave (keys scores) (map #(/ (second %) (sims (first %))) scores))))
+
+    user=> (recommend critics "Toby" pearson)
+    ("Just My Luck" 2.5309807037655645 
+     "The Night Listener" 3.3477895267131013 
+     "Lady in the Water" 2.832549918264162)
