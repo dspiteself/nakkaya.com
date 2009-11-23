@@ -41,8 +41,6 @@
        (or (mem-latest-posts 0) :next))
   (GET "/*" 
        (or (mem-site (params :*)) :next))
-  (GET "/*" 
-       (or (serve-file (params :*)) :next))
   (ANY "*"
        [404 (content-type "text/html") (file-not-found)]))
 
