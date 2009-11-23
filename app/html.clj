@@ -147,14 +147,13 @@
 (defn site [file]
   (let [site-path (str "site/" file)
 	public-path (File. (str "public/" file))]
-    (if (.exists (File. site-path))
-      (let [page  (read-markdown site-path)
-	    metadata (conj (:metadata page) {:type 'page})
-	    title    (metadata "title")
-	    content  (str (html [:h2 title]) (:content page))]
-	(render-template {:metadata metadata :content content})))
-    (if (.exists public-path)
-      public-path)))
+    (cond (.exists (File. site-path)) 
+	  (let [page  (read-markdown site-path)
+		metadata (conj (:metadata page) {:type 'page})
+		title    (metadata "title")
+		content  (str (html [:h2 title]) (:content page))]
+	    (render-template {:metadata metadata :content content}))
+	  (.exists public-path) public-path)))
 
 (defn file-not-found []
   (html
