@@ -44,6 +44,6 @@
   (GET "/*" 
        (or (serve-file (params :*)) :next))
   (ANY "*"
-       [(content-type "text/html") (page-not-found)]))
+       [404 (content-type "text/html") (file-not-found)]))
 
 (run-server {:port 8085} "/*" (servlet enik))
