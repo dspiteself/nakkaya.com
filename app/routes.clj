@@ -11,6 +11,14 @@
   (def mem-archives (memoize archives))
   (def mem-rss (memoize rss)))
 
+(defn cache-markdown []
+  (def mem-site site)
+  (def mem-post post)
+  (def mem-latest-posts latest-posts)
+  (def mem-tags tags)
+  (def mem-archives archives)
+  (def mem-rss rss))
+
 (cache-markdown)
 
 (defn github-hook []
@@ -26,6 +34,8 @@
        (or (mem-tags) :next))
   (GET "/latest-posts/:page/"
        (or (mem-latest-posts (:page params)) :next))
+  (GET "/archives/"
+       (or (mem-archives) :next))
   (GET "/:year/:month/"
        (or (mem-archives (:year params) (:month params)) :next))
   ;;blog related routes

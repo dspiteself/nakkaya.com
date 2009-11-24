@@ -68,9 +68,9 @@
     (.format print-format date)))
 
 (defn- post-snippet [url date title snippet]
-  (html [:h2
-	 [:a {:href url} title]] 
-	[:h5 {:class "post-date"}  date] [:p snippet] ))
+  (html [:h2 [:a {:href url} title]]
+	[:p {:class "publish_date"}  date]
+	[:p snippet] ))
 
 (defn- render-snippet [file]
   (let [post (read-markdown (str "posts/" file))
@@ -89,15 +89,22 @@
       (.append 
        content 
        (html 
-	[:div {:class "alignleft"}
+	[:div {:class "pager-left"}
 	 [:a {:href (str "/latest-posts/" (+ page 1) "/")} 
 	  "&laquo; Older Entries"]])))
+
+    (if (= 0 page)
+      (.append 
+       content 
+       (html 
+	[:div {:class "pager-right"} 
+	 [:a {:href (str "/archives/")} "Archives"]])))
 
     (if (< 0 page)
       (.append 
        content 
        (html 
-	[:div {:class "alignright"}
+	[:div {:class "pager-right"}
 	 [:a {:href (str "/latest-posts/" (- page 1) "/")} 
 	  "Newer Entries &raquo;"]])))
 
@@ -124,16 +131,35 @@
 	content (render-snippets begin end)]
     (render-template {:metadata metadata  :content content })))
 
-(defn archives [year month]
-  (let [time  (convert-date "MMMM yyyy" "yyyy-MM" (str year "-" month))
-	metadate {"title" (str "Archives - " time) 
-		  "layout" "default"
-		  :type 'archives}
-	posts (filter #(.startsWith % (str year "-" month)) (post-list-by-date))
-	content (html
-		 (reduce (fn[h v]
-			   (conj h (render-snippet v))) [:div] posts))]
-    (render-template {:metadata metadate  :content content})))
+(defn- archives-list []
+  (let [months (post-count-by-mount)]
+    (html
+     [:h2 "Archives"]
+     [:ul
+      (reduce 
+       (fn [h v]
+	 (let [url (str "/" (.replace (first v) "-" "/") "/")
+	       date (convert-date "MMMM yyyy" "yyyy-MM" (first v))
+	       count (str " (" (second v) ")")]
+	   (conj h [:li [:a {:href url} date] count])))
+       () months)])))
+
+(defn archives 
+  ([]
+     (let [metadata {"title" "Archives" "layout" "default" :type 'tags}
+	   content (archives-list)]
+       (render-template {:metadata metadata  :content content  })))
+  ([year month]
+     (let [time  (convert-date "MMMM yyyy" "yyyy-MM" (str year "-" month))
+	   metadate {"title" (str "Archives - " time) 
+		     "layout" "default"
+		     :type 'archives}
+	   posts (filter 
+		  #(.startsWith % (str year "-" month)) (post-list-by-date))
+	   content (html
+		    (reduce (fn[h v]
+			      (conj h (render-snippet v))) [:div] posts))]
+       (render-template {:metadata metadate  :content content}))))
 
 (defn post [year month day title]
   (let [file (str "posts/" year "-" month "-" day "-" title".markdown")]
@@ -141,7 +167,7 @@
       (let [page  (read-markdown file)
 	    metadata (conj (:metadata page) {:type 'post})
 	    title    (metadata "title")
-	    content  (str (html [:h2 title]) (:content page))]
+	    content  (:content page)]
 	(render-template {:metadata metadata :content content})))))
 
 (defn site [file]

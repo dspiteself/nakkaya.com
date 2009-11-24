@@ -1,524 +1,347 @@
-/* static START */
-* {
-    margin:0;
+body {
+    background: #373737;
+    color:#e5e5e5;
+    font:86% 'lucida grande','lucida sans unicode',Verdana,Tahoma,Arial,sans-serif;
+    line-height:1.2em;
+    margin:0 auto;
     padding:0;
 }
-abbr[title], acronym[title] {
-    border-bottom:thin dotted;
-    cursor:help;
+
+a {
+    color:#0383c9;
+    font-weight:700;
+    text-decoration:none;
 }
-body {
-    background:#BEC3C6 url(images/layout/default/bg.jpg) repeat-x;
-    color:#555;
-    font-family:Verdana,"BitStream vera Sans",Helvetica,Sans-serif;
-    font-size:12px;
+
+a:hover {
+    color: #c6e567;
 }
-h1, h2, h3, h4, h5, h6 {
-    font-weight:bolder;
-    letter-spacing:-0.07em;
-    font-family:Arial;
-}
-h1 {font-size:200%;}
-h2 {font-size:170%;}
-h3 {font-size:150%;}
-h4 {font-size:130%;}
-h5 {font-size:110%;}
-h6 {font-size:100%;}
-img {
+
+a img {
     border:0;
 }
-img.sided {
-    background:#FFF;
-    border:1px solid #CCC;
-    padding:3px;
-}
-small {
-    font-size:10px;
-}
-a:hover img.sided {
-    border-color:#A6A6A6;
-}
-a {
-    color:#2970A6;
-    text-decoration:none;
-}
-a:hover {
-    text-decoration:underline;
+
+p {
+    margin:0 0 18px 0px;
 }
 
-.post .content .wp-caption p {
-    margin:0;
-}
-blockquote {
-    background:#F4F5F7 url(images/layout/default/blockquote.gif) 3px 3px no-repeat;
-    border:1px dashed #CCC;
-    padding:8px 12px 8px 36px;
-    margin:5px 0;
+ul,ol,dl {
+    font-size:1em;
+    margin:2px 0 16px 0px;
 }
 
-pre {
-    border:1px dashed #CCC;
-    padding:8px 12px 8px 36px;
-    margin:5px 0;
+ul ul,ol ol {
+    margin:4px 0 4px 10px;
 }
 
-.alignleft {
-    float:left;
+.posts { 
+    padding:0;
+}
+
+li { 
+    padding:0 4px; 
+    color:#ccc; 
+    list-style: none; 
+}
+
+ul.posts li span { 
+    float:right; 
+    font-family:monofur, monaco, courier; 
+    color:#888; 
+}
+
+ul.posts li a { font-weight:200;}
+
+.post-tags {
     text-align:left;
-    margin-right:10px;
+    margin-top:10px;
+    margin-bottom:10px;
 }
-.alignright {
-    float:right;
-    text-align:right;
-    margin-left:10px;
+
+blockquote {
+    border:1px dotted #e5e5e5;
+    font-size:1.0em;
+    margin:20px 10px;
+    padding:10px;
 }
-.aligncenter {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.floatleft {
-    float:left;
-}
-.floatright {
-    float:right;
-}
-.left {
-    float:left;
-    margin-right:10px;
-}
-.right {
-    float:right;
-    margin-left:10px;
-}
-.fixed, .clear {
+
+pre { 
+    font-family: Monaco, Courier;
+    background: #191919;
+    border: dashed 2px #e5e5e5;
+    width: 650px;
+    padding: 5px;
+    font-size:1em;
+    line-height: 2em;
     clear:both;
 }
-input.textfield,
-textarea {
-    background:#FFF url(images/layout/default/textfield.gif) top repeat-x;
-    border:1px solid #A6A6A6;
-    padding:2px 1px;
+
+pre code { 
+    font-family: Monaco, Courier;
+    width: 650px;
+    padding: 0px;
+    font-size:1em;
+    line-height: 2em;
+    clear:both;
 }
+
+h1 {
+    color:#0383c9;
+    font-size:4.7em;
+    letter-spacing:-5px;
+    margin:0 0 30px 0px;
+    padding:50px 0 0 0;;
+
+}
+
+h1 a {
+    color:#0383c9;
+    text-transform:none;
+}
+
+h1 a:hover { color:#fba919;}
+
+.publish_date {
+    margin-top:-8px;
+    margin-bottom:0px;
+    text-align:right;
+    font-size:0.8em;
+    width:670px;
+    color: #23af4c;
+
+}
+
+.pages a { padding:3px; }
+
+.commentslink { 
+    margin-bottom: 35px;
+    display:block;
+    border-bottom:solid 1px #dadada;
+    padding-bottom:25px; 
+}
+
+h2 {
+    border-bottom:1px solid #e5e5e5;
+    color:#0383c9;
+    font-size:1.7em;
+    font-weight:100;
+    letter-spacing:-1px;
+    margin:0 0 10px;
+    padding:0px 2px 4px 5px;
+}
+
+h3 {
+    border-bottom:1px solid #e5e5e5;
+    color:#fba919;
+    font-size:1.4em;
+    font-weight: 100;
+    margin:10px 0 8px;
+    padding:1px 2px 2px 3px;
+}
+
+h4 {
+    color: #23af4c;
+}
+/*** Main wrap and header ***/
 
 #wrap {
-    background:url(images/layout/default/light.gif) center top no-repeat;
-    padding:20px 0;
+    color:#f4f4f4;
+    margin:10px auto;
+    padding:0;
+    width:670px;
 }
-#container {
-    margin:0 auto;
-    width:936px;
-}
-/* layout END */
 
-/* header START */
 #header {
-    background:url(images/layout/default/header_footer.jpg) 0 0 no-repeat;
-    height:132px;
-}
-#caption {
-    height:44px;
-    padding:25px 30px 21px;
-}
-#title a {
-    text-decoration:none;
-    color:#FFF;
-    /*width:250px;*/
-    height:30px;
-    display:block;
-    font-family:"Arial";
-    letter-spacing:0;
-}
-
-#tagline {
-    color:#FFF;
-    border-top:1px solid #FFF;
-    text-decoration:none;
-    font-family:"Arial";
-    font-size:15px;
-    float:left;
-    padding:0 3px;
-}
-#navigation {
-    margin:1px 0;
-}
-#menus li {
-    display:inline;
-    list-style:none;
-}
-#menus li a {
-    background:transparent url(images/layout/default/menu.gif) no-repeat;
-    display:block;
-    color:#382E1F;
-    height:31px;
-    line-height:31px;
-    padding:0 20px;
-    margin-left:-10px;
-    text-decoration:none;
-    font-size:11px;
-    float:left;
-    z-index:1;
-}
-#menus li a:hover {
-    background-position:0 -31px;
-}
-#menus li.current_page_item a,
-#menus li.current-cat a {
-    background-position:0 -62px;
-}
-#menus li a.home {
-    background-position:0 -93px;
-    width:45px;
-    padding:0;
-    margin-left:0;
-    text-indent:-999em;
-}
-#menus li a.home:hover {
-    background-position:0 -124px;
-}
-#menus li.current_page_item a.home {
-    background-position:0 -155px;
-}
-#menus li a.lastmenu:hover {
-    background-position:0 0;
-}
-#searchbox {
-    background:transparent url(images/layout/default/searchbox.gif) no-repeat scroll 0 0;
-    display:block;
-    float:right;
-    height:23px;
-    margin-right:10px !important;
-    margin-top:4px;
-    padding:2px;
-    width:209px;
-}
-#searchbox .textfield {
-    background:transparent none repeat scroll 0 0;
-    border:0 none;
-    float:left;
-    margin-right:2px;
-    padding-left:2px;
-    width:185px;
-}
-#searchbox .button {
-    background:transparent none repeat scroll 0 0;
-    border:0 none;
-    cursor:pointer;
-    float:left;
-    height:18px;
-    margin-top:1px;
-    width:18px;
-}
-#searchbox .searchtip {
-    color:#999999;
-}
-/* header END */
-
-/* submenu START */
-#menus li ul {
-    display:none;
-    background:#F4F5F7;
-    border:1px solid #CCC;
-    border-top-color:#A6A6A6;
-    padding:0 5px;
-}
-#menus li li {
-    float:none;
-    margin:0 !important;
     margin:0;
-    padding:0;
-    display:block;
-    list-style:none;
-}
-#menus li li a {
-    float:none;
-    display:block;
-    padding:5px;
-    text-decoration:none;
-    width:150px;
-    font-size:12px;
-    border-style:solid;
-    border-color:#DDD;
-    border-width:1px 0 0;
-    margin:0;
-    background-image:none;
-    height:20px;
-    line-height:20px;
-}
-#menus li li.first a {
-    border-top:none;
-}
-#menus li li a:hover {
-    font-weight:bolder;
-}
-/* submenu END */
 
-/* content START */
+}
+
+div.pages {
+    color:gray;
+    font-size:1.5em;
+    font-weight:700;
+    letter-spacing:-1px;
+    line-height:1.2em;
+    margin:-15px 0 60px 0px;
+}
+
+.page {
+    color: #c6e567;
+}
+
+a.page:hover { 
+    color:#fba919;
+    text-decoration:none;
+}
+
+div.pages div { display:inline;}
+
+/*** Main content ***/
+
 #content {
-    background:#FFF url(images/layout/default/sidesep.gif) right repeat-y;
-    min-height:400px;
-}
-/* content END */
-/* main START */
-#main {
-    background:#FFF;
-    width:605px;
-    padding:5px 15px 15px;
     float:left;
-}
-
-.post-date {
-    margin-left:15px;
-    float:right
-}
-
-.post h2 {
-    display:block;
-    margin-top:10px;
-    border-bottom:1px solid #CCC;
-    padding:0 5px 3px;
-    font-size:16px;
-    font-family:Verdana,"BitStream vera Sans";
-    margin-top:20px;
-    margin-bottom:20px;
-}
-.post h2 a.title {
-    text-decoration:none;
-    color:#4C4C4C;
-}
-.post h2 a.title:hover {
-    color:#2970A6;
-}
-
-.post .content {
-    padding:5px 0 5px 5px;
-    line-height:145%;
-    overflow:hidden;
-}
-.post .content p {
-    margin-bottom:10px;
-}
-.post .content .under {
-    height:16px;
-    line-height:16px;
-}
-.post .content .under span {
-    float:left;
-    margin-right:15px;
-}
-.post .content h4 {
-    color:#080;
-    margin-bottom:10px;
-}
-.post .content img {
-    max-width:600px;
-}
-.post .content ul,
-.post .content ol {
-    padding-bottom:10px;
-}
-.post .content ul li,
-.post .content ol li {
-    list-style-position:inside;
-    padding-left:20px;
-}
-.post .content table {
-    background:#FFF;
-    border:1px solid #CCC;
-    margin:5px 0 10px;
-}
-.post .content table tr td {
-    border-top:1px solid #CCC;
-    padding:2px 10px;
-}
-.post .content table tr th {
-    padding:1px 10px;
-    background:#EDEFF0;
+    line-height:1.5em;
+    margin:0;
+    padding:0;
     text-align:left;
-}
-.post .content .boxcaption {
-    background-image:url(images/layout/default/postbox.gif);
-}
-.post .content .box {
-    background-image:url(images/layout/default/postbox.gif);
+    width:670px;
 }
 
-/* sidebar START */
-#sidebar {
-    background:#F7F7F7;
-    width:300px;
-    float:right;
-    font-size:95%;
-    line-height:145%;
-    overflow:hidden;
-}
-#sidebar li {
-    background:url(images/layout/default/icons.gif) 0 -320px no-repeat;
-    padding-left:22px;
-    list-style:none;
-    margin-top:5px;
-/*font-size:95%;*/
-}
-#sidebar .content,
-#sidebar li {
-    font-size:12px;
-}
-#northsidebar .widget {
-    background:url(images/layout/default/widgetsep.png) bottom no-repeat;
-    padding:10px 15px 19px;
-}
-#northsidebar,
-#southsidebar {
-    font-size:95%;
-}
-#northsidebar .widget h2,
-#southsidebar .widget h2 {
-    margin-bottom:10px;
-}
-#northsidebar .widget .content p,
-#southsidebar .widget .content p {
-    margin-bottom:10px;
+#content h3 {
+    margin:10px 0 8px;
 }
 
-#sidebar .widget_feeds {
-    padding:5px 15px 15px;
-}
+/*** Footer ***/
 
-#sidebar #feedrss {
-    height:25px;
-    line-height:25px;
-    display:block;
-    padding:5px 5px 5px 36px;
-    float:left;
-    text-decoration:none;
-    font-size:11px;
-    background: url(images/layout/default/feeds.gif) 5px 5px no-repeat;
-}
-
-/* footer START */
 #footer {
-    background:url(images/layout/default/footer.jpg) 0px 0px no-repeat;
-    display:block;
-    height:88px;
-    border-top:1px solid #CCC;
-    font-size:11px;
-    line-height:145%;
-    width:100%;
+    border-top:4px solid #dadada;
+    clear:both;
+    color:gray;
+    font-size:0.9em;
+    line-height:1.6em;
+    margin:0 auto;
+    padding:8px 0;
+    text-align:right;
+}
+
+#footer p {
+    margin:0;
+    padding:0;
 }
 
 #footer a {
-    color:#2A2A2A;
+    color:#808080;
 }
 
-#copyright {
-    margin-top:12px;
-    margin-left:20px;
+.fade {
+    color:#c5c5c5;
 }
 
-#themeinfo {
-    margin-left:20px;
+.fade-small {
+    color:#c5c5c5;
+    position: relative;
+    letter-spacing:0px;
+    bottom: 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    font-size: 0.25em;
 }
 
-a#gotop {
-    background:url(images/layout/default/icons.gif) 0 -304px no-repeat;
+.pager-left {
+    float:left;
+    text-align:left;
+    margin-right:10px;
+    margin-bottom:10px;
+}
+
+.pager-right {
     float:right;
-    height:16px;
-    line-height:18px;
-    display:block;
-    padding-left:16px;
-    margin:5px 15px 0 0 !important;
-    margin:5px 8px 0 0;
-    text-decoration:none;
+    text-align:right;
+    margin-left:10px;
+    margin-bottom:10px;
 }
-/* footer END */
 
 /*
 
-github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+Zenburn style from voldmar.ru (c) Vladimir Epifanov <voldmar@voldmar.ru>
+based on dark.css by Ivan Sagalaev
 
 */
 
 pre code {
-    display: block;
-    color: #000;
-    background: #f8f8ff
+  display: block;
+  background: #191919;
+  color: #DCDCDC;
 }
 
-.comment, .template_comment, .diff .header, .javadoc {
-    color: #998;
-    font-style: italic
+pre .keyword,
+pre .tag,
+pre .django .tag,
+pre .django .keyword,
+pre .css .class,
+pre .css .id,
+pre .lisp .title {
+  color: #E3CEAB;
 }
 
-.keyword, .css .rule .keyword, .winutils, .javascript .title, .lisp .title, .subst {
-    color: #000;
-    font-weight: bold 
+pre .django .template_tag,
+pre .django .variable,
+pre .django .filter .argument {
+  color: #DCDCDC;
 }
 
-.number, .hexcolor {
-    color: #40a070
+pre .number,
+pre .date {
+  color: #8CD0D3;
 }
 
-.string, .attribute .value, .phpdoc {
-    color: #d14
+pre .dos .envvar,
+pre .dos .stream,
+pre .variable,
+pre .apache .sqbracket {
+  color: #EFDCBC;
 }
 
-.title, .id {
-    color: #900;
-    font-weight: bold
+pre .dos .flow,
+pre .diff .change,
+pre .python .exception,
+pre .python .built_in,
+pre .literal {
+  color: #EFEFAF;
 }
 
-.javascript .title, .lisp .title, .subst {
-    font-weight: normal
+pre .diff .chunk,
+pre .ruby .subst {
+  color: #8F8F8F;
 }
 
-.class .title {
-    color: #458;
-    font-weight: bold
+pre .dos .keyword,
+pre .python .decorator,
+pre .class .title,
+pre .function .title,
+pre .ini .title,
+pre .diff .header,
+pre .ruby .class .parent,
+pre .apache .tag {
+    color: #efef8f;
 }
 
-.tag, .css .keyword, .html .keyword, .tag .title, .django .tag .keyword {
-    color: #000080;
-    font-weight: normal
+pre .dos .winutils,
+pre .ruby .symbol,
+pre .ruby .string,
+pre .ruby .instancevar {
+  color: #DCA3A3;
 }
 
-.attribute, .variable, .instancevar, .lisp .body {
-    color: #008080
+pre .diff .deletion,
+pre .string,
+pre .tag .attribute .value,
+pre .preprocessor,
+pre .built_in,
+pre .sql .aggregate,
+pre .javadoc,
+pre .smalltalk .class,
+pre .smalltalk .localvars,
+pre .smalltalk .array,
+pre .css .rules .value,
+pre .attr_selector,
+pre .pseudo,
+pre .apache .cbracket {
+  color: #CC9393;
 }
 
-.regexp {
-    color: #009926
+pre .shebang,
+pre .diff .addition,
+pre .comment,
+pre .java .annotation,
+pre .template_comment,
+pre .pi,
+pre .doctype {
+  color: #7F9F7F;
 }
 
-.class {
-    color: #458;
-    font-weight: bold
+pre .html .css,
+pre .html .javascript {
+  opacity: 0.5;
 }
 
-.symbol, .lisp .keyword {
-    color: #990073
-}
-
-.builtin, .built_in, .lisp .title {
-    color: #0086b3
-}
-
-.preprocessor, .pi, .doctype, .shebang, .cdata {
-    color: #999;
-    font-weight: bold
-}
-
-.deletion {
-    background: #fdd
-}
-
-.addition {
-    background: #dfd
-}
-
-.diff .change {
-    background: #0086b3
-}
-
-.chunk {
-    color: #aaa
-}
