@@ -21,10 +21,10 @@ Choose a subdomain for you domain, you need to create two DNS
 records. One NS and one A.
 
 #### NS (Name Servers)
-> tunnel <---> ns-dtun.example.com
+    tunnel <---> ns-dtun.example.com
 
 #### A (Host)
-> ns-dtun.example.com  <--->  67.222.1.241
+    ns-dtun.example.com  <--->  67.222.1.241
 
 The idea here is that all requests to a certain subdomain will be
 delegated to another nameserver which is running our fake DNS server.
@@ -60,8 +60,7 @@ You need Perl in order to use ozymandns and a couple of extra modules.
  - Start the server:
 
 
->   sudo ./nomde.pl -i 0.0.0.0 tunnel.example.com
-
+    sudo ./nomde.pl -i 0.0.0.0 tunnel.example.com
 
 Make sure your firewall allows port 53 in bound for TCP and UDP.
 Perl script crashes frequently so wrap it in a script that will re-run

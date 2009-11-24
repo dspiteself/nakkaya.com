@@ -18,7 +18,7 @@ also model specific data.
  - Unmount the drive.( Not Eject )
  - Switch to terminal and type
 
->    sudo dd if=<full path to>/debian-eeepc.img of=/dev/<diskIdentifier>
+    sudo dd if=<full path to>/debian-eeepc.img of=/dev/<diskIdentifier>
    
 Double check you disk identifier. Don't erease you main drive or
 external drive.
