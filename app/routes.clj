@@ -11,14 +11,6 @@
   (def mem-archives (memoize archives))
   (def mem-rss (memoize rss)))
 
-(defn cache-markdown []
-  (def mem-site site)
-  (def mem-post post)
-  (def mem-latest-posts latest-posts)
-  (def mem-tags tags)
-  (def mem-archives archives)
-  (def mem-rss rss))
-
 (cache-markdown)
 
 (defn github-hook []
