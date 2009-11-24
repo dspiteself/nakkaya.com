@@ -75,10 +75,6 @@ in order to create a jar file use target jar after target linux.
 
 Application logo by [VisualPharm](http://www.visualpharm.com)
 
-### For bug reports/fixes/help See
+For bug reports/fixes/help See [Contact](/contact.markdown)
 
-[Contact](/contact.markdown)
-
-### Any feature requests are also welcome see 
-
-[Contact](/contact.markdown)
+Any feature requests are also welcome see [Contact](/contact.markdown)

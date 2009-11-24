@@ -41,6 +41,4 @@ your self. Only depency is pcap library.
  - Linux - Debian Lenny, Ubuntu 8.10
  - Mac OS X - Mac OS X 10.5
  
-### Any feature requests are also welcome see 
-
-[Contact](/contact.markdown)
+Any feature requests are also welcome see [Contact](/contact.markdown)
