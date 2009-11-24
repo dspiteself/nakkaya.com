@@ -14,16 +14,16 @@ where people abuse torrents, at times you can't even access your email
 account. I do not have access to gateway and i needed a way to control
 bandwidth.
  
-## Installation
+#### Installation
  
 There are no pre build packages availible. For now you have to build it
 your self. Only depency is pcap library.
  
-## To build it from source
+#### To build it from source
  - use "make linux" on linux
  - use "make darwin" on Mac OS X
  
-## Usage
+#### Usage
  
  - ./makeWay en1 -t 600 - to inject packages every 10
    minutes.
@@ -33,7 +33,7 @@ your self. Only depency is pcap library.
  - ./makeWay en1 192.68.16.15 - to inject packages every 3
    secods.(This renders the network useless for everyone except you and 192.168.16.15.)
  
-## Download
+#### Download
  
  - [Source Code](http://github.com/nakkaya/makeWay/tree/master) (Released Under GPL via GitHub)
  

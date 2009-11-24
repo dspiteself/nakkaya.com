@@ -9,7 +9,7 @@ groups in colors. It is released under GPL license.
 
 ![regexBuilder](images/regexBuilder.png "regexBuilder")
 
-## Installation
+#### Installation
 
 You can either use the jar file and just double click on it, or you can
 compile the project your self. An ant build file is also supplied. Just
@@ -24,10 +24,8 @@ systems but i only tested on,
  - Debian Lenny (Java 1.6)
 
 
-## Download
+#### Download
  - [Jar File](http://cloud.github.com/downloads/nakkaya/regexBuilder/regexBuilder.jar)
  - [Source Code via GitHub](http://github.com/nakkaya/regexBuilder/tree/master)
 
-##### For bug reports/fixes/help See
-
-[Contact](/contact.markdown)
+For bug reports/fixes/help See [Contact](/contact.markdown)

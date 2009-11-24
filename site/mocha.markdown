@@ -11,9 +11,9 @@ suspicious activity, like any changes in Mac address or any connection
 attempt to the firewall.
 
 
-## Installation & Usage
+#### Installation & Usage
 
-#####Mac OS X
+For Mac OS X
 
  Download the dmg image move it to your applications folder and you are
  set. For firewall log watch you need to enable firewall logging under
@@ -22,7 +22,7 @@ attempt to the firewall.
     System Preferences -> Security -> Firewall 
            -> Advanced -> Enable Firewall Logging
 
-#####Linux
+For Linux
 
  Download the jar file. Either double click it or issue "java -jar mocha.jar"
  In order for Firewall log watch to work you need to enable firewall
@@ -34,7 +34,7 @@ attempt to the firewall.
           -m limit --limit \$LOGLIMIT --limit-burst \$LOGLIMITBURST
 
 
-## Requirements
+#### Requirements
 
 Mocha is written in java, so as long as you have JVM and arp command it
 will work on all operating systems. Tailing system logs is only
@@ -42,7 +42,7 @@ supported on OS X and Linux, it has been tested on Mac OS X 10.5
 running Java 1.5 and Ubuntu running Java 1.6.
 
 
-## Building from source
+#### Building from source
 
 
 Included in the source package is an ant script, in order to build it
@@ -51,20 +51,24 @@ application bundle, and target linux on linux which will just build it
 in order to create a jar file use target jar after target linux.
 
 
-## Download
+#### Download
  - Application - 
 [Mac OS X](http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.1.dmg)
 [Linux](http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.1.jar)
  - [Source Code](http://github.com/nakkaya/mocha/tree/master) 
 (Released under GPL via GitHub)
 
-## Screenshots
+#### Screenshots
+
 ##### Network View 
+
 ![Network View](images/mocha/gui1.png "Network View")
+
 ##### Arp Table 
+
 ![Arp Table](images/mocha/gui2.png "Arp Table")
 
-## Changelog
+#### Changelog
  - Oct 10, 2009 - Minor Bug Fixes.
  - May 31, 2009  - New interface, Option to import/export arp table,
    Notifications can now be delivered via mail.

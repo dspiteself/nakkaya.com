@@ -6,11 +6,13 @@ description: Emacs Dsniff Interface
 
 an interface to dsniff.
  
-#####Supported operating systems
+#### Supported operating systems
+
  - Mac Os X 10.5 (Emacs 22.2)
  - Debian Lenny (Emacs 23)
 
-#####Besides dsniff you need
+Besides dsniff you need
+
  - sudo
  - sysctl
  - ifconfig
@@ -18,7 +20,7 @@ an interface to dsniff.
  - [nmapMode](/nmapMode.markdown) (if you want to scan or import scans from nmap)
  - tcpdump (optional)
 
-## Installation
+#### Installation
 
 Download [dsniffMode](http://github.com/nakkaya/emacs/blob/master/int/dsniff.el)
 
@@ -37,7 +39,7 @@ options in your .emacs file.
 
 Thats it.
 
-## Usage
+#### Usage
 
 First turn on ip forwarding. (Note it is an internal variable turn it
 on from here not command line.) then select your gateway you can either
@@ -47,6 +49,4 @@ set you host manually or import a scan from nmap.
 Pick what you want to sniff and hit start.
 
 
-##### For bug reports/fixes/help See
-
-[Contact](/contact.markdown)
+For bug reports/fixes/help See [Contact](/contact.markdown)
