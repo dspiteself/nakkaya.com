@@ -1,2 +1,3 @@
 *.jar
+nohup.out
 drafts/*

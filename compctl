@@ -1,0 +1,62 @@
+#!/bin/bash
+
+DESC="Compojure"
+NAME="nakkaya.com"
+
+NOHUP="nohup"
+JAVA="java"
+JARFOLDER="extLibs/"
+PID_FILE="comp.pid"
+ROUTES="app/routes.clj"
+
+## build jar list
+JARS="-cp "
+
+for i in `find $JARFOLDER -name *.jar`
+do
+    JARS=${JARS}:${i}
+done
+
+d_start(){
+    if [ -e $PID_FILE ] 
+    then
+     	PID=$(cat $PID_FILE)
+    	if ps -p $PID > /dev/null
+    	then 
+    	    echo "$NAME already running.."
+    	    exit 0
+    	fi
+    fi
+
+    $NOHUP $JAVA $JARS clojure.main $ROUTES &
+    COMPOJURE_PID=$!
+    echo $COMPOJURE_PID > $PID_FILE
+}
+
+d_stop(){
+    if [ -e $PID_FILE ] 
+    then
+	COMPOJURE_PID=$(cat $PID_FILE)
+	kill $COMPOJURE_PID
+	rm $PID_FILE
+    else
+    	echo "$NAME is not running.."
+    fi
+}
+
+case "$1" in
+    start)
+	echo "Starting $DESC: $NAME"
+	d_start
+	;;
+    stop)
+	echo "Stopping $DESC: $NAME"
+	d_stop
+	;;
+    *)
+	echo "Usage: compctl {start|stop}"
+	exit 1
+	;;
+esac
+
+exit 0
