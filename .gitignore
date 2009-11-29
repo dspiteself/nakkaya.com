@@ -1,3 +1,4 @@
 *.jar
 nohup.out
 drafts/*
+comp.pid
