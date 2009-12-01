@@ -126,7 +126,7 @@
 	metadata {"title" site-title 
 		  "layout" "default"
 		  "tags" "nurullah akkaya"
-		  "description" "Nurullah Akkaya's Latest Posts"
+		  "description" site-desc
 		  :type 'latest}
 	content (render-snippets begin end)]
     (render-template {:metadata metadata  :content content })))

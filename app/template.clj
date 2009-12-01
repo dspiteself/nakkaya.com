@@ -4,9 +4,9 @@
   (:use :reload-all app.storage)
   (:use :reload-all app.widgets))
 
-(def site-title "Nurullah Akkaya")
+(def site-title "an explorer's log")
 (def site-url   "http://nakkaya.com")
-(def site-desc  "useless homepage for pointless projects.")
+(def site-desc  "Nurullah Akkaya's Home")
 
 (defn render-template [page]
   (let [metadata (:metadata page)
