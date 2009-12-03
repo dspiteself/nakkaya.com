@@ -53,14 +53,14 @@
 (declare encode-object)
 
 (defn- encode-string [obj stream]
-  (let [bytes (.getBytes obj "UTF-8")
-	bytes-length (.getBytes (str (count bytes) ":") "UTF-8")]
+  (let [bytes (.getBytes obj "ISO-8859-1")
+	bytes-length (.getBytes (str (count bytes) ":") "ISO-8859-1")]
     (.write stream bytes-length 0 (count bytes-length))
     (.write stream bytes 0 (count bytes)) ))
 
 (defn- encode-number [number stream]
   (let [string (str "i" number "e")
-	bytes (.getBytes string "UTF-8")]
+	bytes (.getBytes string "ISO-8859-1")]
     (.write stream bytes 0 (count bytes)) ))
 
 (defn- encode-list [list stream]
