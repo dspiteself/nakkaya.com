@@ -7,7 +7,7 @@ Apple provides an Application class that allows you to integrate your
 application with the OS X environment. It allows Java applications to
 behave more like native OS X applications.
 
-## Handling Quit
+#### Handling Quit
 
 Following snippet will install an window listener and run your clean up
 code before the application is exited. However when user selects Quit
@@ -49,7 +49,7 @@ window listener on other operating systems.
 Now when Quit menu item is selected your application will run your clean
 up code.
 
-## Hiding your application
+#### Hiding your application
 
 When you close a window on a mac, application is kept running and only the
 window is hidden. In order for our application to play nice with native
@@ -66,7 +66,7 @@ when the red dot is clicked, it will only be hidden. Don't forget to set
 your main frame's default close operation to hide.
 
 
-## Knowing your OS
+#### Knowing your OS
 
 If you are not on OS X, you shouldn't load MacApplication class. On
 mac's mrj.version system property is always set you can check it's value
@@ -84,5 +84,5 @@ to see if you are on a mac. If it's set create your application object.
 	}
 
 
-#####Resources
+##### Resources
  - [Application (Apple Java Extensions)](http://developer.apple.com/documentation/Java/Reference/1.5.0/appledoc/api/com/apple/eawt/Application.html)
