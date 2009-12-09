@@ -113,10 +113,11 @@ source](http://github.com/richhickey/clojure/blob/abca86ea023080fd4ceed24b9887a6
       (println "Loading tests...")
       (apply require :reload-all test-namespaces)
       (apply run-tests test-namespaces))
- 
-    (defn run-ant
-      "Runs all defined tests, prints report to *err*, throw if failures. This works well for running in an ant java task."
-      []
+
+Runs all defined tests, prints report to \*err\*, throw if failures. This
+works well for running in an ant java task.
+
+    (defn run-ant []
       (let [rpt report]
         (binding [;; binding to *err* because, in ant, when the test target
                   ;; runs after compile-clojure, *out* doesn't print anything
@@ -125,13 +126,15 @@ source](http://github.com/richhickey/clojure/blob/abca86ea023080fd4ceed24b9887a6
                   report (fn report [m]
                              (if (= :summary (:type m))
                                (do (rpt m)
-                                   (if (or (pos? (:fail m)) (pos? (:error m)))
-                                     (throw (new Exception (str (:fail m) " failures, " (:error m) " errors.")))))
+                                   (if (or (pos? (:fail m)) 
+                                           (pos? (:error m)))
+                                     (throw 
+                                      (new Exception (str (:fail m) 
+                                                          " failures, " 
+                                                          (:error m) 
+                                                          " errors.")))))
                                (rpt m)))]
           (run))))
 
 Add namespaces you wish to test to test-names. Now when one tests fails,
 ant build process will fail also.
-
-
-
