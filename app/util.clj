@@ -19,6 +19,12 @@
   (let [name (.replaceAll file ".markdown" "") ] 
     (str (apply str (interleave (repeat \/) (.split name "-" 4))) "/")))
 
+(defn file-name-to-date [file]
+  (let  [parse-format (SimpleDateFormat. "yyyy-MM-dd")
+	 date (.parse parse-format (re-find #"\d*-\d*-\d*" file)) 
+	 print-format (SimpleDateFormat. "dd MMM yyyy")]
+    (.format print-format date)))
+
 (defn cmd [p] (.. Runtime getRuntime (exec (str p))))
 
 (defn cmdout [o]

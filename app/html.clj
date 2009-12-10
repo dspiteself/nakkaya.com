@@ -61,12 +61,6 @@
 	content      (tag-page-content tag-set tag-distinct)]
     (render-template {:metadata metadata  :content content  })))
 
-(defn- file-name-to-date [file]
-  (let  [parse-format (SimpleDateFormat. "yyyy-MM-dd")
-	 date (.parse parse-format (re-find #"\d*-\d*-\d*" file)) 
-	 print-format (SimpleDateFormat. "EEEE, dd - MMMM - yyyy")]
-    (.format print-format date)))
-
 (defn- post-snippet [url date title snippet]
   (html [:h2 [:a {:href url} title]]
 	[:p {:class "publish_date"}  date]
@@ -162,10 +156,12 @@
        (render-template {:metadata metadate  :content content}))))
 
 (defn post [year month day title]
-  (let [file (str "posts/" year "-" month "-" day "-" title".markdown")]
+  (let [file-name (str year "-" month "-" day "-" title".markdown")
+	file (str "posts/" file-name)]
     (if (.exists (File. file))
       (let [page  (read-markdown file)
-	    metadata (conj (:metadata page) {:type 'post})
+	    metadata (conj 
+		      (:metadata page) {:type 'post :file-name file-name})
 	    title    (metadata "title")
 	    content  (:content page)]
 	(render-template {:metadata metadata :content content})))))

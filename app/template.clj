@@ -64,16 +64,22 @@
 	     [:div {:class "post-tags"} "Tags: "] 
 	     (.split (metadata "tags") " ")))]
 
+	 (if (= (:type metadata) 'post) 
+	   [:div
+	    {:id "related"}
+	    [:h3 "Related Posts"]
+	    [:ul
+	     {:class "posts"}
+	     (reverse
+	      (reduce  
+	       (fn[h v]
+		 (conj 
+		  h [:li 
+		     [:span (:date v)] [:a {:href (:url v)} (:title v)]]))
+	       () (similar-posts (:file-name metadata) 3)))]])
+
 	 [:div {:id "disqus"} 
-	  (if (= (:type metadata) 'post) (disqus-widget))]
-	 ;; [:div
-	 ;;  {:id "related"}
-	 ;;  [:h3 "Possibly Related Posts"]
-	 ;;  [:ul
-	 ;;   {:class "posts"}
-	 ;;   [:li [:span "04 Nov 2009"] [:a {:href "/"} "Title"]]
-	 ;;   [:li [:span "30 Oct 2009"] [:a {:href "/"} "Title"]]]]
-	 ]
+	  (if (= (:type metadata) 'post) (disqus-widget))]]
 	[:div
 	 {:id "footer"}
 	 "Powered By"
