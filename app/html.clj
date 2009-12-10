@@ -71,7 +71,7 @@
 	metadata (:metadata post)
 	content  (:content post)]
     (post-snippet (file-to-url file)
-		  (file-name-to-date file)
+		  (file-to-date file)
 		  (metadata "title") 
 		  content) ))
 
