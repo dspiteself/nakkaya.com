@@ -15,7 +15,7 @@ For this to work you need a couple of things,
  - DNS server (or a registerer that provides DNS service)
  - A machine on the outside that can run a fake DNS server.
 
-## Registerer Setup
+#### Registerer Setup
 
 Choose a subdomain for you domain, you need to create two DNS
 records. One NS and one A.
@@ -31,7 +31,7 @@ delegated to another nameserver which is running our fake DNS server.
 For this you need to be able to become root the server in order to run a
 fake DNS service.
 
-## Perl Setup
+#### Perl Setup
 
 You need Perl in order to use ozymandns and a couple of extra modules.
 
@@ -54,7 +54,7 @@ You need Perl in order to use ozymandns and a couple of extra modules.
     perl -MCPAN -e 'install Digest::CRC' 
 
 
-## Server Setup
+#### Server Setup
 
  - Download [ozymandns_src_0.1.tgz](http://www.doxpara.com/ozymandns_src_0.1.tgz)
  - Start the server:
@@ -66,7 +66,7 @@ Make sure your firewall allows port 53 in bound for TCP and UDP.
 Perl script crashes frequently so wrap it in a script that will re-run
 it in case of a crash.
 
-### Loop on Crash
+#### Loop on Crash
 
     #!/bin/sh
 
@@ -83,7 +83,7 @@ it in case of a crash.
 Save this file as start.sh and run it inside gnu screen so that the
 script will keep running after you log out from your machine.
 
-## Client Setup
+#### Client Setup
 
 On the client side, install same Perl modules as the server in addition
 to Perl you also need SSH. Using SSH's ProxyCommand, all comunication

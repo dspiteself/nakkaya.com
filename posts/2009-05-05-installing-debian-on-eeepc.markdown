@@ -11,7 +11,7 @@ eee was supported  out of the box.
 has a great wiki with more instructions tips and tricks 
 also model specific data. 
 
-## On Mac
+#### On Mac
  - Plug in your USB drive.
  - Open disk utility right click on the USB drive and select info.
    Note your disk identifier.
@@ -23,12 +23,12 @@ also model specific data.
 Double check you disk identifier. Don't erease you main drive or
 external drive.
 
-## Booting
+#### Booting
 
 From bios change your boot priority to USB boot. Now you are ready to
 boot from the USB drive you prepared.
 
-## Installation
+#### Installation
 
 Just follow the on screen instructions, and install a basic
 system. You can add additional applications later.
@@ -41,7 +41,7 @@ I have a 2 GB internal card and a 8 GB card on the reader.
  - /usr  5 GB (external)
  - /var  1 GB (external)
 
-## Post Installation
+#### Post Installation
 
 #### X Window
 
