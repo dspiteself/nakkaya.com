@@ -9,7 +9,7 @@
 (def site-desc  "Nurullah Akkaya's Home")
 
 (defn render-template [page]
-  (let [metadata (:metadata page)
+  (let [meta (:metadata page)
 	content  (:content page)]
     (html
      [:html
@@ -17,8 +17,8 @@
       [:head
        [:meta
 	{:http-equiv "content-type", :content "text/html; charset=UTF-8"}]
-       [:meta {:name "description", :content (metadata "description")}]
-       [:meta {:name "keywords", :content (metadata "tags")}]
+       [:meta {:name "description", :content (:description meta)}]
+       [:meta {:name "keywords", :content (:tags meta)}]
        [:meta {:name "author", :content "Nurullah Akkaya"}]
        [:link {:rel "icon", 
 	       :href "/images/favicon.ico" :type "image/x-icon"}]
@@ -30,7 +30,7 @@
 	 :title site-title, :href "/rss-feed"}]
        [:script {:src "/highlight.pack.js", :type "text/javascript"}]
        [:script {:type "text/javascript"} "hljs.initHighlightingOnLoad();"]
-       [:title (metadata "title")]]
+       [:title (:title meta)]]
       [:body
        [:div
 	{:id "wrap"}
@@ -53,18 +53,18 @@
 	 {:id "content"}
 	 [:div
 	  {:id "post"}
-	  (if (= (:type metadata) 'post) [:h2 (metadata "title")])
+	  (if (= (:type meta) 'post) [:h2 (:title meta)])
 
 	   content
 
-	  (if (= (:type metadata) 'post)
+	  (if (= (:type meta) 'post)
 	    (reduce 
 	     (fn[h v]
 	       (conj h [:a {:href (str "/tags/#" v)} (str v " ")]))
 	     [:div {:class "post-tags"} "Tags: "] 
-	     (.split (metadata "tags") " ")))]
+	     (.split (:tags meta) " ")))]
 
-	 (if (= (:type metadata) 'post) 
+	 (if (= (:type meta) 'post)
 	   [:div
 	    {:id "related"}
 	    [:h3 "Related Posts"]
@@ -76,10 +76,10 @@
 		 (conj 
 		  h [:li 
 		     [:span (:date v)] [:a {:href (:url v)} (:title v)]]))
-	       () (similar-posts (:file-name metadata) 3)))]])
+	       () (similar-posts (:file-name meta) 3)))]])
 
 	 [:div {:id "disqus"} 
-	  (if (= (:type metadata) 'post) (disqus-widget))]]
+	  (if (= (:type meta) 'post) (disqus-widget))]]
 	[:div
 	 {:id "footer"}
 	 "Powered By"
@@ -87,4 +87,4 @@
 	 [:p "&copy; 2009" 
 	  [:a {:href "/contact.markdown"} " Nurullah Akkaya"]]]]
        (analytics-js)
-       (if (= (:type metadata) 'post) (disqus-js))]])))
+       (if (= (:type meta) 'post) (disqus-js))]])))

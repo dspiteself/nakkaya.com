@@ -17,9 +17,10 @@
     {:metadata metadata :content content} ))
 
 (defn prepare-metadata [metadata]
-  (reduce (fn [h [_ k v]] (assoc h k v))
-	  {}
-	  (re-seq #"([^:]+): (.+)(\n|$)" metadata)))
+  (reduce (fn [h [_ k v]] 
+	    (let [key (keyword k)]
+	      (assoc h key v)))
+	  {} (re-seq #"([^:]+): (.+)(\n|$)" metadata)))
 
 (defn read-markdown [file]
   (let [content (read-file file)

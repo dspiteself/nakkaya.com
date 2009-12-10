@@ -12,10 +12,10 @@
 
 (defn- post-xml [file]
   (let [post (read-markdown (str "posts/" file))
-	metadata (:metadata post)
+	meta (:metadata post)
 	content  (:content post)]
     [:item 
-     [:title (metadata "title")]
+     [:title (:title meta)]
      [:link  (str site-url (file-to-url file))]
      [:description content]]))
 
@@ -43,23 +43,23 @@
   (let [posts (project (select #(= (:tag %) tag) tag-set ) [:post])]
     (reduce 
      (fn [h v] 
-       (conj h [:li [:a {:href (:url (:post v))} (:title (:post v))]]  ))
-     [:ul ] posts) ))
+       (conj h [:li [:a {:href (:url (:post v))} (:title (:post v))]]))
+     [:ul ] posts)))
 
 (defn- tag-page-content [tag-set tag-distinct]
   (html
    (reduce
     (fn [h v]
-      (conj h [:h4 [:a {:name (:tag v)} (:tag v)]] 
-	    (tag-list (:tag v) tag-set)  ))
+      (conj h [:h4 [:a {:name (:tag v)} (:tag v)]]
+	    (tag-list (:tag v) tag-set)))
     [:div ] tag-distinct)))
 
 (defn tags []
   (let [tag-set      (tag-set)
 	tag-distinct (sort-by :tag (project tag-set [:tag]))
-	metadata     {"title" "Tags" "layout" "default" :type 'tags}
+	meta     {:title "Tags" :layout "default" :type 'tags}
 	content      (tag-page-content tag-set tag-distinct)]
-    (render-template {:metadata metadata  :content content  })))
+    (render-template {:metadata meta  :content content  })))
 
 (defn- post-snippet [url date title snippet]
   (html [:h2 [:a {:href url} title]]
@@ -68,12 +68,10 @@
 
 (defn- render-snippet [file]
   (let [post (read-markdown (str "posts/" file))
-	metadata (:metadata post)
+	meta (:metadata post)
 	content  (:content post)]
-    (post-snippet (file-to-url file)
-		  (file-to-date file)
-		  (metadata "title") 
-		  content) ))
+    (post-snippet 
+     (file-to-url file) (file-to-date file) (:title meta) content)))
 
 (defn- paging [begin end content]
   (let [content (StringBuilder. content)
@@ -117,13 +115,13 @@
 (defn latest-posts [page]
   (let [begin (* (Integer. page) posts-per-page) 
 	end   (+ begin posts-per-page)
-	metadata {"title" site-title 
-		  "layout" "default"
-		  "tags" "nurullah akkaya"
-		  "description" site-desc
-		  :type 'latest}
+	meta {:title site-title 
+	      :layout "default"
+	      :tags "nurullah akkaya"
+	      :description site-desc
+	      :type 'latest}
 	content (render-snippets begin end)]
-    (render-template {:metadata metadata  :content content })))
+    (render-template {:metadata meta  :content content})))
 
 (defn- archives-list []
   (let [months (post-count-by-mount)]
@@ -140,41 +138,39 @@
 
 (defn archives 
   ([]
-     (let [metadata {"title" "Archives" "layout" "default" :type 'tags}
+     (let [meta {:title "Archives" :layout "default" :type 'tags}
 	   content (archives-list)]
-       (render-template {:metadata metadata  :content content  })))
+       (render-template {:metadata meta :content content})))
   ([year month]
      (let [time  (convert-date "MMMM yyyy" "yyyy-MM" (str year "-" month))
-	   metadate {"title" (str "Archives - " time) 
-		     "layout" "default"
+	   meta {:title (str "Archives - " time) 
+		     :layout "default"
 		     :type 'archives}
 	   posts (filter 
 		  #(.startsWith % (str year "-" month)) (post-list-by-date))
 	   content (html
 		    (reduce (fn[h v]
 			      (conj h (render-snippet v))) [:div] posts))]
-       (render-template {:metadata metadate  :content content}))))
+       (render-template {:metadata meta  :content content}))))
 
 (defn post [year month day title]
   (let [file-name (str year "-" month "-" day "-" title".markdown")
 	file (str "posts/" file-name)]
     (if (.exists (File. file))
       (let [page  (read-markdown file)
-	    metadata (conj 
-		      (:metadata page) {:type 'post :file-name file-name})
-	    title    (metadata "title")
+	    meta (conj (:metadata page) {:type 'post :file-name file-name})
 	    content  (:content page)]
-	(render-template {:metadata metadata :content content})))))
+	(render-template {:metadata meta :content content})))))
 
 (defn site [file]
   (let [site-path (str "site/" file)
 	public-path (File. (str "public/" file))]
     (cond (.exists (File. site-path)) 
 	  (let [page  (read-markdown site-path)
-		metadata (conj (:metadata page) {:type 'page})
-		title    (metadata "title")
+		meta (conj (:metadata page) {:type 'page})
+		title    (:title meta)
 		content  (str (html [:h2 title]) (:content page))]
-	    (render-template {:metadata metadata :content content}))
+	    (render-template {:metadata meta :content content}))
 	  (.exists public-path) public-path)))
 
 (defn file-not-found []

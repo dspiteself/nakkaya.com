@@ -26,16 +26,16 @@
 		)) {} posts) ))
 
 (defn tag-post [post]
-  (let [metadata (:metadata (read-markdown (str "posts/" post)))
-	url      (file-to-url post)] 
+  (let [meta (:metadata (read-markdown (str "posts/" post)))
+	url  (file-to-url post)]
     (reduce (fn 
 	      [h v] 
-	      (conj h { :tag v :post {:url url :title (metadata "title")}}))
+	      (conj h {:tag v :post {:url url :title (:title meta)}}))
     	    #{}
-    	    (.split (metadata "tags") " "))  ))
+    	    (.split (:tags meta) " "))  ))
 
 (defn post-count-by-tags []
-  (let [tag-set      (apply union (map tag-post (post-list-by-date)))]
+  (let [tag-set (apply union (map tag-post (post-list-by-date)))]
     (reduce
      (fn [h v]
        (let [tag (:tag v)
@@ -48,6 +48,6 @@
 (defn post-tag-map []
   (reduce 
    (fn[h post]
-     (let [tags ((:metadata (read-markdown (str "posts/" post))) "tags")]
+     (let [tags (:tags (:metadata (read-markdown (str "posts/" post))))]
        (assoc h post (re-split #" " tags))))
    {} (post-list-by-date)))
