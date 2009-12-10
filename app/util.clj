@@ -2,6 +2,9 @@
   (:import (java.io BufferedReader FileReader File InputStreamReader)
 	   (java.text SimpleDateFormat)))
 
+(def site-title "an explorer's log")
+(def site-url   "http://nakkaya.com")
+(def site-desc  "Nurullah Akkaya's Home")
 (def posts-per-page 2)
 
 (defn convert-date [in-format out-format date]

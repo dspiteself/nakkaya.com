@@ -4,10 +4,6 @@
   (:use :reload-all app.storage)
   (:use :reload-all app.widgets))
 
-(def site-title "an explorer's log")
-(def site-url   "http://nakkaya.com")
-(def site-desc  "Nurullah Akkaya's Home")
-
 (defn render-template [page]
   (let [meta (:metadata page)
 	content  (:content page)]
