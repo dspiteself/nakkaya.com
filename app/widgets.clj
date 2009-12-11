@@ -31,13 +31,13 @@
 
 (defn- similarity [post1 post2]
   (let [shared-items (into #{} (filter #(some #{%} post1) post2))
-	unique-item (difference (union (into #{} post1) (into #{} post2))
-				shared-items)]
-    (if (or (= (count shared-items) 0)
-	    (= (count unique-item) 0))
-      0
-      (/ 1 (+ 1 (double (/ (count shared-items) 
-			   (count unique-item))))))))
+	unique-items (difference (union (into #{} post1) (into #{} post2))
+				 shared-items)]
+    (cond 
+      (= (count unique-items) 0) 1
+      (= (count shared-items) 0) 0
+      :else (/ 1 (+ 1 (double (/ (count shared-items) 
+				 (count unique-items))))))))
 
 (defn- sort-by-similarity [posts post]
   (sort-by 
@@ -59,7 +59,6 @@
 		    title (:title meta)
 		    date (file-to-date file)]
 		(conj h {:url url :title title :date date}))) [] sim-posts)))
-
 
 (defn disqus-widget []
   "<div id=\"disqus_thread\"></div><script type=\"text/javascript\" src=\"http://disqus.com/forums/nakkaya/embed.js\"></script><noscript><a href=\"http://disqus.com/forums/nakkaya/?url=ref\">View the discussion thread.</a></noscript><a href=\"http://disqus.com\" class=\"dsq-brlink\">blog comments powered by <span class=\"logo-disqus\">Disqus</span></a>")
