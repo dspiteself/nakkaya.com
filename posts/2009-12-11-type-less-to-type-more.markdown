@@ -1,6 +1,6 @@
 ---
 title: Type Less to Type More
-tags: emacs java clojure
+tags: emacs
 ---
 
 Emacs has two modes,
