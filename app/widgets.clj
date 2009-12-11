@@ -49,9 +49,11 @@
 	       (assoc h url similarity) )) {} posts)))
 
 (defn similar-posts [file-name count]
-  (let [posts (post-tag-map)
+  (let [p-map (post-tag-map)
+	post  (p-map file-name)
+	posts (dissoc p-map file-name)
 	sim-posts 
-	(take count (reverse (sort-by-similarity posts (posts file-name))))]
+	(take count (reverse (sort-by-similarity posts post)))]
     (reduce (fn[h p]
 	      (let [file (first p)
 		    url  (file-to-url file)
@@ -59,6 +61,9 @@
 		    title (:title meta)
 		    date (file-to-date file)]
 		(conj h {:url url :title title :date date}))) [] sim-posts)))
+
+;(doseq[post (post-list-by-date)] (println (similar-posts post 5)))
+;(similar-posts "2009-12-11-type-less-to-type-more.markdown" 5)
 
 (defn disqus-widget []
   "<div id=\"disqus_thread\"></div><script type=\"text/javascript\" src=\"http://disqus.com/forums/nakkaya/embed.js\"></script><noscript><a href=\"http://disqus.com/forums/nakkaya/?url=ref\">View the discussion thread.</a></noscript><a href=\"http://disqus.com\" class=\"dsq-brlink\">blog comments powered by <span class=\"logo-disqus\">Disqus</span></a>")
