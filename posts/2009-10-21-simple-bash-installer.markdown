@@ -1,6 +1,6 @@
 ---
 title: Simple Bash Installer
-tags: bash
+tags: bash installer
 ---
 
 Following is a simple bash script to build a installer for any *nix
