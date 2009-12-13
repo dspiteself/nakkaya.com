@@ -1,6 +1,7 @@
 (ns app.storage
   (:use clojure.set)
   (:use clojure.contrib.str-utils)
+  (:use clojure.contrib.seq-utils)
   (:use :reload-all [app.util :only [file-to-url file-to-date]])
   (:use :reload-all [app.markdown :only [read-markdown]])
   (:import (java.io File)))
@@ -50,4 +51,4 @@
    (fn[h post]
      (let [tags (:tags (:metadata (read-markdown (str "posts/" post))))]
        (assoc h post (re-split #" " tags))))
-   {} (post-list-by-date)))
+   {} (shuffle (post-list-by-date))))
