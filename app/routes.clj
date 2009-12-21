@@ -19,6 +19,9 @@
   (cache-markdown)
   "OK")
 
+(defn redirect-301 [loc]
+  [301 {:headers {"Location" loc}}])
+
 (defroutes enik
   (POST "/github-hook"
        (or (github-hook) :next))
@@ -34,9 +37,6 @@
   (GET "/:year/:month/:day/:title/"
        (or (mem-post (:year params) (:month params) (:day params) 
 		     (:title params)) :next))
-  (GET "/:year/:month/:day/:title"
-       (or (mem-post (:year params) (:month params) (:day params)
-		     (:title params)) :next))
   (GET "/rss-feed"
        (or [(content-type "text/xml")
 	    (mem-rss)] :next))
@@ -45,6 +45,10 @@
        (or (mem-latest-posts 0) :next))
   (GET "/*" 
        (or (mem-site (params :*)) :next))
+  ;;redirects
+  (GET "/:year/:month/:day/:title"
+       (redirect-301 (str "/" (:year params) "/" (:month params)"/" 
+			  (:day params) "/" (:title params) "/")))
   (ANY "*"
        [404 (content-type "text/html") (file-not-found)]))
 
