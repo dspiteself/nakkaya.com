@@ -1,7 +1,7 @@
 ---
 title: Emacs Dsniff Interface
 tags: emacs dsniff
-description: Emacs Dsniff Interface
+description: Emacs dsniff interface, use dsniff from within emacs.
 ---
 
 an interface to dsniff.

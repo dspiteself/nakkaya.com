@@ -1,6 +1,6 @@
 ---
 title: Experiments
-description: Experiments
+description: Some experimental code, use at your own risk.
 ---
 
 Some experimental code.

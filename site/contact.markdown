@@ -1,6 +1,6 @@
 ---
 title: Contact Information
-description: About Nurullah Akkaya
+description: Contact Information for Nurullah Akkaya.
 ---
 
 I can be reached at [nurullah@nakkaya.com](mailto:nurullah@nakkaya.com
