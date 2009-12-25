@@ -4,7 +4,8 @@
 
 (def site-title "an explorer's log")
 (def site-url   "http://nakkaya.com")
-(def site-desc  "Nurullah Akkaya's Home")
+(def site-desc  "Random bits and pieces on stuff that I find interesting.")
+(def archives-desc "an explorer's log - Archives - Page ")
 (def posts-per-page 2)
 
 (defn convert-date [in-format out-format date]

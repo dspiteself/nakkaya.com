@@ -115,10 +115,10 @@
 (defn latest-posts [page]
   (let [begin (* (Integer. page) posts-per-page) 
 	end   (+ begin posts-per-page)
-	meta {:title site-title 
-	      :tags "nurullah akkaya"
-	      :description site-desc
-	      :type 'latest}
+	title (if (= page 0) site-title (str archives-desc page))
+	desc  (if (= page 0) site-desc (str archives-desc page))
+	meta {:title title :tags "nurullah akkaya"
+	      :description desc :type 'latest}
 	content (render-snippets begin end)]
     (render-template {:metadata meta  :content content})))
 
