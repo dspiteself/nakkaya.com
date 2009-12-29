@@ -16,24 +16,24 @@ stop the transmission based on your rules.
     var observer = {
       observe: function(subject,topic,data){
     
-    	var httpChannel = 
-    	subject.QueryInterface(Components.interfaces.nsIHttpChannel);
-    	var contentType = httpChannel.getResponseHeader("Content-Type");
+        var httpChannel = 
+        subject.QueryInterface(Components.interfaces.nsIHttpChannel);
+        var contentType = httpChannel.getResponseHeader("Content-Type");
     
-    	var channel = subject.QueryInterface(Components.interfaces.nsIChannel);
-	var url = channel.URI.spec;
-	url = url.toString();
-	    
-	if ( isDownloadable( url ) == true 
-	     &&  contentType.indexOf("html") == -1 ){
+        var channel = subject.QueryInterface(Components.interfaces.nsIChannel);
+        var url = channel.URI.spec;
+        url = url.toString();
+            
+        if ( isDownloadable( url ) == true 
+             &&  contentType.indexOf("html") == -1 ){
 
-	    window.getBrowser().stop();
-	    
-	    download( url );
-	    //alert("Wait a moment!\n"+ url );
-	}
-	
-	//alert("Topic sent: " + topic);
+            window.getBrowser().stop();
+            
+            download( url );
+            //alert("Wait a moment!\n"+ url );
+        }
+        
+        //alert("Topic sent: " + topic);
       }
     };
 

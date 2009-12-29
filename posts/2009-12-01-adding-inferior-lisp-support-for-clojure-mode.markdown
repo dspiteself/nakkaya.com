@@ -38,19 +38,19 @@ following key bindings.
       (jump-to-register 5))
 
     (add-hook 'clojure-mode-hook
-	      '(lambda ()
-	         (define-key clojure-mode-map 
-	           "\e\C-x" 'lisp-eval-defun)
-	         (define-key clojure-mode-map 
-	           "\C-x\C-e" 'lisp-eval-last-sexp)
-	         (define-key clojure-mode-map 
-	           "\C-c\C-e" 'lisp-eval-last-sexp)
-	         (define-key clojure-mode-map 
-	           "\C-c\C-r" 'lisp-eval-region)
-	         (define-key clojure-mode-map 
-	           "\C-c\C-l" 'na-load-buffer)
-	         (define-key clojure-mode-map 
-	           "\C-c\C-z" 'run-lisp)))
+              '(lambda ()
+                 (define-key clojure-mode-map 
+                   "\e\C-x" 'lisp-eval-defun)
+                 (define-key clojure-mode-map 
+                   "\C-x\C-e" 'lisp-eval-last-sexp)
+                 (define-key clojure-mode-map 
+                   "\C-c\C-e" 'lisp-eval-last-sexp)
+                 (define-key clojure-mode-map 
+                   "\C-c\C-r" 'lisp-eval-region)
+                 (define-key clojure-mode-map 
+                   "\C-c\C-l" 'na-load-buffer)
+                 (define-key clojure-mode-map 
+                   "\C-c\C-z" 'run-lisp)))
 
 From the commit it seems that the only thing that got removed is  bunch
 of key bindings, snippet above pretty much reverses the commit and adds

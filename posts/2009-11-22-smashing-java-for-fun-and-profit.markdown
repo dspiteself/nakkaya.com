@@ -18,23 +18,23 @@ the console, for any other serial it will exit without a prompt.
     public class hello {
     
         public static boolean checkSerial(String serial){
-	    if (serial.equals("1234"))
-	        return true;
-	    else
-	        return false;
+            if (serial.equals("1234"))
+                return true;
+            else
+                return false;
         }
 
         public static void main (String args[]) {
-	
-	    if (args.length != 1){
-	        System.err.println("Serial Needed..");
-	        return;
-	    }
+        
+            if (args.length != 1){
+                System.err.println("Serial Needed..");
+                return;
+            }
 
-	    if (checkSerial(args[0]) == false )
-	        System.exit(0);
+            if (checkSerial(args[0]) == false )
+                System.exit(0);
 
-	    System.out.println("Hello World!");
+            System.out.println("Hello World!");
         }
     }
 
@@ -101,28 +101,28 @@ back the modified class file.
     class smash{
         public static void main(String[] argv) throws Exception{
 
-	    //Load the class that we will be patching...
-	    ClassPool pool = ClassPool.getDefault();
-	    CtClass klass = pool.get("hello");
+            //Load the class that we will be patching...
+            ClassPool pool = ClassPool.getDefault();
+            CtClass klass = pool.get("hello");
  
-	    //Get the method we want to patch, and rename...
-	    CtMethod orig = klass.getDeclaredMethod("checkSerial");
-	    orig.setName( "checkSerial$impl" );
+            //Get the method we want to patch, and rename...
+            CtMethod orig = klass.getDeclaredMethod("checkSerial");
+            orig.setName( "checkSerial$impl" );
  
-	    // Create a new function that will always return true...
-	    CtMethod patch = CtNewMethod.copy(orig, "checkSerial", klass, null);
-	    patch.setBody("{ return true; }");
+            // Create a new function that will always return true...
+            CtMethod patch = CtNewMethod.copy(orig, "checkSerial", klass, null);
+            patch.setBody("{ return true; }");
  
-	    // Add patched method..
-	    klass.addMethod( patch );
-	    klass.writeFile();
+            // Add patched method..
+            klass.addMethod( patch );
+            klass.writeFile();
  
-	    System.out.println("Done Patching.");
+            System.out.println("Done Patching.");
 
-	    CtMethod[] methods = klass.getDeclaredMethods();
-	    for( int i=0; i<methods.length ; i++){
-	        System.out.println( "\t" + methods[i].getLongName() );
-	    }
+            CtMethod[] methods = klass.getDeclaredMethods();
+            for( int i=0; i<methods.length ; i++){
+                System.out.println( "\t" + methods[i].getLongName() );
+            }
 
         }
     }
@@ -176,12 +176,12 @@ is [yGuard](http://www.yworks.com/en/products_yguard_about.htm).
           <inoutpair in="./hello.jar" out="./hello-final.jar"/>
       
           <rename logfile="./test.log" replaceClassNameStrings="true">
-	    <property name="obfuscation-prefix" value="name"/>
-	    <keep>
-	      <class name="hello"/>
-	      <method name="void main(java.lang.String[])" 
-		      class="hello" />
-	    </keep>
+            <property name="obfuscation-prefix" value="name"/>
+            <keep>
+              <class name="hello"/>
+              <method name="void main(java.lang.String[])" 
+                      class="hello" />
+            </keep>
           </rename>
         </yguard>
 

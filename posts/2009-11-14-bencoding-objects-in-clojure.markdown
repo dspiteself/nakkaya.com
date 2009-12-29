@@ -22,18 +22,18 @@ at it by creating a String from it.
 
     (defn- encode-object [obj stream]
       (cond (string?  obj) (encode-string obj stream)
-	    (number? obj) (encode-number obj stream)
-	    (vector? obj) (encode-list obj stream)
-	    (map? obj) (encode-dictionary obj stream)))
+            (number? obj) (encode-number obj stream)
+            (vector? obj) (encode-list obj stream)
+            (map? obj) (encode-dictionary obj stream)))
 
 encode-object is where encoding begins, depending on the type of object
 passed to it, it will call the appropriate function.
 
     (defn- encode-string [obj stream]
       (let [bytes (.getBytes obj "UTF-8")
-	    bytes-length (.getBytes (str (count bytes) ":") "UTF-8")]
+            bytes-length (.getBytes (str (count bytes) ":") "UTF-8")]
         (.write stream bytes-length 0 (count bytes-length))
-        (.write stream bytes 0 (count bytes)) ))
+        (.write stream bytes 0 (count bytes))))
 
 An encoded string has the format, 
 
@@ -45,8 +45,8 @@ length write everything to stream according to the format.
 
     (defn- encode-number [number stream]
       (let [string (str "i" number "e")
-	    bytes (.getBytes string "UTF-8")]
-        (.write stream bytes 0 (count bytes)) ))
+            bytes (.getBytes string "UTF-8")]
+        (.write stream bytes 0 (count bytes))))
 
 An encoded number has the format,
 

@@ -37,14 +37,14 @@ following content.
     }
 
     server {
-	    label=OpenDNS;
-	    ip=208.67.222.222;
-	    ip=208.67.220.220;
-	    timeout=30;
-	    interval=30;
-	    uptest=ping;
-	    ping_timeout=50;
-	    purge_cache=off;
+            label=OpenDNS;
+            ip=208.67.222.222;
+            ip=208.67.220.220;
+            timeout=30;
+            interval=30;
+            uptest=ping;
+            ping_timeout=50;
+            purge_cache=off;
     }
 
 Change the owner of the file to root,

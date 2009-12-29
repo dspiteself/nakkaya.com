@@ -103,7 +103,7 @@ the world,
                (.setAlwaysOnTop true)
                (.setVisible true))))
 
-	  
+  
 Full code listing can be found [here](/code/clojure/world.clj).
 
 ABRKMZZW8ASP

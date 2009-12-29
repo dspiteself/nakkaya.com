@@ -18,15 +18,15 @@ specific class.
 
     try{
         Class klass = Class.forName("macOs.MacApplication");
-		
+                
         Class[] paramTypes = {
-        	String.class,
-	        String.class };
+                String.class,
+                String.class };
         Constructor cons = klass.getConstructor(paramTypes);
     
         Object[] args = {
-        	"test",
-	        "this" };
+                "test",
+                "this" };
     
         Object theObject = cons.newInstance(args);
     

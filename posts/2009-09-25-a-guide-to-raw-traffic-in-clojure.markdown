@@ -60,7 +60,7 @@ it for ipv6.
 
     (defn mac-byte-to-string [mac-bytes]
       (let [v  (apply vector 
-		      (map #(Integer/toHexString (bit-and % 0xff)) mac-bytes))]
+                      (map #(Integer/toHexString (bit-and % 0xff)) mac-bytes))]
         (apply str (interpose ":" v))))
 
 Interfaces mac id is represented as a byte array to visualize it we need
@@ -88,14 +88,14 @@ for your machine or not can be read, and a 0 milisecond timeout.
 
     (defn arp-sweep [interface]
       (let  [interface (interface-by-name interface)
-	     captor (open-captor interface)]
+             captor (open-captor interface)]
         
         (send-arp-probe captor interface (generateip-ip-list interface))
 
         (.start 
          (Thread. 
           (proxy [Runnable] [] 
-    	    (run [] (.loopPacket captor -1 (packet-callback))))))
+            (run [] (.loopPacket captor -1 (packet-callback))))))
     
         (Thread/sleep 3000)
         (.breakLoop captor) ))
@@ -117,9 +117,9 @@ function.
          [packet]
          (if (instance? ARPPacket packet)
            (do
-	     (let  [src-ip (.getSenderProtocolAddress packet)
-		    src-mac (.getSenderHardwareAddress packet)] 
-	       (println (.getHostAddress src-ip) " is at " src-mac) )))  )))
+             (let  [src-ip (.getSenderProtocolAddress packet)
+                    src-mac (.getSenderHardwareAddress packet)] 
+               (println (.getHostAddress src-ip) " is at " src-mac) )))  )))
 
 For each packet received we check that if it is a arp packet. Remember we
 are capturing all traffic going through the device. If it is of type
@@ -128,9 +128,9 @@ machine on the network.
 
     (defn create-arp-request [interface target]
       (let  [broadcast    (into-array (Byte/TYPE) (repeat 6 (byte 255)))
-	     srcip        (interface-ip interface)
-	     arp-packet   (ARPPacket.)
-	     ether-packet (EthernetPacket.)]
+             srcip        (interface-ip interface)
+             arp-packet   (ARPPacket.)
+             ether-packet (EthernetPacket.)]
         ;;arp
         (set! (.hardtype arp-packet) ARPPacket/HARDTYPE_ETHER)
         (set! (.prototype arp-packet) ARPPacket/PROTOTYPE_IP)
@@ -141,7 +141,7 @@ machine on the network.
         (set! (.sender_protoaddr arp-packet) (.getAddress srcip))
         (set! (.target_hardaddr arp-packet) broadcast)
         (set! (.target_protoaddr arp-packet) 
- 	      (.getAddress (InetAddress/getByName target)))
+              (.getAddress (InetAddress/getByName target)))
         ;;ether
         (set! (.frametype ether-packet) EthernetPacket/ETHERTYPE_ARP)
         (set! (.src_mac ether-packet) (.mac_address interface))
@@ -159,7 +159,7 @@ refer to Wikipedia.
 
     (defn generateip-ip-list [interface]
       (let [ip (.getHostAddress (interface-ip interface))
-	    block (.substring ip 0 (+ 1 (.lastIndexOf ip ".")))] 
+            block (.substring ip 0 (+ 1 (.lastIndexOf ip ".")))] 
          (vec (map #(str block %) (range 1 255))) ))
 
 A very quick way to a get list of all IP's on the block. This will

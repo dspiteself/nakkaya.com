@@ -18,8 +18,8 @@ instead of hitting the red dot clean up code will not run.
            public void windowClosing(WindowEvent we){
 
            //do something here
-	   System.exit(0);
-	}});
+           System.exit(0);
+        }});
 
 
 In order to handle quit menu item. Apple's Application class class
@@ -36,12 +36,12 @@ window listener on other operating systems.
 
         public MacApplication( ) {
 
-  		public void handleQuit( ApplicationEvent event ) {
+                public void handleQuit( ApplicationEvent event ) {
                     // do something here...
-		    System.exit(0);
-		}
+                    System.exit(0);
+                }
 
-	    });
+            });
         }
     }
 
@@ -73,15 +73,15 @@ mac's mrj.version system property is always set you can check it's value
 to see if you are on a mac. If it's set create your application object.
 
 
-	if(System.getProperty("mrj.version") == null){
-	    addWindowListener(new WindowAdapter(){
-		    public void windowClosing(WindowEvent we){
+        if(System.getProperty("mrj.version") == null){
+            addWindowListener(new WindowAdapter(){
+                    public void windowClosing(WindowEvent we){
                         //not on a mac cleanup
-			System.exit(0);
-		    }});
-	}else{	    
-	    MacApplication macApplication = new MacApplication(  );
-	}
+                        System.exit(0);
+                    }});
+        }else{      
+            MacApplication macApplication = new MacApplication(  );
+        }
 
 
 ##### Resources

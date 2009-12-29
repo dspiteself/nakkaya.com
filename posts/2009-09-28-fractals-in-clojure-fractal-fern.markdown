@@ -26,22 +26,22 @@ systems](http://en.wikipedia.org/wiki/Iterated_function_system).
       (struct <point> 0 (* 0.16 (:y target))))
     (defn transform-two [ target ] 
       (struct <point> 
-	      (- (* 0.2  (:x target)) (* 0.26 (:y target))) 
-	      (+ (* 0.23 (:x target)) (* 0.22 (:y target)))))
+              (- (* 0.2  (:x target)) (* 0.26 (:y target))) 
+              (+ (* 0.23 (:x target)) (* 0.22 (:y target)))))
     (defn transform-three [ target ] 
       (struct <point>  
-	      (+ (* -0.15 (:x target)) (* 0.28 (:y target)))  
-	      (+ (* 0.26  (:x target)) (* 0.24 (:y target)) 0.44)  ))
+              (+ (* -0.15 (:x target)) (* 0.28 (:y target)))  
+              (+ (* 0.26  (:x target)) (* 0.24 (:y target)) 0.44)  ))
     (defn transform-four [ target ] 
       (struct <point> 
-	      (+ (* 0.85   (:x target)) (* 0.04 (:y target)))
-	      (+ (* -0.004 (:x target)) (* 0.85 (:y target)) 1.6)  ))
+              (+ (* 0.85   (:x target)) (* 0.04 (:y target)))
+              (+ (* -0.004 (:x target)) (* 0.85 (:y target)) 1.6)  ))
 
     (defn transform 
       "Transform point accourding to the percentage."
       [ target ] 
       (let  [ random (new Random) 
-	      percentage (.nextInt random 100) ] 
+              percentage (.nextInt random 100) ] 
         (cond 
          (<= percentage 1 ) (transform-one target)
          (<= percentage 7 ) (transform-two target)
@@ -91,11 +91,11 @@ points we want from the sequence.
 
     (defn draw [width height points]
       (let [frame  (new JFrame)
-	    image  (new BufferedImage width height BufferedImage/TYPE_INT_RGB )
-	    canvas (proxy [JLabel] []
-		     (paint [g]			  
-			    (.drawImage g image 0 0 this) ))
-	    graphics (.createGraphics image)]
+            image  (new BufferedImage width height BufferedImage/TYPE_INT_RGB )
+            canvas (proxy [JLabel] []
+                     (paint [g]                   
+                            (.drawImage g image 0 0 this) ))
+            graphics (.createGraphics image)]
         (.setColor graphics Color/green)
         (draw-fern width height points graphics)
         (.add frame canvas)

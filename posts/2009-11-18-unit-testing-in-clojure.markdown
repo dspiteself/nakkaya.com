@@ -79,7 +79,7 @@ our tests look like this,
 
     <target name="test" depends="">
       <java classname="clojure.main" 
-	    fork="true" failonerror="true">  
+            fork="true" failonerror="true">  
         <classpath>
           <pathelement path="${test-dir}" />
           <pathelement path="${src-dir}" />
@@ -89,9 +89,9 @@ our tests look like this,
 
         <arg value="-e" />
         <arg value="
-		    (use 'clojure.test)
-		    (use 'app-test)
-		    (run-ant)" />
+                    (use 'clojure.test)
+                    (use 'app-test)
+                    (run-ant)" />
       </java>  
     </target>
 

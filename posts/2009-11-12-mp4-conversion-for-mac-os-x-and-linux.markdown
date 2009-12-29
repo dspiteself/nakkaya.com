@@ -18,7 +18,7 @@ SAVE_LOCATION.
     if [ -z "$1" ]
     then
             echo "requires file name..."
-	    exit
+            exit
     fi
 
     filename=${1##*/}
