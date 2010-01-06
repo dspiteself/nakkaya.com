@@ -34,6 +34,15 @@ percentage to show.
 
 #### Clojure
 
+     (defn percent-bar [percent]
+       (let [slen (int (/ percent 2))
+             shaft (apply str (repeat slen "="))
+             filler (apply str (repeat (- 50 slen) " "))]
+         (str "[" shaft ">" filler "]")))
+
+Tom Hicks in the comments provided a more elegant version than mine, by
+computing the sequences of characters that we need directly.
+
     (defn print-progress-bar [percent]
       (let [bar (StringBuilder. "[")] 
         (doseq [i (range 50)]
