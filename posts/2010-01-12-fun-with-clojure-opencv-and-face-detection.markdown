@@ -30,6 +30,11 @@ class which is distributed with Processing or Arduino IDEs. Install
 either one of them, grab core.jar that comes with it and copy that to
 your extensions folder also.
 
+> [Alex](http://alexott.blogspot.com/) in the comments mentioned,
+> [incanter](http://github.com/liebke/incanter/) package
+> contains Processing library, you can just grab it from them instead of
+> installing Arduino or Processing. It is located in the deps.zip file.
+
  - [face-detect.clj](/code/clojure/face-detect.clj)
 
 First we need to configure OpenCV object,
