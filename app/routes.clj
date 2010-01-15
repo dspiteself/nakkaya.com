@@ -1,22 +1,32 @@
 (ns app.routes
   (:use :reload-all compojure)
   (:use :reload-all app.util)
-  (:use :reload-all app.html))
+  (:require [app.html :as html]))
 
-(defn cache-markdown []
-  (def mem-site (memoize site))
-  (def mem-post (memoize post))
-  (def mem-latest-posts (memoize latest-posts))
-  (def mem-tags (memoize tags))
-  (def mem-archives (memoize archives))
-  (def mem-rss (memoize rss)))
+(defn cached-pages []
+  (def site (memoize html/site))
+  (def post (memoize html/post))
+  (def latest-posts (memoize html/latest-posts))
+  (def tags (memoize html/tags))
+  (def archives (memoize html/archives))
+  (def rss (memoize html/rss)))
 
-(cache-markdown)
+(defn pages []
+  (def site html/site)
+  (def post html/post)
+  (def latest-posts html/latest-posts)
+  (def tags html/tags)
+  (def archives html/archives)
+  (def rss html/rss))
+
+(if (nil? (System/getProperty "compojure.cache"))
+  (cached-pages)
+  (pages))
 
 (defn github-hook []
   (println "Pulling Changes...")
   (try (cmd "git pull") (catch Exception e))
-  (cache-markdown)
+  (cached-pages)
   "OK")
 
 (defn redirect-301 [loc]
@@ -26,30 +36,30 @@
   (POST "/github-hook"
        (or (github-hook) :next))
   (GET "/tags/"
-       (or (mem-tags) :next))
+       (or (tags) :next))
   (GET "/latest-posts/:page/"
-       (or (mem-latest-posts (:page params)) :next))
+       (or (latest-posts (:page params)) :next))
   (GET "/archives/"
-       (or (mem-archives) :next))
+       (or (archives) :next))
   (GET "/:year/:month/"
-       (or (mem-archives (:year params) (:month params)) :next))
+       (or (archives (:year params) (:month params)) :next))
   ;;blog related routes
   (GET "/:year/:month/:day/:title/"
-       (or (mem-post (:year params) (:month params) (:day params) 
-		     (:title params)) :next))
+       (or (post (:year params) (:month params) (:day params) 
+		 (:title params)) :next))
   (GET "/rss-feed"
        (or [(content-type "text/xml")
-	    (mem-rss)] :next))
+	    (rss)] :next))
   ;;site related routes
   (GET "/"
-       (or (mem-latest-posts 0) :next))
+       (or (latest-posts 0) :next))
   (GET "/*" 
-       (or (mem-site (params :*)) :next))
+       (or (site (params :*)) :next))
   ;;redirects
   (GET "/:year/:month/:day/:title"
        (redirect-301 (str "/" (:year params) "/" (:month params)"/" 
 			  (:day params) "/" (:title params) "/")))
   (ANY "*"
-       [404 (content-type "text/html") (file-not-found)]))
+       [404 (content-type "text/html") (html/file-not-found)]))
 
 (run-server {:port 8085} "/*" (servlet enik))

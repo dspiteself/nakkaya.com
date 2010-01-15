@@ -17,6 +17,17 @@ do
     JARS=${JARS}:${i}
 done
 
+JVM_OPTS="-Dcompojure.site=\"$NAME\" "
+
+for opts in "$@"
+do
+    case "$opts" in
+	no-cache)
+	    JVM_OPTS=${JVM_OPTS}"-Dcompojure.cache=\"off\" "
+	    ;;
+    esac
+done
+
 d_start(){
     if [ -e $PID_FILE ] 
     then
@@ -28,7 +39,7 @@ d_start(){
     	fi
     fi
 
-    $NOHUP $JAVA $JARS clojure.main $ROUTES &
+    $NOHUP $JAVA $JVM_OPTS $JARS clojure.main $ROUTES &
     COMPOJURE_PID=$!
     echo $COMPOJURE_PID > $PID_FILE
 }
