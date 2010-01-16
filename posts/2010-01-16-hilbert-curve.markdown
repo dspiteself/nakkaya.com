@@ -24,23 +24,25 @@ implementation to draw the curve.
 
      (defn hilbert [turtle level angle]
        (if (> level 0)
-         (do 
-           (right turtle angle)
-           (hilbert turtle (- level 1) (- angle))
-           (forward turtle size)
-           (left turtle angle)
-           (hilbert turtle (- level 1) angle)
-           (forward turtle size)
-           (hilbert turtle (- level 1) angle)
-           (left turtle angle)
-           (forward turtle size)
-           (hilbert turtle (- level 1) (- angle))
-           (right turtle angle))))
+         (doto turtle 
+           (right angle)
+           (hilbert (- level 1) (- angle))
+           (forward size)
+           (left angle)
+           (hilbert (- level 1) angle)
+           (forward size)
+           (hilbert (- level 1) angle)
+           (left angle)
+           (forward size)
+           (hilbert (- level 1) (- angle))
+           (right angle))))
 
      (let [turtle (turtle width height)]
-       (pen-up turtle)
-       (go turtle (- 10 (/ width 2)) (- 10 (/ height 2)))
-       (pen-down turtle)
-       (hilbert turtle 5 90)
-       (show turtle))
+       (doto turtle
+         (pen-up)
+         (go (- 10 (/ width 2)) (- 10 (/ height 2)))
+         (pen-down)
+         (hilbert 5 90)
+         (show)))
+
 
