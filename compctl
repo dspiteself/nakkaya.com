@@ -7,7 +7,7 @@ NOHUP="nohup"
 JAVA="java"
 JARFOLDER="extLibs/"
 PID_FILE="comp.pid"
-ROUTES="app/routes.clj"
+ROUTES="app/run.clj"
 
 ## build jar list
 JARS="-cp "

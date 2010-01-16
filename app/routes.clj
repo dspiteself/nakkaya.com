@@ -32,7 +32,7 @@
 (defn redirect-301 [loc]
   [301 {:headers {"Location" loc}}])
 
-(defroutes enik
+(defroutes web-app
   (POST "/github-hook"
        (or (github-hook) :next))
   (GET "/tags/"
@@ -61,5 +61,3 @@
 			  (:day params) "/" (:title params) "/")))
   (ANY "*"
        [404 (content-type "text/html") (html/file-not-found)]))
-
-(run-server {:port 8085} "/*" (servlet enik))
