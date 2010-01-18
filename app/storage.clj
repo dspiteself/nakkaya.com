@@ -23,8 +23,7 @@
 	      (let  [v (.split post "-" 3)
 		     date (str (first v) "-" (second v))
 		     count (get months date 0)]
-		(assoc months date (+ 1 count) )
-		)) {} posts) ))
+		(assoc months date (+ 1 count)))) {} posts)))
 
 (defn tag-post [post]
   (let [meta (:metadata (read-markdown (str "posts/" post)))
@@ -33,7 +32,7 @@
 	      [h v] 
 	      (conj h {:tag v :post {:url url :title (:title meta)}}))
     	    #{}
-    	    (.split (:tags meta) " "))  ))
+    	    (.split (:tags meta) " "))))
 
 (defn post-count-by-tags []
   (let [tag-set (apply union (map tag-post (post-list-by-date)))]
@@ -41,7 +40,7 @@
      (fn [h v]
        (let [tag (:tag v)
 	     count (get h tag 0)] 
-	 (assoc h tag (+ 1 count) ))) {} tag-set) ))
+	 (assoc h tag (+ 1 count) ))) {} tag-set)))
 
 (defn tag-set []
   (apply union (map tag-post (post-list-by-date))))
