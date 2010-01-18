@@ -2,8 +2,7 @@
   (:use clojure.set)
   (:use clojure.contrib.str-utils)
   (:use clojure.contrib.seq-utils)
-  (:use :reload-all [app.util :only [file-to-url file-to-date]])
-  (:use :reload-all [app.markdown :only [read-markdown]])
+  (:use :reload-all app.util)
   (:import (java.io File)))
 
 

@@ -4,7 +4,7 @@
   (:use clojure.contrib.java-utils)
   (:use clojure.test)
   (:use :reload-all app.routes)
-  (:use :reload-all app.markdown))
+  (:use :reload-all app.util))
 
 (defn create-dummy-site []
   (spit 

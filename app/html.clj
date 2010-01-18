@@ -5,7 +5,6 @@
   (:use :reload-all app.util)
   (:use :reload-all app.storage)
   (:use :reload-all app.template)
-  (:use :reload-all [app.markdown :only [read-markdown]])
   (:import (java.text SimpleDateFormat)
 	   (java.io File)))
 

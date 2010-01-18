@@ -1,7 +1,6 @@
 (ns app.widgets
   (:use clojure.set)
   (:use :reload-all app.util)
-  (:use :reload-all app.markdown)
   (:use :reload-all app.storage))
 
 (defn tags-widget []
