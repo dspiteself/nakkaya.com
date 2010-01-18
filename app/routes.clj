@@ -20,7 +20,9 @@
   (def rss html/rss))
 
 (if (nil? (System/getProperty "compojure.cache"))
-  (cached-pages)
+  (do 
+    (cached-pages)
+    (cached-markdown))
   (pages))
 
 (defn github-hook []

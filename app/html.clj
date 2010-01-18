@@ -10,7 +10,7 @@
 
 
 (defn- post-xml [file]
-  (let [post (read-markdown (str "posts/" file))
+  (let [post (markdown (str "posts/" file))
 	meta (:metadata post)
 	content  (:content post)]
     [:item 
@@ -66,7 +66,7 @@
 	[:p snippet] ))
 
 (defn- render-snippet [file]
-  (let [post (read-markdown (str "posts/" file))
+  (let [post (markdown (str "posts/" file))
 	meta (:metadata post)
 	content  (:content post)]
     (post-snippet 
@@ -153,7 +153,7 @@
   (let [file-name (str year "-" month "-" day "-" title".markdown")
 	file (str "posts/" file-name)]
     (if (.exists (File. file))
-      (let [page  (read-markdown file)
+      (let [page  (markdown file)
 	    meta (conj (:metadata page) {:type 'post :file-name file-name})
 	    content  (:content page)]
 	(render-template {:metadata meta :content content})))))
@@ -162,7 +162,7 @@
   (let [site-path (str "site/" file)
 	public-path (File. (str "public/" file))]
     (cond (.exists (File. site-path)) 
-	  (let [page  (read-markdown site-path)
+	  (let [page  (markdown site-path)
 		meta (conj (:metadata page) {:type 'page})
 		title    (:title meta)
 		content  (str (html [:h2 title]) (:content page))]

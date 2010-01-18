@@ -31,7 +31,7 @@
     (reduce (fn[h p]
 	      (let [file (first p)
 		    url  (file-to-url file)
-		    meta (:metadata (read-markdown (str "posts/" file)))
+		    meta (:metadata (markdown (str "posts/" file)))
 		    title (:title meta)
 		    date (file-to-date file)]
 		(conj h {:url url :title title :date date}))) [] sim-posts)))

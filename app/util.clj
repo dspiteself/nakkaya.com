@@ -40,12 +40,16 @@
 	      (assoc h key v)))
 	  {} (re-seq #"([^:]+): (.+)(\n|$)" metadata)))
 
-(defn read-markdown [file]
+(defn- read-markdown [file]
   (let [content (read-file file)
 	page (split-file content)
 	metadata (prepare-metadata (:metadata page))
 	html (render-markdown (:content page))]
     {:metadata metadata :content html} ))
+
+(def markdown read-markdown)
+(defn cached-markdown []
+  (def markdown (memoize read-markdown)))
 
 
 (defn file-to-url [file]

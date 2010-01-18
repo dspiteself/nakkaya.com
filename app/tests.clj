@@ -40,14 +40,14 @@ b1232b0f-58ce-4339-9272-33fb19da9a12
 
 (deftest test-markdown
   (is (= "unit test"  
-	 (:tags (:metadata (read-markdown "site/dummy.markdown")))))
+	 (:tags (:metadata (markdown "site/dummy.markdown")))))
   (is (= "some dummy desc"  
-	 (:description (:metadata (read-markdown "site/dummy.markdown")))))
+	 (:description (:metadata (markdown "site/dummy.markdown")))))
   (is (= "dummy content"
-	 (:title (:metadata (read-markdown "site/dummy.markdown")))))
+	 (:title (:metadata (markdown "site/dummy.markdown")))))
   (is (= "Some dummy file for unit testing."
 	 (re-find #"Some dummy file for unit testing."
-		  (:content (read-markdown "site/dummy.markdown"))))))
+		  (:content (markdown "site/dummy.markdown"))))))
 
 (deftest test-route-site
   (is (= 200

@@ -25,7 +25,7 @@
 		(assoc months date (+ 1 count)))) {} posts)))
 
 (defn tag-post [post]
-  (let [meta (:metadata (read-markdown (str "posts/" post)))
+  (let [meta (:metadata (markdown (str "posts/" post)))
 	url  (file-to-url post)]
     (reduce (fn 
 	      [h v] 
@@ -47,6 +47,6 @@
 (defn post-tag-map []
   (reduce 
    (fn[h post]
-     (let [tags (:tags (:metadata (read-markdown (str "posts/" post))))]
+     (let [tags (:tags (:metadata (markdown (str "posts/" post))))]
        (assoc h post (re-split #" " tags))))
    {} (shuffle (post-list-by-date))))
