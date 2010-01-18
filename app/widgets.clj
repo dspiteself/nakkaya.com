@@ -3,31 +3,6 @@
   (:use :reload-all app.util)
   (:use :reload-all app.storage))
 
-(defn tags-widget []
-  (let [tags (reverse (sort (post-count-by-tags)))]
-     [:div {:class "widget"} 
-      [:h5 "Tags"]
-      [:ul
-       (reduce 
-	(fn [h v]
-	  (let [tag (first v)
-		count (str " (" (second v) ")")] 
-	    (conj h [:li [:a {:href (str "/tags/#" tag)} tag] count]))) 
-	() tags)]]))
-
-(defn archives-widget []
-  (let [months (post-count-by-mount)]
-     [:div {:class "widget"} 
-      [:h5 "Archives"]
-      [:ul
-       (reduce 
-	(fn [h v]
-	  (let [url (str "/" (.replace (first v) "-" "/") "/")
-		date (convert-date "MMMM yyyy" "yyyy-MM" (first v))
-		count (str " (" (second v) ")")]
-	    (conj h [:li [:a {:href url} date] count])))
-	() months)]]))
-
 (defn- similarity [post1 post2]
   (let [shared-items (into #{} (filter #(some #{%} post1) post2))
 	unique-items (difference (union (into #{} post1) (into #{} post2))
