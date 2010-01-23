@@ -47,9 +47,9 @@ column is variable length, and apply the struct on it, that way we get a
 vector of earthquake structures.
 
      (defn parse [data]
-       (reduce (fn[h l] 
-                 (conj h (apply struct earth-quake (re-split #"\s+" l 9)))) 
-               [] (re-split #"\n+" data)))
+        (map
+         #(apply struct earth-quake (re-split #"\s+" % 9))
+         (re-split #"\n+" data)))
 
 The data portion of the page we are interested in begins just before the
 first earthquake with the dashes up to the closing pre tag, a simple

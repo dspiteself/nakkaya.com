@@ -25,9 +25,9 @@
 	(apply str (interleave (line-seq buf) (repeat \newline )))))))
 
 (defn parse [data]
-  (reduce (fn[h l] 
-	    (conj h (apply struct earth-quake (re-split #"\s+" l 9)))) 
-	  [] (re-split #"\n+" data)))
+   (map
+    #(apply struct earth-quake (re-split #"\s+" % 9))
+    (re-split #"\n+" data)))
 
 (defn eartquakes []
   (let  [page (fetch-url "http://www.koeri.boun.edu.tr/scripts/lst9.asp")
