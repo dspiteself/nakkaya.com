@@ -167,7 +167,8 @@
 		title    (:title meta)
 		content  (str (html [:h2 title]) (:content page))]
 	    (render-template {:metadata meta :content content}))
-	  (.exists public-path) public-path)))
+	  (and (.exists public-path)
+	       (= (.isDirectory public-path) false)) public-path)))
 
 (defn file-not-found []
   (html

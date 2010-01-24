@@ -34,6 +34,20 @@ b1232b0f-58ce-4339-9272-33fb19da9a12
 (defn destroy-dummy-post []
   (delete-file (file "posts/2050-01-01-dummy-future-post.markdown")))
 
+(defn create-dummy-static-folder []
+  (.mkdir (file "public/dummy/")))
+
+(defn destroy-dummy-static-folder []
+  (delete-file (file "public/dummy/")))
+
+(defn create-dummy-static-file []
+  (spit 
+   (file "public/dummy/dummy.static")
+   "Hello, World!!"))
+
+(defn destroy-dummy-static-file []
+  (delete-file (file "public/dummy/dummy.static")))
+
 (defn request-resource [resource web-app]
   (let [request  {:request-method :get, :uri resource}]
     (web-app request)))
@@ -66,6 +80,14 @@ b1232b0f-58ce-4339-9272-33fb19da9a12
   (is (= "Some dummy file for unit testing"
 	 (re-find #"Some dummy file for unit testing"
 		  (:body (request-resource "/dummy.markdown" web-app))))))
+
+(deftest test-route-static
+  (is (= 200
+	 (:status (request-resource "/dummy/dummy.static" web-app))))
+  (is (= (file "public/dummy/dummy.static")
+	 (:body (request-resource "/dummy/dummy.static" web-app))))
+  (is (= 404
+	 (:status (request-resource "/dummy/" web-app)))))
 
 
 (deftest test-routes
@@ -125,6 +147,10 @@ b1232b0f-58ce-4339-9272-33fb19da9a12
 
 (create-dummy-site)
 (create-dummy-post)
+(create-dummy-static-folder)
+(create-dummy-static-file)
 (run-tests)
 (destroy-dummy-site)
 (destroy-dummy-post)
+(destroy-dummy-static-file)
+(destroy-dummy-static-folder)
