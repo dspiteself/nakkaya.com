@@ -69,12 +69,10 @@ pin to a given coordinate with the string representation of the
 structure as the description,
 
      (defn markers [earth-quakes]
-       (reduce 
-        (fn[h v] 
-          (conj h 
-                (str "createMarker(" (:latitude v)","(:longitude v) 
-                     ",'" (apply str (interleave v (repeat "<br>"))) "');")))
-        [] earth-quakes))
+       (map 
+        #(str "createMarker(" (:latitude %)","(:longitude %) 
+              ",'" (apply str (interleave % (repeat "<br>"))) "');")
+        earth-quakes))
 
 This will result in 200 createMarker calls, which will be placed into
 the resulting web page. Following template is bare minimum that is
