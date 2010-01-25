@@ -37,13 +37,13 @@
   (doseq [device  (JpcapCaptor/getDeviceList)]
     (let  [name   (.name device)
 	   mac    (mac-byte-to-string (.mac_address device))
-	   ip    (interface-ip device)]
-      (println  (print-device-info name mac) ip) )))
+	   ip     (interface-ip device)]
+      (println (print-device-info name mac) ip))))
 
 (defn generateip-ip-list [interface]
   (let [ip (.getHostAddress (interface-ip interface))
-	block (.substring ip 0 (+ 1 (.lastIndexOf ip ".")))] 
-    (vec (map #(str block %) (range 1 255))) ))
+	block (.substring ip 0 (+ 1 (.lastIndexOf ip ".")))]
+    (vec (map #(str block %) (range 1 255)))))
 
 (defn create-arp-request [interface target]
   (let  [broadcast    (into-array (Byte/TYPE) (repeat 6 (byte 255)))
@@ -73,33 +73,30 @@
   (JpcapCaptor/openDevice interface 50 true 0))
 
 (defn send-arp-probe [captor interface ip-list]
-  (let [sender    (.getJpcapSenderInstance captor)] 
+  (let [sender (.getJpcapSenderInstance captor)] 
     (doseq[ip ip-list]
-      (.sendPacket sender (create-arp-request interface ip))  )))
+      (.sendPacket sender (create-arp-request interface ip)))))
 
 (defn packet-callback []
   (proxy [PacketReceiver] []
     (receivePacket
      [packet]
      (if (instance? ARPPacket packet)
-       (do
-	 (let  [src-ip (.getSenderProtocolAddress packet)
-		src-mac (.getSenderHardwareAddress packet)] 
-	   (println (.getHostAddress src-ip) " is at " src-mac) )))  )))
+       (let  [src-ip (.getSenderProtocolAddress packet)
+	      src-mac (.getSenderHardwareAddress packet)] 
+	 (println (.getHostAddress src-ip) " is at " src-mac))))))
 
 (defn arp-sweep [interface]
   (let  [interface (interface-by-name interface)
 	 captor (open-captor interface)]
-        
+    
     (send-arp-probe captor interface (generateip-ip-list interface))
 
-    (.start 
-     (Thread. 
-      (proxy [Runnable] [] 
-    	(run [] (.loopPacket captor -1 (packet-callback))))))
+    (doto (Thread. #(.loopPacket captor -1 (packet-callback)))
+      (.start))
     
     (Thread/sleep 3000)
-    (.breakLoop captor) ))
+    (.breakLoop captor)))
 
 (with-command-line *command-line-args*
   "clojure pcap"

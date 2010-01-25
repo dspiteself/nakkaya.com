@@ -45,12 +45,12 @@ Then we start listening, machines on the network will respond...
 
 Let's dissect the code.
 
-    (defn interface-info []
-      (doseq [device  (JpcapCaptor/getDeviceList)]
-        (let  [name   (.name device)
-               mac    (mac-byte-to-string (.mac_address device))
-               ip     (interface-ip device)]
-          (println  (print-device-info name mac) ip) )))
+     (defn interface-info []
+       (doseq [device  (JpcapCaptor/getDeviceList)]
+         (let  [name   (.name device)
+                mac    (mac-byte-to-string (.mac_address device))
+                ip     (interface-ip device)]
+           (println (print-device-info name mac) ip))))
 
 interface-info will print name, mac and ip of the all interfaces on your
 machine. (JpcapCaptor/getDeviceList) returns an array of interfaces. For
@@ -86,19 +86,17 @@ using promiscuous mode, which means all packets whether they are meant
 for your machine or not can be read, and a 0 milisecond timeout.
 
 
-    (defn arp-sweep [interface]
-      (let  [interface (interface-by-name interface)
-             captor (open-captor interface)]
-        
-        (send-arp-probe captor interface (generateip-ip-list interface))
-
-        (.start 
-         (Thread. 
-          (proxy [Runnable] [] 
-            (run [] (.loopPacket captor -1 (packet-callback))))))
+     (defn arp-sweep [interface]
+       (let  [interface (interface-by-name interface)
+              captor (open-captor interface)]
     
-        (Thread/sleep 3000)
-        (.breakLoop captor) ))
+         (send-arp-probe captor interface (generateip-ip-list interface))
+
+         (doto (Thread. #(.loopPacket captor -1 (packet-callback)))
+           (.start))
+    
+         (Thread/sleep 3000)
+         (.breakLoop captor)))
 
 This is where the actual scanning takes place. We open the interface for
 listening. We send arp-request packages for all IP's on the
@@ -111,15 +109,14 @@ loopPacket will loop forever waiting for packets, that's why we run it on
 a separate thread, when it receives a packet it will call our call back
 function.
 
-    (defn packet-callback []
-      (proxy [PacketReceiver] []
-        (receivePacket
-         [packet]
-         (if (instance? ARPPacket packet)
-           (do
-             (let  [src-ip (.getSenderProtocolAddress packet)
-                    src-mac (.getSenderHardwareAddress packet)] 
-               (println (.getHostAddress src-ip) " is at " src-mac) )))  )))
+     (defn packet-callback []
+       (proxy [PacketReceiver] []
+         (receivePacket
+          [packet]
+          (if (instance? ARPPacket packet)
+            (let  [src-ip (.getSenderProtocolAddress packet)
+                   src-mac (.getSenderHardwareAddress packet)] 
+              (println (.getHostAddress src-ip) " is at " src-mac))))))
 
 For each packet received we check that if it is a arp packet. Remember we
 are capturing all traffic going through the device. If it is of type
@@ -157,10 +154,10 @@ information on the
 [ARP Packet Structure](http://en.wikipedia.org/wiki/Address_Resolution_Protocol#Packet_structure)
 refer to Wikipedia.
 
-    (defn generateip-ip-list [interface]
-      (let [ip (.getHostAddress (interface-ip interface))
-            block (.substring ip 0 (+ 1 (.lastIndexOf ip ".")))] 
-         (vec (map #(str block %) (range 1 255))) ))
+     (defn generateip-ip-list [interface]
+       (let [ip (.getHostAddress (interface-ip interface))
+             block (.substring ip 0 (+ 1 (.lastIndexOf ip ".")))]
+         (vec (map #(str block %) (range 1 255)))))
 
 A very quick way to a get list of all IP's on the block. This will
 return a vector of IP's. Such as [.. 192.1.1.5 192.1.1.6 ..]
