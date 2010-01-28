@@ -29,6 +29,7 @@
        [:script {:type "text/javascript"} "hljs.initHighlightingOnLoad();"]
        [:title (:title meta)]]
       [:body
+       (analytics-js)
        [:div
 	{:id "wrap"}
 	[:div
@@ -84,5 +85,4 @@
 	 [:a {:href "http://compojure.org/"} " Compojure"]
 	 [:p "&copy; 2010" 
 	  [:a {:href "/contact.markdown"} " Nurullah Akkaya"]]]]
-       (analytics-js)
        (if (= (:type meta) 'post) (disqus-js))]])))
