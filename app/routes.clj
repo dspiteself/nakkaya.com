@@ -29,6 +29,7 @@
   (println "Pulling Changes...")
   (try (cmd "git pull") (catch Exception e))
   (cached-pages)
+  (cached-markdown)
   "OK")
 
 (defn redirect-301 [loc]
