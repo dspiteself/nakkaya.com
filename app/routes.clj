@@ -48,8 +48,8 @@
        (or (archives (:year params) (:month params)) :next))
   ;;blog related routes
   (GET "/:year/:month/:day/:title/"
-       (or (post (:year params) (:month params) (:day params) 
-		 (:title params)) :next))
+       (or (time (post (:year params) (:month params) (:day params) 
+		       (:title params))) :next))
   (GET "/rss-feed"
        (or [(content-type "text/xml")
 	    (rss)] :next))
