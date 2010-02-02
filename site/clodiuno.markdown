@@ -43,6 +43,14 @@ Project is hosted at github, grab it
 
 #### Installation
 
+You need to upload Firmata sketch to your Arduino, 
+
+    File -> Examples -> Firmata -> StandartFirmata
+
+But Firmata sketch shipped with Arduino v17 is buggy, for clodiuno to
+work you need to [download](http://www.firmata.org/wiki/Download) latest
+sketch and use it instead of the one supplied with arduino.
+
 You can either put the src/ folder on to your classpath, or copy
 clodiuno.clj into your project. For now API is contained in a single
 file.
@@ -54,6 +62,7 @@ API, I also have the following hacks using Clodiuno,
 
  - [Blinking SOS](/2010/01/03/clodiuno-a-clojure-api-for-the-firmata-protocol/)
  - [Servo Control](/2010/01/06/making-things-move-with-clojure/)
+ - [Etch A Sketch](/2010/02/02/etch-a-sketch/)
 
 #### License
 
