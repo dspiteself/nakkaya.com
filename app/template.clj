@@ -42,11 +42,8 @@
 	   [:span {:class "fade"} "com"]]]
 	 [:div
 	  {:class "pages"}
-	  [:a {:href "/mocha.markdown", :class "page"} "Mocha"] " | "
-	  [:a {:href "/makeWay.markdown", :class "page"} "makeWay"] " | "
-	  [:a {:href "/clodiuno.markdown", :class "page"} "Clodiuno"] " | "
-	  [:a {:href "/experiments.markdown", :class "page"} 
-	   "eXperiments"] " | "
+	  [:a {:href "/", :class "page"} "Home"] " | "
+	  [:a {:href "/projects.mardown", :class "page"} "Projects"] " | "
 	  [:a {:href "/contact.markdown", :class "page"} "About"]]]
 	[:div
 	 {:id "content"}
