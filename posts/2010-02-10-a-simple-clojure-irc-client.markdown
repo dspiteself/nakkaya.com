@@ -32,15 +32,13 @@ it here. It doesn't do anything other then to sit idle in a channel,
      (defn conn-handler [conn]
        (while 
         (nil? (:exit @conn))
-        (if (.ready (:in @conn)) 
-          (let [msg (.readLine (:in @conn))]
-            (println msg)
-            (cond 
-             (re-find #"^ERROR :Closing Link:" msg) 
-             (dosync (alter conn merge {:exit true}))
-             (re-find #"^PING" msg)
-             (write conn (str "PONG "  (re-find #":.*" msg)))))
-          (Thread/sleep 100))))
+        (let [msg (.readLine (:in @conn))]
+          (println msg)
+          (cond 
+           (re-find #"^ERROR :Closing Link:" msg) 
+           (dosync (alter conn merge {:exit true}))
+           (re-find #"^PING" msg)
+           (write conn (str "PONG "  (re-find #":.*" msg)))))))
 
      (defn login [conn user]
        (write conn (str "NICK " (:nick user)))
