@@ -241,6 +241,25 @@ div.pages div { display:inline;}
     margin-bottom:10px;
 }
 
+/* Search field*/
+#searchform{
+    float: right;
+}
+
+#searchform div input {
+    border-style:solid;
+    border-color:#677077;
+    border-width:1px;
+    margin: 0;
+    padding: 0.4em 0 0.3em 2.5em;
+    background: transparent url("/images/search_off.png") 0.4em 0.2em no-repeat;
+    outline: none; /* remove Safari glow */
+}
+
+#searchform div input:focus {
+    background: transparent url("/images/search_on.png") 0.4em 0.2em no-repeat;
+}
+
 /*
 
 Zenburn style from voldmar.ru (c) Vladimir Epifanov <voldmar@voldmar.ru>

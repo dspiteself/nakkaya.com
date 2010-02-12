@@ -43,8 +43,15 @@
 	 [:div
 	  {:class "pages"}
 	  [:a {:href "/", :class "page"} "Home"] " | "
-	  [:a {:href "/projects.mardown", :class "page"} "Projects"] " | "
-	  [:a {:href "/contact.markdown", :class "page"} "About"]]]
+	  [:a {:href "/projects.markdown", :class "page"} "Projects"] " | "
+	  [:a {:href "/contact.markdown", :class "page"} "About"]
+
+	  [:form {:method "get" 
+		  :action "http://www.google.com/search" :id "searchform"}
+	   [:div
+	    [:input {:type "text" :name "q" :class "box" :id "s"}]
+	    [:input {:type "hidden" :name "sitesearch"
+		     :value "nakkaya.com"}]]]]]
 	[:div
 	 {:id "content"}
 	 [:div
