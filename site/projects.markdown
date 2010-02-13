@@ -12,6 +12,7 @@ and Linux
 #### Libraries
 
  - [Clodiuno](/clodiuno.markdown) - Clojure API for the firmata protocol.
+ - [net-eval](/net-eval.markdown) - Simple distributed computing.
 
 Stuff below this point is highly experimental, I played with them at
 some point, they should work but not guaranteed.
