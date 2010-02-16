@@ -1,6 +1,6 @@
 ---
 title: Distributed Clojure Using RMI
-tags: clojure rmi
+tags: clojure rmi distributed-computing
 ---
 
 The [Java Remote Method Invocation
