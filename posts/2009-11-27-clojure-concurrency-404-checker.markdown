@@ -14,47 +14,41 @@ it, I didn't mind it taking couple of hours to finish since I was going
 to bed anyway. Concurrency being Clojure's biggest strength, I wanted a
 concurrent version in Clojure.
 
-I began with a function, that takes a vector of URLs and a URL to check,
-if the URL returns a response code of 200, it will add the URL to the
-given vector of URLs, else it will just return the vector given.
+I began with a function, that takes a URL,
+if the URL returns a response code of 200, it will return the URL else
+it will return nil.
 
-    (defn check [list url]
-      (try
-       (let [conn (-> (java.net.URL. url) .openConnection)]
-         (.connect conn)
-         (if (= 200 (.getResponseCode conn))
-           (conj list url) list))
-       (catch Exception e list)))
+     (defn check [url]
+       (try
+        (let [conn (-> (java.net.URL. url) .openConnection)]
+          (.connect conn)
+          (if (= 200 (.getResponseCode conn)) url))
+        (catch Exception e nil)))
 
-    user=> (check [] "http://nakkaya.com")
-    ["http://nakkaya.com"]
+    user=> (check "http://nakkaya.com")
+    "http://nakkaya.com"
 
-    user=> (check ["http://nakkaya.com"] "http://nakkaya.com/doesNotExist")
-    ["http://nakkaya.com"]
-
-    user=> (check [] "ttp://Malformed-url")
-    []
+    user=> (check "ttp://Malformed-url")
+    nil
 
 Since checking URLs does not require any coordination between threads, I
 settled on using [agents](http://clojure.org/agents). Agents work just
-like refs, they wrap a initial state in my case and empty vector, which
-will hold the resulting valid URL list.
+like refs, they wrap an initial state in my case URL itself, invalid
+URLs will get set to nil.
 
-    (defn run [f]
-      (let [list (line-seq (java.io.BufferedReader. (java.io.FileReader. f)))
-            result (agent [])] 
-        (doseq [url list] (send result check url))
-        (await result)
-        (shutdown-agents)
-        (doseq [res @result]  (println res)))) 
+     (defn run [f]
+       (let [list (line-seq (java.io.BufferedReader. (java.io.FileReader. f)))
+             agents (map #(agent %) list)] 
+         (doseq [agent agents] (send agent check))
+         (apply await agents)
+         (doseq [url (filter #(not (nil? @%)) agents)] 
+           (println @url))))
 
 run takes a file name, it will read the file and produce a sequence of
-URLs to check. Each url is passed to the agent using send call, await
-will block the current thread until all jobs posted are complete. Next
-we shutdown the thread pool agents use. When shutdown is complete agent
-will contain a vector of valid URLs that returned 200 as their response
-code. All thats left is iterate through the agent and print the list of
-valid URLs.
+URLs to check. Each url is passed to an agent, await
+will block the current thread until all jobs posted are complete. When
+await returns, we filter agents that has their state set to nil and
+print the rest.
 
 #### send vs send-off
 
