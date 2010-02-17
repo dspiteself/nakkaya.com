@@ -27,7 +27,7 @@ net-eval does all the housekeeping required to connect to remote nodes,
 transfer functions to execute, and collect the results. net-eval takes a
 sequence of vectors containing host, port and a task to execute if there
 are arguments to be passed, they are appended to the end. net-eval will
-return an agent containing a vector, as results arrive they will be
+return an ref containing a vector, as results arrive they will be
 appended to the end.
 
     [Pong: Mac OS X Pong: Windows 2000]
@@ -69,7 +69,7 @@ print total numbers words across documents.
              (partition 2 (interleave nodes docs))))
 
      (let [response (net-eval (map-jobs))]
-       (await response)
+       (await-nodes response)
        (println "Total: " (apply + @response)))
 
 For processing large files, you can use compojure to transfer files

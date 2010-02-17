@@ -37,7 +37,7 @@ distribute the work call net-eval,
                 ["192.168.1.4" 9999 #'atask]])
 
 net-eval takes a vector of vectors, containing host port and task to
-send and returns an agent immediately, which contains a vector of
+send and returns an ref immediately, which contains a vector of
 results collected from remote nodes. For tasks that takes arguments you
 can append any number of arguments after the task,
 
