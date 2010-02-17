@@ -20,17 +20,16 @@ functions, call them debug them just like any other Clojure function.
 
      (let [response (net-eval [["127.0.0.1" 9999 #'ping]
                                ["10.211.55.3" 9999 #'ping]])]
-       (await-nodes response)
-       (println @response))
+       (println (map deref response)))
 
 net-eval does all the housekeeping required to connect to remote nodes,
 transfer functions to execute, and collect the results. net-eval takes a
 sequence of vectors containing host, port and a task to execute if there
 are arguments to be passed, they are appended to the end. net-eval will
-return an ref containing a vector, as results arrive they will be
-appended to the end.
+return a sequence of future objects, each containing response from one
+of the nodes.
 
-    [Pong: Mac OS X Pong: Windows 2000]
+    (Pong: Mac OS X Pong: Windows 2000)
 
 Now, care must be taken. It is not a good idea to have a REPL server
 listening on a public IP, you are basically giving away unrestricted
@@ -68,9 +67,8 @@ print total numbers words across documents.
         (map #(conj (first %) #'word-count (second %))
              (partition 2 (interleave nodes docs))))
 
-     (let [response (net-eval (map-jobs))]
-       (await-nodes response)
-       (println "Total: " (apply + @response)))
+     (let [response (map deref (net-eval (map-jobs)))]
+       (println "Total: " (apply + response)))
 
 For processing large files, you can use compojure to transfer files
 across machines, if you build the library using lein, transferring

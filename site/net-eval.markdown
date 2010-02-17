@@ -36,10 +36,10 @@ distribute the work call net-eval,
                 ["192.168.1.3" 9999 #'atask]
                 ["192.168.1.4" 9999 #'atask]])
 
-net-eval takes a vector of vectors, containing host port and task to
-send and returns an ref immediately, which contains a vector of
-results collected from remote nodes. For tasks that takes arguments you
-can append any number of arguments after the task,
+net-eval takes a sequence of vectors, containing host port and task to
+send and returns a sequence future objects, each corresponding to a
+result from a remote node. For tasks that takes arguments you can append
+any number of arguments after the task,
 
      (deftask atask [a] 
        (range a))
