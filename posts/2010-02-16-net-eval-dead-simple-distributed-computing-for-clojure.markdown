@@ -20,7 +20,7 @@ functions, call them debug them just like any other Clojure function.
 
      (let [response (net-eval [["127.0.0.1" 9999 #'ping]
                                ["10.211.55.3" 9999 #'ping]])]
-       (await response)
+       (await-nodes response)
        (println @response))
 
 net-eval does all the housekeeping required to connect to remote nodes,
