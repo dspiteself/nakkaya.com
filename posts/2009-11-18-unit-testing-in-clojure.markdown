@@ -23,7 +23,8 @@ itself.
 
 Testing framework is under the namespace clojure.test,
 
-    (use 'clojure.test)
+     (ns your-test-namespace
+       (:use clojure.test))
 
 is all thats needed to load the framework. Assuming we would like to
 test the following function,
