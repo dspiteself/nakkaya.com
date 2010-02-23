@@ -4,10 +4,10 @@
 	   (com.petebevin.markdown MarkdownProcessor)
 	   (java.text SimpleDateFormat)))
 
-(def site-title "an explorer's log")
+(def site-title "Nurullah Akkaya: an explorer's log")
 (def site-url   "http://nakkaya.com")
 (def site-desc  "Random bits and pieces on stuff that I find interesting.")
-(def archives-desc "an explorer's log - Archives - Page ")
+(def archives-desc "Nurullah Akkaya: an explorer's log - Archives - Page ")
 (def posts-per-page 2)
 
 (defn convert-date [in-format out-format date]
