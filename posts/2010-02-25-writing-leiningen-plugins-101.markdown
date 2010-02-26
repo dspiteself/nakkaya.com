@@ -32,7 +32,7 @@ function.
      (ns leiningen.bar)
 
      (defn bar [projects & args] 
-       (leiningen.foo/foo projects args)
+       (apply leiningen.foo/foo projects args)
        (println "Hello Bar!!"))
 
 Now running bar task should give you, "Hello Foo!!" and "Hello
