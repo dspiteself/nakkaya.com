@@ -16,14 +16,10 @@ To begin with lein tasks are functions named "your-task" defined in the
 namespace "leiningen.your-task". They take a project argument containing
 information defined in defproject and command-line arguments. For simple
 tasks or quickly testing something, you can simply define them in
-project.clj using with-ns,
+project.clj after the defproject definition,
 
-     (create-ns 'leiningen.foo)
-     (use 'clojure.contrib.with-ns)
-
-     (with-ns 'leiningen.foo
-       (clojure.core/refer 'clojure.core)
-       (defn foo [project & args] (println "Hello Foo!!")))
+     (ns leiningen.foo)
+     (defn foo [project & args] (println "Hello Foo!!"))
 
 Now lein should have a new task named foo, running it should print
 "Hello Foo!!". Of course for longer tasks, you are not going to want it
