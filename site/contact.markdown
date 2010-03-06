@@ -1,14 +1,17 @@
 ---
-title: Contact Information
-description: Contact Information for Nurullah Akkaya.
+title: About
+description: About Nurullah Akkaya.
 ---
 
-I can be reached at [nurullah@nakkaya.com](mailto:nurullah@nakkaya.com
+This blog is way to keep track of stuff that I am thinking about or
+working on. I research things that I find interesting, then document my
+findings with a public blog post, which I can refer to later. Hopefully
+other people will find these posts helpful, relevant, or interesting.
+
+You can reach me at [nurullah@nakkaya.com](mailto:nurullah@nakkaya.com
 "nurullah@nakkaya.com")
 
-I look like this,
-
-![Nurullah Akkaya](images/nurullahAkkaya.jpg "Nurullah Akkaya")
+![Nurullah Akkaya](http://farm4.static.flickr.com/3460/3266648516\_a62aba87af.jpg "Nurullah Akkaya")
 
 #### Other Places I am At
 
