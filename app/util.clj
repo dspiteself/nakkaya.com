@@ -5,9 +5,9 @@
 	   (java.text SimpleDateFormat)))
 
 (def site-title "Nurullah Akkaya: an explorer's log")
+(def archives-title "Nurullah Akkaya: an explorer's log - Archives - Page ")
 (def site-url   "http://nakkaya.com")
 (def site-desc  "Random bits and pieces on stuff that I find interesting.")
-(def archives-desc "Nurullah Akkaya: an explorer's log - Archives - Page ")
 (def posts-per-page 2)
 
 (defn convert-date [in-format out-format date]
