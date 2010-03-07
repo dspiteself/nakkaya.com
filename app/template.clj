@@ -17,6 +17,12 @@
        [:meta {:name "description", :content (:description meta)}]
        [:meta {:name "keywords", :content (:tags meta)}]
        [:meta {:name "author", :content "Nurullah Akkaya"}]
+
+       (if-let [directives (:robots meta)]
+	 [:meta {:name "robots", 
+		 :content 
+		 (apply str (interpose "," (map name directives)))}])
+
        [:link {:rel "icon", 
 	       :href "/images/favicon.ico" :type "image/x-icon"}]
        [:link {:rel "shortcut icon", 
