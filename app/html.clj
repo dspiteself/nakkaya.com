@@ -54,58 +54,42 @@
 	content (html (tag-page-content tag-set tag-distinct))]
     (render-template {:metadata meta :content content})))
 
-(defn- post-snippet [url date title snippet]
-  (html [:h2 [:a {:href url} title]]
-	[:p {:class "publish_date"}  date]
-	[:p snippet]))
-
-(defn- render-snippet [file]
+(defn- render-snippet
+  "Render a post for display in index pages."
+  [file]
   (let [post (markdown (str "posts/" file))
 	meta (:metadata post)
 	content  (:content post)]
-    (post-snippet 
-     (file-to-url file) (file-to-date file) (:title meta) content)))
+    [:div [:h2 [:a {:href (file-to-url file)} (:title meta)]]
+     [:p {:class "publish_date"}  (file-to-date file)]
+     [:p content]]))
 
-(defn- paging [begin end content]
-  (let [content (StringBuilder. content)
-	page (/ begin posts-per-page)]
+(defn- pager
+  "Return bottom pager links for index pages."
+  [begin end]
+  (let [page (/ begin posts-per-page)
+	older [:div {:class "pager-left"}
+	       [:a {:href (str "/latest-posts/" (+ page 1) "/")} 
+		"&laquo; Older Entries"]]
+	archive [:div {:class "pager-right"} 
+		 [:a {:href (str "/archives/")} "Archives"]]
+	newer [:div {:class "pager-right"}
+	       [:a {:href (str "/latest-posts/" (- page 1) "/")} 
+		"Newer Entries &raquo;"]]]
+    (cond (= page 0) (list older archive)
+	  (and (< 0 page)
+	       (< end (count (post-list-by-date)))) (list older newer)
+	       :else (list newer))))
 
-    (if (< end (count (post-list-by-date)))
-      (.append 
-       content 
-       (html 
-	[:div {:class "pager-left"}
-	 [:a {:href (str "/latest-posts/" (+ page 1) "/")} 
-	  "&laquo; Older Entries"]])))
+(defn- render-snippets
+  "Build snippet list and pagers for navigation."
+  [begin end]
+  (let [posts (drop begin (take end (post-list-by-date)))]
+     (list (map render-snippet posts) (pager begin end))))
 
-    (if (= 0 page)
-      (.append 
-       content 
-       (html 
-	[:div {:class "pager-right"} 
-	 [:a {:href (str "/archives/")} "Archives"]])))
-
-    (if (< 0 page)
-      (.append 
-       content 
-       (html 
-	[:div {:class "pager-right"}
-	 [:a {:href (str "/latest-posts/" (- page 1) "/")} 
-	  "Newer Entries &raquo;"]])))
-
-    (.toString content)))
-
-(defn- render-snippets [begin end]
-  (loop [posts (drop  begin (take end (post-list-by-date)))
-	 post  (first posts)
-	 content (str)]
-    (if (empty? posts)
-      (paging begin end content)
-      (recur (rest posts)
-	     (first (rest posts))
-	     (str content (render-snippet post))))))
-
-(defn latest-posts [page]
+(defn latest-posts
+  "Create index pages."
+  [page]
   (let [begin (* (Integer. page) posts-per-page) 
 	end   (+ begin posts-per-page)
 	title (if (= page 0) site-title (str archives-title page))
