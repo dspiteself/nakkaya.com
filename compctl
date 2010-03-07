@@ -5,6 +5,7 @@ NAME="nakkaya.com"
 
 NOHUP="nohup"
 JAVA="java"
+OPTS="-Dfile.encoding=UTF-8"
 JARFOLDER="extLibs/"
 PID_FILE="comp.pid"
 ROUTES="app/run.clj"
@@ -39,7 +40,7 @@ d_start(){
     	fi
     fi
 
-    $NOHUP $JAVA $JVM_OPTS $JARS clojure.main $ROUTES &
+    $NOHUP $JAVA $OPTS $JVM_OPTS $JARS clojure.main $ROUTES &
     COMPOJURE_PID=$!
     echo $COMPOJURE_PID > $PID_FILE
 }
