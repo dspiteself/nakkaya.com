@@ -32,32 +32,32 @@
 	    [:description site-desc]
 	    (take 10 (map post-xml (post-list-by-date)))]])))
 
-(defn- tag-list [tag tag-set]
-  (let [posts (project (select #(= (:tag %) tag) tag-set ) [:post])]
-    (reduce 
-     (fn [h v] 
-       (conj h [:li [:a {:href (:url (:post v))} (:title (:post v))]]))
-     [:ul ] posts)))
+(defn- tag-list 
+  "Build a list of URLs for each post containing the tag."
+  [tag tag-set]
+  (let [posts (project (select #(= (:tag %) tag) tag-set) [:post])]
+    [:ul (map #(vector :li [:a {:href (:url (:post %))} (:title (:post %))])
+	      posts)]))
 
-(defn- tag-page-content [tag-set tag-distinct]
-  (html
-   (reduce
-    (fn [h v]
-      (conj h [:h4 [:a {:name (:tag v)} (:tag v)]]
-	    (tag-list (:tag v) tag-set)))
-    [:div ] tag-distinct)))
+(defn- tag-page-content
+  "Create content for tags page. For each unique tag create a list of posts."
+  [tag-set tag-distinct]
+  (map #(vector :h4 [:a {:name (:tag %)} (:tag %)]
+		(tag-list (:tag %) tag-set)) tag-distinct))
 
-(defn tags []
-  (let [tag-set      (tag-set)
+(defn tags
+  "Create tags page."
+  []
+  (let [tag-set (tag-set)
 	tag-distinct (sort-by :tag (project tag-set [:tag]))
-	meta     {:title "Tags" :type 'tags :robots [:noindex :follow]}
-	content      (tag-page-content tag-set tag-distinct)]
-    (render-template {:metadata meta  :content content  })))
+	meta  {:title "Tags" :type 'tags :robots [:noindex :follow]}
+	content (html (tag-page-content tag-set tag-distinct))]
+    (render-template {:metadata meta :content content})))
 
 (defn- post-snippet [url date title snippet]
   (html [:h2 [:a {:href url} title]]
 	[:p {:class "publish_date"}  date]
-	[:p snippet] ))
+	[:p snippet]))
 
 (defn- render-snippet [file]
   (let [post (markdown (str "posts/" file))
