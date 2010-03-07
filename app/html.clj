@@ -9,7 +9,9 @@
 	   (java.io File)))
 
 
-(defn- post-xml [file]
+(defn- post-xml
+  "Create RSS item node."
+  [file]
   (let [post (markdown (str "posts/" file))
 	meta (:metadata post)
 	content  (:content post)]
@@ -18,7 +20,9 @@
      [:link  (str site-url (file-to-url file))]
      [:description content]]))
 
-(defn rss []
+(defn rss 
+  "Create RSS feed."
+  []
   (with-out-str
    (prxml [:decl! {:version "1.0"}] 
 	  [:rss {:version "2.0"} 
