@@ -64,7 +64,7 @@
 	  {:id "post"}
 	  (if (= (:type meta) 'post) [:h2 (:title meta)])
 
-	   content
+	  content
 
 	  (if (= (:type meta) 'post)
 	    (reduce 
@@ -96,3 +96,24 @@
 	 [:p "&copy; 2010" 
 	  [:a {:href "/contact.markdown"} " Nurullah Akkaya"]]]]
        (if (= (:type meta) 'post) (disqus-js))]])))
+
+(defn render-not-found []
+  (html
+   [:html
+    {:xml:lang "en", :xmlns "http://www.w3.org/1999/xhtml", :lang "en"}
+    [:head
+     [:meta
+      {:http-equiv "Content-Type", :content "text/html; charset=UTF-8"}]
+     [:title "Move Along"]
+     [:style
+      {:type "text/css"}
+      "html, body {\n      height: 100%;\n      }\n\n      #center {\n      width: 400px;\n      height: 400px;\n      text-align: center;\n\n      position: absolute;\n      left: 50%;\n      top: 50%;\n      margin-left: -200px;\n      /* Half the width of the DIV tag which is 50 pixels */\n      margin-top: -200px;\n      /* Half the height of the DIV tag which is also 50 pixels */\n      }"]]
+    [:body
+     [:div
+      {:id "center"}
+      [:p
+       [:font
+	{:face "Arial", :size "13"}
+	"This is not the page you are looking for."
+	[:br]
+	[:a {:href "/"} "Move Along"]]]]]]))
