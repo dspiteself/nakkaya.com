@@ -18,16 +18,6 @@
      [:link  (str site-url (file-to-url file))]
      [:description content]]))
 
-(defn- posts-feed []
-  (loop [posts (post-list-by-date)
-	 post  (first posts)
-	 feed  ()]
-    (if (empty? posts)
-      feed
-      (recur (rest posts)
-	     (first (rest posts))
-	     (conj feed (post-xml post))))))
-
 (defn rss []
   (with-out-str
    (prxml [:decl! {:version "1.0"}] 
@@ -36,7 +26,7 @@
 	    [:title site-title]
 	    [:link site-url]
 	    [:description site-desc]
-	    (take 10 (reverse (posts-feed)))]])))
+	    (take 10 (map post-xml (post-list-by-date)))]])))
 
 (defn- tag-list [tag tag-set]
   (let [posts (project (select #(= (:tag %) tag) tag-set ) [:post])]
