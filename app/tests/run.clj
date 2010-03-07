@@ -104,6 +104,29 @@
   (is (= 404
 	 (:status (request-resource "/20500101dummy" web-app)))))
 
+(deftest test-robot-directives
+  (let [regex #"content=\"noindex,follow\".*name=\"robots\""
+	match "content=\"noindex,follow\" name=\"robots\""]
+    (is (= nil
+	   (re-find regex (:body (request-resource "/" web-app)))))
+    (is (= match
+	   (re-find regex
+		    (:body (request-resource "/latest-posts/1/" web-app)))))
+    (is (= match
+	   (re-find regex
+		    (:body (request-resource "/latest-posts/2/" web-app)))))
+    (is (= nil
+	   (re-find regex
+		    (:body (request-resource "/2050/01/01/dummy-future-post/" web-app)))))
+    (is (= match
+	   (re-find regex
+		    (:body (request-resource "/archives/" web-app)))))
+    (is (= match
+	   (re-find regex
+		    (:body (request-resource "/2050/01/" web-app)))))
+    (is (= match
+	   (re-find regex
+		    (:body (request-resource "/tags/" web-app)))))))
 
 (create-dummy-fs)
 (run-tests)

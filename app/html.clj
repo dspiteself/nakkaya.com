@@ -56,7 +56,7 @@
 (defn tags []
   (let [tag-set      (tag-set)
 	tag-distinct (sort-by :tag (project tag-set [:tag]))
-	meta     {:title "Tags" :type 'tags}
+	meta     {:title "Tags" :type 'tags :robots [:noindex :follow]}
 	content      (tag-page-content tag-set tag-distinct)]
     (render-template {:metadata meta  :content content  })))
 
@@ -116,8 +116,9 @@
 	end   (+ begin posts-per-page)
 	title (if (= page 0) site-title (str archives-desc page))
 	desc  (if (= page 0) site-desc (str archives-desc page))
-	meta {:title title :tags "nurullah akkaya"
-	      :description desc :type 'latest}
+	m {:title title :tags "nurullah akkaya"
+	   :description desc :type 'latest}
+	meta (if (= page 0) m (assoc m :robots [:noindex :follow]))
 	content (render-snippets begin end)]
     (render-template {:metadata meta  :content content})))
 
@@ -136,12 +137,13 @@
 
 (defn archives 
   ([]
-     (let [meta {:title "Archives" :type 'tags}
+     (let [meta {:title "Archives" :type 'tags :robots [:noindex :follow]}
 	   content (archives-list)]
        (render-template {:metadata meta :content content})))
   ([year month]
      (let [time  (convert-date "MMMM yyyy" "yyyy-MM" (str year "-" month))
-	   meta {:title (str "Archives - " time) :type 'archives}
+	   meta {:title (str "Archives - " time) 
+		 :type 'archives :robots [:noindex :follow]}
 	   posts (filter 
 		  #(.startsWith % (str year "-" month)) (post-list-by-date))
 	   content (html
