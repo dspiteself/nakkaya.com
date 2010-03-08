@@ -10,16 +10,9 @@
 (def site-desc  "Random bits and pieces on stuff that I find interesting.")
 (def posts-per-page 2)
 
-(defn convert-date [in-format out-format date]
-  (.format (SimpleDateFormat. in-format)
-	   (.parse (SimpleDateFormat. out-format) date)))
-
 (defn- read-file [file]
-  (apply str
-	 (interleave 
-	  (line-seq 
-	   (BufferedReader. (FileReader. file)))
-	  (repeat \newline ))))
+  (apply str (interleave (line-seq (BufferedReader. (FileReader. file)))
+			 (repeat \newline))))
 
 (def markdown-processor (MarkdownProcessor.))
 
@@ -32,7 +25,7 @@
   (let [split-index (.indexOf content "---" 4)
 	metadata (.substring content 4 split-index)
 	content  (.substring content   (+ 3 split-index))] 
-    {:metadata metadata :content content} ))
+    {:metadata metadata :content content}))
 
 (defn- prepare-metadata [metadata]
   (reduce (fn [h [_ k v]] 
@@ -45,12 +38,15 @@
 	page (split-file content)
 	metadata (prepare-metadata (:metadata page))
 	html (render-markdown (:content page))]
-    {:metadata metadata :content html} ))
+    {:metadata metadata :content html}))
 
 (def markdown read-markdown)
 (defn cached-markdown []
   (def markdown (memoize read-markdown)))
 
+(defn convert-date [in-format out-format date]
+  (.format (SimpleDateFormat. in-format)
+	   (.parse (SimpleDateFormat. out-format) date)))
 
 (defn file-to-url [file]
   (let [name (.replaceAll file ".markdown" "") ] 

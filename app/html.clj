@@ -5,9 +5,7 @@
   (:use :reload-all app.util)
   (:use :reload-all app.storage)
   (:use :reload-all app.template)
-  (:import (java.text SimpleDateFormat)
-	   (java.io File)))
-
+  (:import (java.io File)))
 
 (defn- post-xml
   "Create RSS item node."
