@@ -113,26 +113,29 @@
 (defn archives
   "Create archive page."
   ([]
-     (let [meta {:title "Archives" :type 'tags :robots [:noindex :follow]}
-	   content (archives-list)]
-       (render-template {:metadata meta :content content})))
+     (render-template 
+      {:metadata {:title "Archives" :type 'tags :robots [:noindex :follow]} 
+       :content (archives-list)}))
   ([year month]
-     (let [time  (convert-date "MMMM yyyy" "yyyy-MM" (str year "-" month))
-	   meta {:title (str "Archives - " time) 
+     (let [time-raw (str year "-" month)
+	   time-fs  (convert-date "MMMM yyyy" "yyyy-MM" time-raw)
+	   meta {:title (str "Archives - " time-fs) 
 		 :type 'archives :robots [:noindex :follow]}
-	   posts (filter 
-		  #(.startsWith % (str year "-" month)) (post-list-by-date))
-	   content (map render-snippet posts)]
+	   content (map 
+		    render-snippet
+		    (filter #(.startsWith % time-raw) (post-list-by-date)))]
        (render-template {:metadata meta  :content content}))))
 
-(defn post [year month day title]
-  (let [file-name (str year "-" month "-" day "-" title".markdown")
-	file (str "posts/" file-name)]
-    (if (.exists (File. file))
-      (let [page  (markdown file)
-	    meta (conj (:metadata page) {:type 'post :file-name file-name})
-	    content  (:content page)]
-	(render-template {:metadata meta :content content})))))
+(defn post
+  "Render and return the post if it exists."
+  [year month day title]
+  (let [file (File.
+	      (str "posts/" year "-" month "-" day "-" title".markdown"))]
+    (if (.exists file)
+      (let [{meta :metadata content :content}  (markdown file)]
+	(render-template
+	 {:metadata (conj meta {:type 'post :file-name (.getName file)})
+	  :content content})))))
 
 (defn site [file]
   (let [site-path (str "site/" file)
