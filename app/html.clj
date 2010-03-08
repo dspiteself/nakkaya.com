@@ -1,5 +1,4 @@
 (ns app.html
-  (:use compojure)
   (:use clojure.set)
   (:use :reload-all clojure.contrib.prxml)
   (:use :reload-all app.util)
@@ -49,7 +48,7 @@
   (let [tag-set (tag-set)
 	tag-distinct (sort-by :tag (project tag-set [:tag]))
 	meta  {:title "Tags" :type 'tags :robots [:noindex :follow]}
-	content (html (tag-page-content tag-set tag-distinct))]
+	content (tag-page-content tag-set tag-distinct)]
     (render-template {:metadata meta :content content})))
 
 (defn- render-snippet
