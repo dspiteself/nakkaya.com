@@ -8,7 +8,7 @@ JAVA="java"
 OPTS="-Dfile.encoding=UTF-8"
 JARFOLDER="extLibs/"
 PID_FILE="comp.pid"
-ROUTES="app/run.clj"
+ROUTES="app/routes.clj"
 
 ## build jar list
 JARS="-cp "

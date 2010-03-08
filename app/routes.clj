@@ -64,3 +64,6 @@
 			  (:day params) "/" (:title params) "/")))
   (ANY "*"
        [404 (content-type "text/html") (html/file-not-found)]))
+
+(if (System/getProperty "compojure.site")
+  (run-server {:port 8085} "/*" (servlet web-app)))
