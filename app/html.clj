@@ -99,20 +99,19 @@
 	content (render-snippets begin end)]
     (render-template {:metadata meta  :content content})))
 
-(defn- archives-list []
+(defn- archives-list
+  "Create a list of months for posts available."
+  []
   (let [months (post-count-by-mount)]
-    (html
-     [:h2 "Archives"]
-     [:ul
-      (reduce 
-       (fn [h v]
-	 (let [url (str "/" (.replace (first v) "-" "/") "/")
-	       date (convert-date "MMMM yyyy" "yyyy-MM" (first v))
-	       count (str " (" (second v) ")")]
-	   (conj h [:li [:a {:href url} date] count])))
-       () months)])))
+    (list [:h2 "Archives"]
+	  [:ul (map 
+		#(let [url (str "/" (.replace (first %) "-" "/") "/")
+		       date (convert-date "MMMM yyyy" "yyyy-MM" (first %))
+		       count (str " (" (second %) ")")]
+		   [:li [:a {:href url} date] count]) months)])))
 
-(defn archives 
+(defn archives
+  "Create archive page."
   ([]
      (let [meta {:title "Archives" :type 'tags :robots [:noindex :follow]}
 	   content (archives-list)]
@@ -123,9 +122,7 @@
 		 :type 'archives :robots [:noindex :follow]}
 	   posts (filter 
 		  #(.startsWith % (str year "-" month)) (post-list-by-date))
-	   content (html
-		    (reduce (fn[h v]
-			      (conj h (render-snippet v))) [:div] posts))]
+	   content (map render-snippet posts)]
        (render-template {:metadata meta  :content content}))))
 
 (defn post [year month day title]
