@@ -137,15 +137,15 @@
 	 {:metadata (conj meta {:type 'post :file-name (.getName file)})
 	  :content content})))))
 
-(defn site [file]
-  (let [site-path (str "site/" file)
+(defn site
+  "Return both pages and public files."
+  [file]
+  (let [site-path (File. (str "site/" file))
 	public-path (File. (str "public/" file))]
-    (cond (.exists (File. site-path)) 
-	  (let [page  (markdown site-path)
-		meta (conj (:metadata page) {:type 'page})
-		title    (:title meta)
-		content  (str (html [:h2 title]) (:content page))]
-	    (render-template {:metadata meta :content content}))
+    (cond (.exists site-path)
+	  (let [{meta :metadata content :content} (markdown site-path)]
+	    (render-template {:metadata (conj meta {:type 'page})
+			      :content (list [:h2 (:title meta)] content)}))
 	  (and (.exists public-path)
 	       (= (.isDirectory public-path) false)) public-path)))
 
