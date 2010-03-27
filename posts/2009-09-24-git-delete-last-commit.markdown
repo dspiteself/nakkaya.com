@@ -14,7 +14,9 @@ If you have committed junk but not pushed,
     git reset --hard HEAD~1
 
 HEAD~1 is a shorthand for the commit before head. Alternatively you can
-refer to the SHA-1 of the hash you want to reset to.
+refer to the SHA-1 of the hash you want to reset to. Note that when
+using --hard any changes to tracked files in the working tree since
+the commit before head are lost.
 
 
 Now if you already pushed and someone pulled which is usually my case,
