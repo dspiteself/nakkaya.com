@@ -1,6 +1,6 @@
 ---
 title: A Guide to Raw Traffic in Clojure
-tags: clojure
+tags: clojure libpcap
 ---
 
 This tutorial will cover capturing raw network traffic going via your
