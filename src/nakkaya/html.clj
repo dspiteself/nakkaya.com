@@ -86,8 +86,9 @@
 
 (defn latest-posts
   "Create index pages."
-  [page]
-  (let [begin (* (Integer. page) posts-per-page) 
+  [params]
+  (let [{page :page} params
+	begin (* (Integer. page) posts-per-page) 
 	end   (+ begin posts-per-page)
 	title (if (= page 0) site-title (str archives-title page))
 	m {:title title :tags "nurullah akkaya"
@@ -113,8 +114,9 @@
      (render-template 
       {:metadata {:title "Archives" :type 'tags :robots [:noindex :follow]} 
        :content (archives-list)}))
-  ([year month]
-     (let [time-raw (str year "-" month)
+  ([params]
+     (let [{year :year month :month} params
+	   time-raw (str year "-" month)
 	   time-fs  (convert-date "MMMM yyyy" "yyyy-MM" time-raw)
 	   meta {:title (str "Archives - " time-fs) 
 		 :type 'archives :robots [:noindex :follow]}
@@ -125,8 +127,9 @@
 
 (defn post
   "Render and return the post if it exists."
-  [year month day title]
-  (let [file (File.
+  [params]
+  (let [{year :year month :month day :day title :title} params
+	file (File.
 	      (str "posts/" year "-" month "-" day "-" title".markdown"))]
     (if (.exists file)
       (let [{meta :metadata content :content}  (markdown file)]
@@ -136,8 +139,9 @@
 
 (defn site
   "Return both pages and public files."
-  [file]
-  (let [site-path (File. (str "site/" file ".markdown"))]
+  [params]
+  (let [{file :*} params
+	site-path (File. (str "site/" file ".markdown"))]
     (if (.exists site-path)
       (let [{meta :metadata content :content} (markdown site-path)]
 	(render-template {:metadata (conj meta {:type 'page})

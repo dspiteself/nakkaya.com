@@ -34,42 +34,31 @@
   (cached-markdown)
   "OK")
 
-(defn redirect-301 [loc]
-  {:status  301
-   :headers {"Location" loc}})
+(defn redirect-301 [params]
+  (let [{year :year month :month day :day title :title} params]
+    {:status  301
+     :headers {"Location" (str "/" year "/" month"/" day "/" title "/")}}))
 
 (defroutes nakkaya-routes
-  (POST "/github-hook" []
-       (or (github-hook) :next))
-  (GET "/tags/" []
-       (or (tags) :next))
-  (GET "/latest-posts/:page/" {params :params}
-       (or (latest-posts (:page params)) :next))
-  (GET "/archives/" []
-       (or (archives) :next))
-  (GET "/:year/:month/" {params :params}
-       (or (archives (:year params) (:month params)) :next))
+  (POST "/github-hook" [] (or (github-hook) :next))
+  (GET  "/tags/" [] (or (tags) :next))
+  (GET "/latest-posts/:page/" {params :params} 
+       (or (latest-posts params) :next))
+  (GET "/archives/" [] (or (archives) :next))
+  (GET "/:year/:month/" {params :params} (or (archives params) :next))
   ;;blog related routes
-  (GET "/:year/:month/:day/:title/" {params :params}
-       (or (time (post (:year params) (:month params) (:day params) 
-		       (:title params))) :next))
-  (GET "/rss-feed" []
-       {:status  200
-	:headers {"Content-Type" "text/xml"}
-	:body    (rss)})
+  (GET "/:year/:month/:day/:title/" {params :params} 
+       (or (time (post params))))
+  (GET "/rss-feed" [] 
+       {:status 200 :headers {"Content-Type" "text/xml"} :body (rss)})
   ;;site related routes
-  (GET "/" []
-       (or (latest-posts 0) :next))
-  (GET "/*.markdown"  {params :params}
-       (or (site (params :*)) :next))
+  (GET "/" [] (or (latest-posts {:page 0}) :next))
+  (GET "/*.markdown"  {params :params} (or (site params) :next))
   ;;redirects
-  (GET "/:year/:month/:day/:title" {params :params}
-       (redirect-301 (str "/" (:year params) "/" (:month params)"/" 
-  			  (:day params) "/" (:title params) "/")))
+  (GET "/:year/:month/:day/:title" {params :params} (redirect-301 params))
   (ANY "*" []
-       {:status  404
-	:headers {"Content-Type" "text/html"}
-	:body    (html/file-not-found)}))
+       {:status  404 :headers {"Content-Type" "text/html"}
+	:body (html/file-not-found)}))
 
 (def app (-> nakkaya-routes
 	     (wrap-file "public")))
