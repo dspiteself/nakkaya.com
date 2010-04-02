@@ -137,14 +137,11 @@
 (defn site
   "Return both pages and public files."
   [file]
-  (let [site-path (File. (str "site/" file))
-	public-path (File. (str "public/" file))]
-    (cond (.exists site-path)
-	  (let [{meta :metadata content :content} (markdown site-path)]
-	    (render-template {:metadata (conj meta {:type 'page})
-			      :content (list [:h2 (:title meta)] content)}))
-	  (and (.exists public-path)
-	       (= (.isDirectory public-path) false)) public-path)))
+  (let [site-path (File. (str "site/" file ".markdown"))]
+    (if (.exists site-path)
+      (let [{meta :metadata content :content} (markdown site-path)]
+	(render-template {:metadata (conj meta {:type 'page})
+			  :content (list [:h2 (:title meta)] content)})))))
 
 (defn file-not-found []
   (render-not-found))

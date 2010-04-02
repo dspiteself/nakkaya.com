@@ -1,5 +1,7 @@
 (ns nakkaya.core
-  (:use :reload-all compojure)
+  (:use compojure.core)
+  (:use ring.adapter.jetty)
+  (:use ring.middleware.file)
   (:use :reload-all nakkaya.util)
   (:require [nakkaya.html :as html]))
 
@@ -33,37 +35,44 @@
   "OK")
 
 (defn redirect-301 [loc]
-  [301 {:headers {"Location" loc}}])
+  {:status  301
+   :headers {"Location" loc}})
 
-(defroutes web-app
-  (POST "/github-hook"
+(defroutes nakkaya-routes
+  (POST "/github-hook" []
        (or (github-hook) :next))
-  (GET "/tags/"
+  (GET "/tags/" []
        (or (tags) :next))
-  (GET "/latest-posts/:page/"
+  (GET "/latest-posts/:page/" {params :params}
        (or (latest-posts (:page params)) :next))
-  (GET "/archives/"
+  (GET "/archives/" []
        (or (archives) :next))
-  (GET "/:year/:month/"
+  (GET "/:year/:month/" {params :params}
        (or (archives (:year params) (:month params)) :next))
   ;;blog related routes
-  (GET "/:year/:month/:day/:title/"
+  (GET "/:year/:month/:day/:title/" {params :params}
        (or (time (post (:year params) (:month params) (:day params) 
 		       (:title params))) :next))
-  (GET "/rss-feed"
-       (or [(content-type "text/xml")
-	    (rss)] :next))
+  (GET "/rss-feed" []
+       {:status  200
+	:headers {"Content-Type" "text/xml"}
+	:body    (rss)})
   ;;site related routes
-  (GET "/"
+  (GET "/" []
        (or (latest-posts 0) :next))
-  (GET "/*" 
+  (GET "/*.markdown"  {params :params}
        (or (site (params :*)) :next))
   ;;redirects
-  (GET "/:year/:month/:day/:title"
+  (GET "/:year/:month/:day/:title" {params :params}
        (redirect-301 (str "/" (:year params) "/" (:month params)"/" 
-			  (:day params) "/" (:title params) "/")))
-  (ANY "*"
-       [404 (content-type "text/html") (html/file-not-found)]))
+  			  (:day params) "/" (:title params) "/")))
+  (ANY "*" []
+       {:status  404
+	:headers {"Content-Type" "text/html"}
+	:body    (html/file-not-found)}))
+
+(def app (-> nakkaya-routes
+	     (wrap-file "public")))
 
 (if (System/getProperty "compojure.site")
-  (run-server {:port 8085} "/*" (servlet web-app)))
+  (run-jetty app {:port 8085}))
