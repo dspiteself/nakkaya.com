@@ -1,4 +1,4 @@
-(ns app.util
+(ns nakkaya.util
   (:use :reload-all clojure.contrib.str-utils)
   (:import (java.io BufferedReader FileReader File InputStreamReader)
 	   (com.petebevin.markdown MarkdownProcessor)

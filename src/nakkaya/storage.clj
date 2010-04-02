@@ -1,8 +1,8 @@
-(ns app.storage
+(ns nakkaya.storage
   (:use clojure.set)
   (:use clojure.contrib.str-utils)
   (:use clojure.contrib.seq-utils)
-  (:use :reload-all app.util)
+  (:use :reload-all nakkaya.util)
   (:import (java.io File)))
 
 

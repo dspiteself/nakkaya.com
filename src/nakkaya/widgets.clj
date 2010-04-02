@@ -1,7 +1,7 @@
-(ns app.widgets
+(ns nakkaya.widgets
   (:use clojure.set)
-  (:use :reload-all app.util)
-  (:use :reload-all app.storage))
+  (:use :reload-all nakkaya.util)
+  (:use :reload-all nakkaya.storage))
 
 (defn- similarity [post1 post2]
   (let [shared-items (into #{} (filter #(some #{%} post1) post2))

@@ -1,4 +1,4 @@
-(ns app.tests.dummy-fs
+(ns nakkaya.dummy-fs
   (:use clojure.contrib.duck-streams)
   (:use clojure.contrib.java-utils))
 

@@ -6,12 +6,12 @@ NAME="nakkaya.com"
 NOHUP="nohup"
 JAVA="java"
 OPTS="-Dfile.encoding=UTF-8"
-JARFOLDER="extLibs/"
+JARFOLDER="lib/"
 PID_FILE="comp.pid"
-ROUTES="app/routes.clj"
+ROUTES="src/nakkaya/core.clj"
 
 ## build jar list
-JARS="-cp "
+JARS="-cp ./src/:"
 
 for i in `find $JARFOLDER -name *.jar`
 do

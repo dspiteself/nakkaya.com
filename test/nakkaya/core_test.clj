@@ -1,11 +1,17 @@
-(ns app.tests.run
+(ns nakkaya.core-test
   (:use compojure)
   (:use clojure.test)
   (:use clojure.contrib.java-utils)
-  (:use :reload-all app.tests.dummy-fs)
-  (:use :reload-all app.routes)
-  (:use :reload-all app.util))
+  (:use :reload-all nakkaya.dummy-fs)
+  (:use :reload-all nakkaya.core)
+  (:use :reload-all nakkaya.util))
 
+(defn dummy-fs-fixture [f]
+  (create-dummy-fs)
+  (f)
+  (destroy-dummy-fs))
+
+(use-fixtures :once dummy-fs-fixture)
 
 (defn request-resource [resource web-app]
   (let [request  {:request-method :get, :uri resource}]
@@ -127,7 +133,3 @@
     (is (= match
 	   (re-find regex
 		    (:body (request-resource "/tags/" web-app)))))))
-
-(create-dummy-fs)
-(run-tests)
-(destroy-dummy-fs)

@@ -1,8 +1,8 @@
-(ns app.template
+(ns nakkaya.template
   (:use compojure)
-  (:use :reload-all app.util)
-  (:use :reload-all app.storage)
-  (:use :reload-all app.widgets))
+  (:use :reload-all nakkaya.util)
+  (:use :reload-all nakkaya.storage)
+  (:use :reload-all nakkaya.widgets))
 
 (defn render-template [page]
   (let [meta (:metadata page)

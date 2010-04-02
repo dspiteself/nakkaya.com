@@ -1,7 +1,7 @@
-(ns app.routes
+(ns nakkaya.core
   (:use :reload-all compojure)
-  (:use :reload-all app.util)
-  (:require [app.html :as html]))
+  (:use :reload-all nakkaya.util)
+  (:require [nakkaya.html :as html]))
 
 (defn cached-pages []
   (def site (memoize html/site))

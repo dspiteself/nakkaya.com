@@ -1,9 +1,9 @@
-(ns app.html
+(ns nakkaya.html
   (:use clojure.set)
   (:use :reload-all clojure.contrib.prxml)
-  (:use :reload-all app.util)
-  (:use :reload-all app.storage)
-  (:use :reload-all app.template)
+  (:use :reload-all nakkaya.util)
+  (:use :reload-all nakkaya.storage)
+  (:use :reload-all nakkaya.template)
   (:import (java.io File)))
 
 (defn- post-xml
