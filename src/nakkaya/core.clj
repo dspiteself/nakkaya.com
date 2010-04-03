@@ -21,7 +21,7 @@
   (def archives html/archives)
   (def rss html/rss))
 
-(if (nil? (System/getProperty "compojure.cache"))
+(if (nil? (System/getProperty "compojure.no-cache"))
   (do 
     (cached-pages)
     (cached-markdown))
