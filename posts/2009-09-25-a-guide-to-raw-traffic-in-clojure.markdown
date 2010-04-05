@@ -164,5 +164,16 @@ return a vector of IP's. Such as [.. 192.1.1.5 192.1.1.6 ..]
 
 
 That's all after you run the script, you should see a list of machines on
-your network with their IP's and MAC id's.
+your network with their IP's and MAC id's. You can get a list of
+interfaces available for capture using,
 
+     clojure/(master) $ sudo ~/Projects/scripts/clj arp-sweep.clj  --list
+     en0  0:25:0:da:92:84   nil
+     vnic0 0:1c:42:0:0:8     #<Inet4Address /10.211.55.2>
+     en1  0:25:0:40:a8:cf   #<Inet4Address /192.168.3.13>
+     vnic1 0:1c:42:0:0:9     #<Inet4Address /10.37.129.2>
+     lo0  0:0:0:0:0:0       #<Inet4Address /127.0.0.1>
+
+Then using any one of the interfaces initiate a scan,
+
+    clojure/(master) $ sudo ~/Projects/scripts/clj arp-sweep.clj  --device en1
