@@ -1,6 +1,6 @@
 ---
 title: Using Java Mail API from Clojure
-tags: clojure
+tags: clojure smtp gmail javamail
 ---
 
 Java API does not provide a way to send mail or interface with POP/IMAP
