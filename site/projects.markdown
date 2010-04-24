@@ -14,6 +14,7 @@ and Linux
 
  - [Clodiuno](/clodiuno.markdown) - Clojure API for the firmata protocol.
  - [net-eval](/net-eval.markdown) - Simple distributed computing.
+ - [turtle-graphics](/2010/01/09/a-simple-turtle-graphics-implementation-in-clojure/)  - Turtle Graphics Implementation for Clojure
 
 Stuff below this point is highly experimental, I played with them at
 some point, they should work but not guaranteed.
