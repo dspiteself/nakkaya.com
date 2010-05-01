@@ -3,13 +3,13 @@ title: Clojure Persistence for Java Programmers
 tags: clojure
 ---
 
-Using Java for a long time, when i needed to save some data structure to
+Using Java for a long time, whenever I needed to save some data structure to
 disk, my first response was to [serialize](http://www.j2ee.me/developer/technicalArticles/Programming/serialization/)
-it to a file. While working on a Clojure application, i did just that, it
+it to a file. While working on a Clojure application, I did just that, it
 worked half the time because not every data structure implements
 [Serializable](http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html).
 
-Then i remembered Clojure being a lisp, code is data. This allows you to
+Then I remembered Clojure being a Lisp, code is data. This allows you to
 dump everything as a String to a file and read it back as a data
 structure.
 
