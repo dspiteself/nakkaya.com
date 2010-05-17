@@ -3,17 +3,15 @@ title: Poor Man's Arduino Line Follower
 tags: arduino
 ---
 
-> For a faster smarter line follower checkout [Arduino Line Follower Take Two](/2010/05/18/arduino-line-follower-take-two/)
+> For a faster, smarter line follower checkout [Arduino Line Follower Take Two](/2010/05/18/arduino-line-follower-take-two/)
 
 Over the weekend, me and a friend of mine, cannibalized a 9 Lira (6$) RC
-car into line a follower. This post covers the process of building it.
+car into line a follower. Code in this post covers everything up to commit 
+[cf731aedc156f067aa221](http://github.com/nakkaya/corba/tree/cf731aedc156f067aa221fc5486e4e1f8761785d),
+refer to this particular commit for this project cause we plan on
+improving hence code will change.
 
-Code for the robot is at github, code covers, commit
-[cf731aedc156f067aa221...](http://github.com/nakkaya/corba/tree/cf731aedc156f067aa221fc5486e4e1f8761785d) Refer
-to this particular commit for this project cause we plan on building a
-faster one hence code will change.
-
-For this project we used,
+Stuff you will need,
 
  - 3x [QTR-1RC Reflectance Sensor](http://www.pololu.com/catalog/product/959)
  - [Ardumoto - Motor Driver Shield](http://www.sparkfun.com/commerce/product_info.php?products_id=9213)
@@ -31,12 +29,10 @@ Fritzing project can be downloaded
 [here](/code/arduino/line-follower/line-follower-1.fzz). Sorry about the
 crappy diagram, but I just suck at it.
 
-
-Most important part of the robot are the reflection sensors. two sensors
-track black area to the sides one sensor tracks white line in the
-middle. Each sensor has 3 pins on them, VIN GROUND and OUT. VIN and
-GROUND are connected to VIN and GROUND on the arduino. OUT goes to
-digital pins on the arduino. For this project we used, pins 5 to 7.
+Two sensors track the black area to the sides, one sensor tracks the
+white line in the middle. Each sensor has 3 pins on them, VIN GROUND and
+OUT. VIN and GROUND goes to +5V and GROUND, OUT goes to digital pin. For
+this project we used, digital pins 5 through 7.
 
  - Sensor on the left is connected to digital pin 5
  - Sensor in the middle is connected to digital pin 6
@@ -47,7 +43,7 @@ digital pins on the arduino. For this project we used, pins 5 to 7.
 An LED is connected to digital pin 8, and a push button is connected to
 digital pin 2, refer to the fritzing diagram for their wiring.
 
-To control the DC motors on the RC car, we used a ardumoto shield which
+To control the DC motors on the RC car, we used an ardumoto shield which
 allows you to control up to 2 DC motors. It uses digital pins,
 
  - 10 for PWM for MotorA
@@ -55,20 +51,19 @@ allows you to control up to 2 DC motors. It uses digital pins,
  - 12 for Direction MotorA
  - 13 for Direction MotorB
 
-The way our car setup is, motor on the rear provides forward and
-backward motion depending on the direction of the motor, motor on the
-forward however turns the wheels depending on the direction it is
-turning (e.g. when the direction pin is high wheels turn right).
+This particular car is setup such that the motor on the rear provides
+forward and backward motion depending on the direction of the motor,
+forward motor turns the wheels depending on the direction it is turning
+(e.g. when the direction pin is high wheels turn right).
 
-Whole thing is powered using a 9V 2Amp power adapter.
+Power supplied through a 9V 2Amp power adapter.
 
 #### Software
 
-Control software is made up of 2 modules, engine module and a navigation
-module. Engine module is responsible for movement it exposes five
-functions, straight, left, right, reverse and forward. Navigation module
-exposes 2 functions calibrate and steer, steer function determines the
-robots position and command engine to move in the correct direction.
+Code is divided into 2 modules, engine and navigation. Engine module
+is responsible for movement it exposes five functions, straight, left,
+right, reverse and forward. Navigation module exposes 2 functions
+calibrate and steer.
 
      void engine::forward(int speed, int time){
        analogWrite(PwmPinMotorB, speed);
@@ -90,13 +85,13 @@ robots position and command engine to move in the correct direction.
        digitalWrite(DirectionPinMotorB, HIGH);
      }
 
-To move the robot forward and backward, these functions are used, they
+These functions can be used to move the robot forward and backward. They
 take a PWM value and a time in milliseconds,
 
     engine.forward(255,10);
 
-will turn the motor in the back for 10 milliseconds at full
-power. Direction of the robot can be changed using,
+will turn the rear motor for 10 milliseconds at full power. Direction of
+the robot can be changed using,
 
      void engine::right(){
        analogWrite(PwmPinMotorA, 255);
@@ -113,10 +108,9 @@ power. Direction of the robot can be changed using,
        digitalWrite(DirectionPinMotorA, HIGH);
      }
 
-These will change the direction of the forward motor depending on the
-direction or cut power if we want to go straight. The engine is
-controlled from within the navigation module.
-
+These will change the direction of the forward motor causing the car to
+turn. Turning the motor forward will cause the front wheel to turn left,
+turning the motor backwards causes the wheels to turn right.
 
 Navigation module begins, by calibrating itself,
 
@@ -131,13 +125,9 @@ Navigation module begins, by calibrating itself,
        bwMean = ((right - middle) + (left - middle))/2;
      }
 
-Pololu's library includes a function to calibrate the sensors but we
-decided not to use it for the moment, since we can't precisely control
-robots direction, it always goes off course during calibration. What we
-do instead is read all three sensors and calculate the average of
-difference in black and white readings, which is stored in a variable
-called bwMean which is used when calculating robots position relative to
-the line.
+We read all three sensors and calculate the average of difference in
+black and white readings, which is stored in a variable called bwMean,
+it is used when calculating robots position relative to the line.
 
      void navigation::steer(){
        int bearing = getBearing();
@@ -154,10 +144,8 @@ the line.
        engin.forward(255,10);
      }
 
-steer function is where the movement happens, it asks for a position,
-depending on the position, turn the front wheel and move one step
-forward.
-
+We ask for a bearing then tell the engine to turn in that direction and
+move forward one step.
 
      int navigation::getBearing(){
        unsigned int val[3];
@@ -186,15 +174,15 @@ forward.
        if (position == RIGHT ) return LEFT;
      }
 
-getBearing is where we calculate our position relative to the line. We
-read all three sensors, basically the sensor with the lowest value means
-it is on the white line. So we turn in the direction of the sensor with
-the lowest value, but there is a problem with this approach, when all
-sensors are on the black area, one of them will still read lower than the
-others and we will turn in some random direction. To overcome this
-problem we introduce a new variable called position which records last
-position. Now we only turn right or left if we are not already in that
-direction of the line, e.g. we don't want to turn left when we are
+getBearing calculates our position relative to the line. We read all
+three sensors, basically the sensor which has the lowest value is on the
+white line. So we turn in the direction of the sensor with the lowest
+value, but there is a problem with this approach, when all sensors are
+on the black area, one of them will still read lower than the others
+which will cause the robot to turn in some random direction. To overcome
+this problem we introduce a new variable called position which records
+last position. Now we only turn right or left if we are not already in
+that side of the line, e.g. we don't want to turn left when we are
 already left of the line. This covers left and right turns however when
 all the sensors are on the black, middle one will still read lowest so
 we use the bwMean value we calculated and only go straight if the middle
