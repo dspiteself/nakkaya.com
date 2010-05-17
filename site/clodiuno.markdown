@@ -36,6 +36,18 @@ For Mac OS X users they are located inside the application bundle,
 Also if you are on Mac OS X, make sure you use 32 bit Java 1.5.0,
 otherwise RXTX won't work.
 
+Clodiuno is also available via [Clojars](http://clojars.org/clodiuno),
+for now only Mac OS X native dependencies are available on
+clojars.
+
+     (defproject arduino-project "1.0.0-SNAPSHOT"
+       :dependencies [[org.clojure/clojure "1.1.0"]
+                      [org.clojure/clojure-contrib "1.1.0"]
+                      [clodiuno "0.0.1-SNAPSHOT"]]
+       :native-dependencies [[org.clojars.nakkaya/rxtx-macosx-native-deps "2.1.7"]]
+       :dev-dependencies [[native-deps "1.0.0"]])
+  
+
 #### Souce
 
 Project is hosted at github, grab it

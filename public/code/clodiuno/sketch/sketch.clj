@@ -1,6 +1,6 @@
 (ns sketch
   (:use turtle)
-  (:use clodiuno)
+  (:use clodiuno.core)
   (:import (javax.swing JFrame JPanel)
 	   (java.awt Color Rectangle)
 	   (java.awt.event ActionListener KeyAdapter)

@@ -1,5 +1,5 @@
 (ns servo
-  (:use :reload-all clodiuno))
+  (:use :reload-all clodiuno.core))
 
 ;;WMath.cpp
 (defn map-range [x in-min in-max out-min out-max]

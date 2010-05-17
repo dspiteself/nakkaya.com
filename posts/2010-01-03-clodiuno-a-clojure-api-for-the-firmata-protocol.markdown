@@ -19,7 +19,7 @@ should give you a feel for the API, there are more examples in the
 examples folder included with the project.
 
      (ns sos
-       (:use :reload-all clodiuno))
+       (:use :reload-all clodiuno.core))
 
      (def short-pulse 250)
      (def long-pulse 500)
