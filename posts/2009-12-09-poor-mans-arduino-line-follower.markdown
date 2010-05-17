@@ -3,6 +3,8 @@ title: Poor Man's Arduino Line Follower
 tags: arduino
 ---
 
+> For a faster smarter line follower checkout [Arduino Line Follower Take Two](/2010/05/18/arduino-line-follower-take-two/)
+
 Over the weekend, me and a friend of mine, cannibalized a 9 Lira (6$) RC
 car into line a follower. This post covers the process of building it.
 
