@@ -15,7 +15,7 @@
 (defn pen-up? 
   "Is the pen up?"
   [turtle]
-  (:drawing @turtle))
+  (not (:drawing @turtle)))
 
 (defn pen-up 
   "Disable Drawing."
