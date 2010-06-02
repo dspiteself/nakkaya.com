@@ -53,6 +53,20 @@ Tests can also be grouped together,
       (addition)
       (subtraction))
 
+For testing private functions, you need to use the following macro
+(courtesy of chouser),
+
+     (defmacro with-private-fns [[ns fns] & tests]
+      "Refers private fns from ns and runs tests in context."
+        `(let ~(reduce #(conj %1 %2 `(ns-resolve '~ns '~%2)) [] fns)
+             ~@tests))
+
+then wrap your tests with *with-private-fns*,
+
+     (with-private-fns [org.foo.bar [fn1 fn2]]
+      (deftest test-fn1..)
+      (deftest test-fn2..))
+
 #### Running Tests
 
 To run the tests you defined from REPL you can use,
