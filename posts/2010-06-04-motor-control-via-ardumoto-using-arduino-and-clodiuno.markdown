@@ -1,0 +1,91 @@
+---
+title: Motor Control via Ardumoto Using Arduino and Clodiuno
+tags: clojure clodiuno arduino
+---
+
+Here is another post that is partly for documentation and partly for
+safekeeping. Following snippet which I ripped from another robot we have
+been working on, demonstrates how to control the Ardumoto motor driver
+shield using [Clodiuno](/clodiuno.markdown).
+
+
+Control for motor attached to OUT 1-2 is connected to digital line 12
+(direction) and digital line 10 (PWM). Control for motor attached to OUT
+3-4 is connected to digital line 13 (direction) and digital line 11
+(PWM).
+
+<object type="application/x-shockwave-flash" width="660" height="495" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=a4c0a19562&photo_id=4667494778"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=a4c0a19562&photo_id=4667494778" height="495" width="660"></embed></object>
+
+     (ns ardumoto.core
+       (:use [clojure.contrib.swing-utils :only [add-action-listener]])
+       (:use :reload-all clodiuno.core)
+       (:import (javax.swing JFrame JPanel JButton)
+                (net.miginfocom.swing MigLayout)))
+
+     (def pwm-pin-motor-a 10)
+     (def pwm-pin-motor-b 11)
+     (def dir-pin-motor-a 12)
+     (def dir-pin-motor-b 13)
+
+     (def speed 200)
+
+     (defn board []
+       (arduino "/dev/tty.usbserial-A6008nhh"))
+
+     (defn init-pins [board]
+       (pin-mode board pwm-pin-motor-a PWM)
+       (pin-mode board pwm-pin-motor-b PWM)
+       (pin-mode board dir-pin-motor-a OUTPUT)
+       (pin-mode board dir-pin-motor-b OUTPUT))
+
+     (defn motor [board m p]
+       (let [motor-pin (if (= m :a) pwm-pin-motor-a pwm-pin-motor-b)
+             dir-pin   (if (= m :a) dir-pin-motor-a dir-pin-motor-b)
+             pwm   (if (< p 0) (* -1 p) p)
+             dir   (if (< p 0) LOW HIGH)]
+         (analog-write board motor-pin pwm)
+         (digital-write board dir-pin dir)))
+
+     (defn listener [press-f release-f]
+       (proxy [java.awt.event.MouseListener] [] 
+         (mousePressed [e] (press-f))
+         (mouseReleased [e] (release-f))
+         (mouseClicked [e])
+         (mouseEntered [e])
+         (mouseExited [e])))
+
+     (defn panel []
+       (let [arduino (ref nil)
+             panel (JPanel. (MigLayout.))
+             left (JButton. "Left")
+             right (JButton. "Right")
+             forward (JButton. "Forward")
+             backward (JButton. "Backward")
+             connect  (JButton. "Connect")
+             init  (JButton. "Init")
+             set-speed #(do (motor @arduino :a %1) (motor @arduino :b %2))
+             stop #(do (motor @arduino :a 0) (motor @arduino :b 0))]
+
+         (add-action-listener connect (fn[_] (dosync (ref-set arduino (board)))))
+         (add-action-listener init (fn[_] (init-pins @arduino)))
+
+         (.addMouseListener left (listener #(set-speed (* -1 speed) speed) stop))
+         (.addMouseListener right (listener #(set-speed speed (* -1 speed)) stop))
+         (.addMouseListener forward (listener #(set-speed speed speed) stop))
+         (.addMouseListener 
+          backward (listener #(set-speed (* -1 speed) (* -1 speed)) stop))
+
+         (doto panel
+           (.add forward "cell 3 1")
+           (.add backward "cell 3 3")
+           (.add left "cell 2 2")
+           (.add right "cell 4 2")
+           (.add connect "cell 2 4")
+           (.add init "cell 4 4"))))
+
+     (defn frame []
+       (let [panel (panel)]
+         (doto (JFrame.)
+           (.add panel)
+           (.pack)
+           (.setVisible true))))

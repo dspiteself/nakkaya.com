@@ -76,6 +76,7 @@ API, I also have the following hacks using Clodiuno,
  - [Servo Control](/2010/01/06/making-things-move-with-clojure/)
  - [Etch A Sketch](/2010/02/02/etch-a-sketch/)
  - [ESC Control](/2010/05/21/motor-control-via-esc-using-arduino-and-clodiuno/)
+ - [Ardumoto Control](/2010/06/04/motor-control-via-ardumoto-using-arduino-and-clodiuno/)
 
 #### License
 
