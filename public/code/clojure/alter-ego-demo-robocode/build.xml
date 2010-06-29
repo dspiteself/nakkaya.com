@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Modify paths to directories and Jar files.  -->
+<!-- Modify paths to behavior tree in tank.clj  -->
+<!-- Use build task to compile the robot -->
+<!-- Use run run task to run the robocode software. -->
+<project name="Alter Ego Demo" default="build" basedir=".">
+
+  <property name="classes.dir" location="./classes" />
+  <property name="src.dir" value="./" />
+  <property name="robocode.dir" location="/Applications/robocode/" />
+  <property name="clojure.jar" value="/Users/nakkaya/.m2/repository/org/clojure/clojure/1.1.0/clojure-1.1.0.jar" />
+  <property name="alter-ego.jar" value="/Users/nakkaya/Projects/alter-ego/alter-ego.jar" />
+
+  <property name="robocode.jar" value="/Applications/robocode/libs/robocode.jar" />
+  <property name="codesize.jar" value="/Applications/robocode/libs/codesize.jar" />
+
+  <path id="project.classpath">
+    <pathelement location="${clojure.jar}" />
+    <pathelement location="${robocode.jar}" />
+    <pathelement location="${alter-ego.jar}" />
+    <pathelement location="${classes.dir}" /> 
+  </path>
+
+  <target name="compile" description="Compile Clojure source">
+    <mkdir dir="${classes.dir}" />
+    <java classname="clojure.lang.Compile" 
+	  classpathref="project.classpath" failonerror="true">
+      <classpath path="${src.dir}"/>
+      <sysproperty key="clojure.compile.path" value="${classes.dir}" />
+      <arg value="tank" />
+    </java>
+
+    <unzip src="${clojure.jar}" dest="${classes.dir}" />
+    <delete dir="${classes.dir}/META-INF/" />
+  </target>
+
+  <target name="clean">
+    <delete dir="${classes.dir}" />
+  </target>
+
+  <target name="build" depends="clean,compile" description="Build this project" />
+
+  <target name="run">
+    <java dir="${robocode.dir}"
+	  fork="true" 
+	  classname="robocode.Robocode"
+	  maxmemory="512m">
+      <sysproperty key="sun.io.useCanonCaches" value="false"/>
+      <sysproperty key="NOSECURITY" value="true"/>
+      <classpath>
+	<path location="${robocode.jar}"/>
+	<path location="${codesize.jar}"/>
+	<path location="${alter-ego.jar}"/>
+      </classpath>
+    </java>
+  </target>
+</project>

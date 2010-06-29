@@ -12,6 +12,7 @@ and Linux
 
 #### Libraries
 
+ - [alter-ego](/alter-ego.markdown) - A reactive AI library based on the concept of behavior trees.
  - [Clodiuno](/clodiuno.markdown) - Clojure API for the firmata protocol.
  - [net-eval](/net-eval.markdown) - Simple distributed computing.
  - [turtle-graphics](/2010/01/09/a-simple-turtle-graphics-implementation-in-clojure/)  - Turtle Graphics Implementation for Clojure
