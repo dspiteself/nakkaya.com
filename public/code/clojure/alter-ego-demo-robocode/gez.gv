@@ -1,0 +1,63 @@
+digraph bt {
+N_0 [label="Root\n(selector)"];
+N_1 [label="Kill All\n(sequence)"];
+N_0 -> N_1
+N_2 [label="Look For Enemy\n(until-success)"];
+N_1 -> N_2
+N_3 [label="Scan\n(sequence)"];
+N_2 -> N_3
+N_4 [shape="box" style=filled fillcolor="#00ff005f" label="Scan"];
+N_3 -> N_4
+N_5 [shape="box" style=filled fillcolor="#00ff005f" label="enemy-found?"];
+N_3 -> N_5
+N_6 [label="Until No Enemy Left\n(until-fail)"];
+N_1 -> N_6
+N_7 [label="Attack\n(sequence)"];
+N_6 -> N_7
+N_8 [shape="box" style=filled fillcolor="#00ff005f" label="Select Target"];
+N_7 -> N_8
+N_9 [label="Until Target\n(until-fail)"];
+N_7 -> N_9
+N_10 [label="Dead\n(sequence)"];
+N_9 -> N_10
+N_11 [shape="box" style=filled fillcolor="#00ff005f" label="Scan"];
+N_10 -> N_11
+N_12 [shape="box" style=filled fillcolor="#00ff005f" label="target-not-dead?"];
+N_10 -> N_12
+N_13 [shape="box" style=filled fillcolor="#00ff005f" label="lock-gun"];
+N_10 -> N_13
+N_14 [label="Move\n(selector)"];
+N_10 -> N_14
+N_15 [label="Approach Target\n(sequence)"];
+N_14 -> N_15
+N_16 [label="Not\n(inverter)"];
+N_15 -> N_16
+N_17 [shape="box" style=filled fillcolor="#00ff005f" label="in-range?"];
+N_16 -> N_17
+N_18 [shape="box" style=filled fillcolor="#00ff005f" label="face-target"];
+N_15 -> N_18
+N_19 [shape="box" style=filled fillcolor="#00ff005f" label="ahead"];
+N_15 -> N_19
+N_20 [label="Attack Target\n(sequence)"];
+N_14 -> N_20
+N_21 [shape="box" style=filled fillcolor="#00ff005f" label="face-sideway"];
+N_20 -> N_21
+N_22 [label="Strafe/Fire\n(selector)"];
+N_20 -> N_22
+N_23 [label="Strafe\n(sequence)"];
+N_22 -> N_23
+N_24 [label="Not\n(inverter)"];
+N_23 -> N_24
+N_25 [shape="box" style=filled fillcolor="#00ff005f" label="too-close-to-wall?"];
+N_24 -> N_25
+N_26 [label="Ahead or Back\n(non-deterministic-selector)"];
+N_23 -> N_26
+N_27 [shape="box" style=filled fillcolor="#00ff005f" label="ahead"];
+N_26 -> N_27
+N_28 [shape="box" style=filled fillcolor="#00ff005f" label="back"];
+N_26 -> N_28
+N_29 [shape="box" style=filled fillcolor="#00ff005f" label="fire"];
+N_23 -> N_29
+N_30 [shape="box" style=filled fillcolor="#00ff005f" label="fire"];
+N_22 -> N_30
+}
