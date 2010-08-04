@@ -82,3 +82,9 @@ Application logo by [VisualPharm](http://www.visualpharm.com)
 For bug reports/fixes/help See [Contact](/contact.markdown)
 
 Any feature requests are also welcome see [Contact](/contact.markdown)
+
+<script type="text/javascript">
+	var flattr_url = 'http://nakkaya.com/mocha.markdown';
+</script>
+<script src="http://api.flattr.com/button/load.js" type="text/javascript"></script>
+<br>

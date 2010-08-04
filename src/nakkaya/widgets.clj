@@ -39,6 +39,25 @@
 ;(doseq[post (post-list-by-date)] (println (similar-posts post 5)))
 ;(similar-posts "2009-12-11-type-less-to-type-more.markdown" 5)
 
+(defn flattr-widget [page]
+  (let [meta (:metadata page)
+	fname (str "posts/" (:file-name meta))
+	tags (:tags meta)
+	title (:title meta)] 
+
+    (str "<script type=\"text/javascript\">"
+	 "var flattr_btn = 'compact';"
+	 "var flattr_uid = '27677';"
+	 "var flattr_tle = '" title "';"
+	 "var flattr_dsc = '" title "';"
+	 "var flattr_cat = 'text';"
+	 "var flattr_lng = 'en_GB';"
+	 "var flattr_tag = '"tags"';"
+	 "var flattr_url = 'http://nakkaya.com" (file-to-url fname) "';"
+	 "var flattr_hide = 'true';"
+	 "</script>"
+	 "<script src=\"http://api.flattr.com/button/load.js\" type=\"text/javascript\"></script>")))
+
 (defn disqus-widget []
   "<div id=\"disqus_thread\"></div><script type=\"text/javascript\" src=\"http://disqus.com/forums/nakkaya/embed.js\"></script><noscript><a href=\"http://disqus.com/forums/nakkaya/?url=ref\">View the discussion thread.</a></noscript><a href=\"http://disqus.com\" class=\"dsq-brlink\">blog comments powered by <span class=\"logo-disqus\">Disqus</span></a>")
 

@@ -81,3 +81,9 @@ API, I also have the following hacks using Clodiuno,
 #### License
 
 Beerware Revision 42
+
+<script type="text/javascript">
+	var flattr_url = 'http://nakkaya.com/clodiuno.markdown';
+</script>
+<script src="http://api.flattr.com/button/load.js" type="text/javascript"></script>
+<br>

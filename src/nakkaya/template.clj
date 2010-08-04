@@ -71,7 +71,10 @@
 	    (fn[h v]
 	      (conj h [:a {:href (str "/tags/#" v)} (str v " ")]))
 	    [:div {:class "post-tags"} "Tags: "] 
-	    (.split (:tags meta) " ")))]
+	    (.split (:tags meta) " ")))
+	 
+	 (if (= (:type meta) 'post)
+	   (flattr-widget page))]
 
 	(if (= (:type meta) 'post)
 	  [:div
