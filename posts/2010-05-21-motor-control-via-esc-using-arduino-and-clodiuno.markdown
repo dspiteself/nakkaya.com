@@ -23,7 +23,8 @@ armed by beeping or blinking.
 Following snippet is what I use for quickly testing various PWM values,
 
      (ns esc-test.core
-       (:use :reload-all clodiuno.core)
+       (:use clodiuno.core)
+       (:use clodiuno.firmata)
        (:import (javax.swing JFrame JPanel JSlider JTextField JLabel)
                 (java.awt BorderLayout)
                 (javax.swing.event ChangeListener)))
@@ -53,7 +54,7 @@ Following snippet is what I use for quickly testing various PWM values,
            (.add field-panel BorderLayout/SOUTH))))
 
      (defn esc [pwm]
-       (let [board (arduino "/dev/tty.usbserial-A600aeCj")]
+       (let [board (arduino :firmata "/dev/tty.usbserial-A600aeCj")]
          ;;allow board to boot
          (Thread/sleep 5000)
          ;;attach ESC

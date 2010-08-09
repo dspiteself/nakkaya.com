@@ -1,6 +1,7 @@
 (ns sketch
   (:use turtle)
   (:use clodiuno.core)
+  (:use clodiuno.firmata)
   (:import (javax.swing JFrame JPanel)
 	   (java.awt Color Rectangle)
 	   (java.awt.event ActionListener KeyAdapter)
@@ -57,7 +58,7 @@
      (.setVisible frame false))))
 
 (defn init-arduino []
-  (let [board (arduino "/dev/tty.usbserial-A6008nhh")]
+  (let [board (arduino :firmata "/dev/tty.usbserial-A6008nhh")]
     (Thread/sleep 5000)
     (enable-pin board :analog potx-pin)
     (enable-pin board :analog poty-pin)

@@ -1,5 +1,6 @@
 (ns servo
-  (:use :reload-all clodiuno.core))
+  (:use :reload-all clodiuno.core)
+  (:use :reload-all clodiuno.firmata))
 
 ;;WMath.cpp
 (defn map-range [x in-min in-max out-min out-max]
@@ -11,7 +12,7 @@
 (def servo-pin 2)
 
 (defn servo []
-  (let [board (arduino "/dev/tty.usbserial-A6008nhh")]
+  (let [board (arduino :firmata "/dev/tty.usbserial-A6008nhh")]
     ;;allow board to boot
     (Thread/sleep 5000)
     ;;start reading potentiometer

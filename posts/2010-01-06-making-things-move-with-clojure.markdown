@@ -34,7 +34,7 @@ between 0 and 1023 but the servo expects values between 0 and 179, this
 will turn the potentiometer reading into an angle for the servo.
 
      (defn servo []
-       (let [board (arduino "/dev/tty.usbserial-A6008nhh")]
+       (let [board (arduino :firmata "/dev/tty.usbserial-A6008nhh")]
          ;;allow board to boot
          (Thread/sleep 5000)
          ;;start reading potentiometer

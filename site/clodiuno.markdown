@@ -1,15 +1,18 @@
 ---
-title: Clodiuno - Firmata API for Clojure
-description: Clodiuno is a Clojure API for the firmata protocol.
+title: Clodiuno - Clojure API for Arduino
+description: Clodiuno is a Clojure API for Arduino.
 tags: clojure clodiuno arduino
 ---
 
+Clodiuno is a library that allows you to control Arduino using Clojure
+allowing Clojure developers to interface with real world using Arduino
+hardware.
 
-Clodiuno is a library that allows you to control Arduino via Firmata
-protocol. The purpose of this library is to allow Clojure developers to
-interface with real world using Arduino hardware.
+Currently Clodiuno supports two interfaces, you can either use the USB
+connection via Firmata or you can connect to your Arduino using WiFi via
+WiShield.
 
-#### Depencies
+#### Dependencies (Firmata)
 
 Firmata is a serial binary protocol, to get Java communicate via Serial
 Port there are two options,
@@ -36,6 +39,12 @@ For Mac OS X users they are located inside the application bundle,
 Also if you are on Mac OS X, make sure you use 32 bit Java 1.5.0,
 otherwise RXTX won't work.
 
+#### Dependencies (WiShield)
+
+None.
+
+#### Installation
+
 Clodiuno is also available via [Clojars](http://clojars.org/clodiuno),
 for now only Mac OS X native dependencies are available on
 clojars.
@@ -43,33 +52,28 @@ clojars.
      (defproject arduino-project "1.0.0-SNAPSHOT"
        :dependencies [[org.clojure/clojure "1.1.0"]
                       [org.clojure/clojure-contrib "1.1.0"]
-                      [clodiuno "0.0.1-SNAPSHOT"]]
+                      [clodiuno "0.0.2-SNAPSHOT"]]
        :native-dependencies [[org.clojars.nakkaya/rxtx-macosx-native-deps "2.1.7"]]
        :dev-dependencies [[native-deps "1.0.0"]])
-  
 
-#### Souce
-
-Project is hosted at github, grab it
-[here](http://github.com/nakkaya/clodiuno).
-
-#### Installation
+#### For Firmata Interface
 
 You need to upload Firmata sketch to your Arduino, 
 
     File -> Examples -> Firmata -> StandartFirmata
 
-But Firmata sketch shipped with Arduino v17 is buggy, for clodiuno to
-work you need to [download](http://www.firmata.org/wiki/Download) latest
-sketch and use it instead of the one supplied with arduino.
+#### For WiShield Interface
 
-You can either put the src/ folder on to your classpath, or copy
-clodiuno.clj into your project. For now API is contained in a single
-file.
+Make sure
+[WiShield](http://asynclabs.com/wiki/index.php?title=AsyncLabsWiki)
+library is configured to compile and run
+[SocketApp](http://asynclabs.com/wiki/index.php?title=SocketApp_sketch)
+sketch, once configured you can upload the wishield sketch located in
+the resources folder.
 
 #### Usage
 
-examples/ folder contains two simple examples to give a feel for the
+resources/examples/ folder contains  examples to give a feel for the
 API, I also have the following hacks using Clodiuno,
 
  - [Blinking SOS](/2010/01/03/clodiuno-a-clojure-api-for-the-firmata-protocol/)
@@ -77,6 +81,12 @@ API, I also have the following hacks using Clodiuno,
  - [Etch A Sketch](/2010/02/02/etch-a-sketch/)
  - [ESC Control](/2010/05/21/motor-control-via-esc-using-arduino-and-clodiuno/)
  - [Ardumoto Control](/2010/06/04/motor-control-via-ardumoto-using-arduino-and-clodiuno/)
+ - [Using WiShield and Firmata Together](/2010/08/09/wishield-support-for-clodiuno/)
+
+#### Source
+
+Project is hosted at github, grab it
+[here](http://github.com/nakkaya/clodiuno).
 
 #### License
 

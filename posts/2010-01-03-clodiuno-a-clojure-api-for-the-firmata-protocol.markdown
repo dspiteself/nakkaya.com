@@ -19,7 +19,8 @@ should give you a feel for the API, there are more examples in the
 examples folder included with the project.
 
      (ns sos
-       (:use :reload-all clodiuno.core))
+       (:use :reload-all clodiuno.core)
+       (:use :reload-all clodiuno.firmata))
 
      (def short-pulse 250)
      (def long-pulse 500)
@@ -42,7 +43,7 @@ examples folder included with the project.
        (Thread/sleep letter-delay))
 
      (defn sos []
-       (let [board (arduino "/dev/tty.usbserial-A6008nhh")] 
+       (let [board (arduino :firmata "/dev/tty.usbserial-A900adPT")] 
          ;;allow arduino to boot
          (Thread/sleep 5000)
          (pin-mode board 13 OUTPUT)

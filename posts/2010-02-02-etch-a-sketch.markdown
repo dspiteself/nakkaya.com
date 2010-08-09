@@ -67,7 +67,7 @@ When the sketch window receives a key event, we stop the timer,
 disconnect arduino and hide the window.
 
      (defn init-arduino []
-       (let [board (arduino "/dev/tty.usbserial-A6008nhh")]
+       (let [board (arduino :firmata "/dev/tty.usbserial-A6008nhh")]
          (Thread/sleep 5000)
          (enable-pin board :analog potx-pin)
          (enable-pin board :analog poty-pin)

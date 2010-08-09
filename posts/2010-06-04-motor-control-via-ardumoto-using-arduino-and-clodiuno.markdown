@@ -18,7 +18,8 @@ Control for motor attached to OUT 1-2 is connected to digital line 12
 
      (ns ardumoto.core
        (:use [clojure.contrib.swing-utils :only [add-action-listener]])
-       (:use :reload-all clodiuno.core)
+       (:use clodiuno.core)
+       (:use clodiuno.firmata)
        (:import (javax.swing JFrame JPanel JButton)
                 (net.miginfocom.swing MigLayout)))
 
@@ -30,7 +31,7 @@ Control for motor attached to OUT 1-2 is connected to digital line 12
      (def speed 200)
 
      (defn board []
-       (arduino "/dev/tty.usbserial-A6008nhh"))
+       (arduino :firmata "/dev/tty.usbserial-A6008nhh"))
 
      (defn init-pins [board]
        (pin-mode board pwm-pin-motor-a PWM)
