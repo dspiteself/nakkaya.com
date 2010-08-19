@@ -94,8 +94,7 @@
 	 (if (= (:type meta) 'post) (disqus-widget))]]
        [:div
 	{:id "footer"}
-	"Powered By"
-	[:a {:href "http://compojure.org/"} " Compojure"]
+	[:a {:href "/rss-feed"} " RSS Feed"]
 	[:p "&copy; 2010" 
 	 [:a {:href "/contact.markdown"} " Nurullah Akkaya"]]]]
       (if (= (:type meta) 'post) (disqus-js))]]))
