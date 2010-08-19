@@ -41,9 +41,7 @@
 
 (defn flattr-widget [page]
   (let [meta (:metadata page)
-	fname (str "posts/" (:file-name meta))
-	tags (:tags meta)
-	title (:title meta)] 
+	title (.replace (:title meta) \' \space)] 
 
     (str "<script type=\"text/javascript\">"
 	 "var flattr_btn = 'compact';"
@@ -52,8 +50,9 @@
 	 "var flattr_dsc = '" title "';"
 	 "var flattr_cat = 'text';"
 	 "var flattr_lng = 'en_GB';"
-	 "var flattr_tag = '"tags"';"
-	 "var flattr_url = 'http://nakkaya.com" (file-to-url fname) "';"
+	 "var flattr_tag = '" (:tags meta) "';"
+	 "var flattr_url = 'http://nakkaya.com" (file-to-url 
+						 (:file-name meta)) "';"
 	 "var flattr_hide = 'true';"
 	 "</script>"
 	 "<script src=\"http://api.flattr.com/button/load.js\" type=\"text/javascript\"></script>")))
