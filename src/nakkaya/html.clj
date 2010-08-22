@@ -138,14 +138,16 @@
 	  :content content})))))
 
 (defn site
-  "Return both pages and public files."
+  "Return pages."
   [params]
   (let [{file :*} params
 	site-path (File. (str "site/" file ".markdown"))]
     (if (.exists site-path)
       (let [{meta :metadata content :content} (markdown site-path)]
 	(render-template {:metadata (conj meta {:type 'page})
-			  :content (list [:h2 (:title meta)] content)})))))
+			  :content (list [:h2 (:title meta)] content)}))
+      {:status 404 
+       :headers {"Content-Type" "text/html"} :body (render-not-found)})))
 
 (defn file-not-found []
   (render-not-found))
