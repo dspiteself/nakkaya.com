@@ -3,7 +3,7 @@
   (:use ring.adapter.jetty)
   (:use ring.middleware.file)
   (:use :reload-all nakkaya.util)
-  (:require [nakkaya.html :as html]))
+  (:require :reload-all [nakkaya.html :as html]))
 
 (defn cached-pages []
   (def site (memoize html/site))
@@ -58,10 +58,9 @@
   (GET "/:year/:month/:day/:title" {params :params} (redirect-301 params))
   (ANY "*" []
        {:status  404 :headers {"Content-Type" "text/html"}
-	:body (html/file-not-found)}))
+  	:body (html/file-not-found)}))
 
-(def app (-> nakkaya-routes
-	     (wrap-file "public")))
+(def app (-> nakkaya-routes (wrap-file "public")))
 
 (if (System/getProperty "compojure.site")
-  (run-jetty app {:port 8085}))
+  (future (run-jetty app {:port 8085})))
