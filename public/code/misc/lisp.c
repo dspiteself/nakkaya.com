@@ -35,7 +35,8 @@ typedef struct {
 #define cdr(X)           (((cons_object *) (X))->cdr)
 
 char *name(object *o){
-  return (char *)(o + sizeof(enum type));
+  if(o->type != ATOM) exit(1);
+  return ((atom_object*)o)->name;
 }
 
 object *atom (char *n) {
@@ -247,7 +248,7 @@ object *eval_fn (object *sexp, object *env){
 
 object *eval (object *sexp, object *env) {
 
-  if(sexp->type == CONS && strcmp(name(car(sexp)), "LAMBDA") == 0){
+  if(car(sexp)->type == ATOM && strcmp(name(car(sexp)), "LAMBDA") == 0){
     object* largs = car(cdr(sexp));
     object* lsexp = car(cdr(cdr(sexp)));
       
