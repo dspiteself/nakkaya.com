@@ -111,7 +111,7 @@ define tee to be the atom *#T* and nil to be the empty list.
 
      object *eval (object *sexp, object *env) {
 
-         if(car(sexp)->type == ATOM && strcmp(name(car(sexp)), "LAMBDA") == 0){
+       if(car(sexp)->type == ATOM && strcmp(name(car(sexp)), "LAMBDA") == 0){
          object* largs = car(cdr(sexp));
          object* lsexp = car(cdr(cdr(sexp)));
       
