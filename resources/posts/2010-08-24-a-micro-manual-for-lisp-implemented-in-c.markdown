@@ -110,23 +110,24 @@ define tee to be the atom *#T* and nil to be the empty list.
      }
 
      object *eval (object *sexp, object *env) {
+       if(sexp->type == CONS){
+         if(car(sexp)->type == ATOM && strcmp(name(car(sexp)), "LAMBDA") == 0){
+           object* largs = car(cdr(sexp));
+           object* lsexp = car(cdr(cdr(sexp)));
 
-       if(car(sexp)->type == ATOM && strcmp(name(car(sexp)), "LAMBDA") == 0){
-         object* largs = car(cdr(sexp));
-         object* lsexp = car(cdr(cdr(sexp)));
-      
-         return lambda(largs,lsexp);
-       }else if(sexp->type == CONS){
-
-         object *accum = cons(eval(car(sexp),env),NULL);
-         sexp = cdr(sexp);
-
-         while (sexp != NULL && sexp->type == CONS){
-           append(accum,eval(car(sexp),env));
+           return lambda(largs,lsexp);
+         }else{
+           object *accum = cons(eval(car(sexp),env),NULL);
            sexp = cdr(sexp);
-         }
 
-         return eval_fn(accum,env);
+           while (sexp != NULL && sexp->type == CONS){
+             append(accum,eval(car(sexp),env));
+             sexp = cdr(sexp);
+           }
+
+
+           return eval_fn(accum,env);
+         }
        }else{
          object *val = lookup(name(sexp),env);
          if(val == NULL)
