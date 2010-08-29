@@ -1,4 +1,5 @@
 AddDefaultCharset UTF-8
+AddCharset UTF-8 .txt .html .htm .clj
 
 # compress text, html, javascript, css, xml:
 AddOutputFilterByType DEFLATE text/plain
