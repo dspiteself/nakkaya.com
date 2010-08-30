@@ -110,6 +110,9 @@ define tee to be the atom *#T* and nil to be the empty list.
      }
 
      object *eval (object *sexp, object *env) {
+       if(sexp == NULL)
+         return nil;
+
        if(sexp->type == CONS){
          if(car(sexp)->type == ATOM && strcmp(name(car(sexp)), "LAMBDA") == 0){
            object* largs = car(cdr(sexp));
@@ -124,7 +127,6 @@ define tee to be the atom *#T* and nil to be the empty list.
              append(accum,eval(car(sexp),env));
              sexp = cdr(sexp);
            }
-
 
            return eval_fn(accum,env);
          }

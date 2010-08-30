@@ -247,6 +247,9 @@ object *eval_fn (object *sexp, object *env){
 }
 
 object *eval (object *sexp, object *env) {
+  if(sexp == NULL)
+    return nil;
+
   if(sexp->type == CONS){
     if(car(sexp)->type == ATOM && strcmp(name(car(sexp)), "LAMBDA") == 0){
       object* largs = car(cdr(sexp));
@@ -261,7 +264,6 @@ object *eval (object *sexp, object *env) {
 	append(accum,eval(car(sexp),env));
 	sexp = cdr(sexp);
       }
-
 
       return eval_fn(accum,env);
     }
