@@ -101,7 +101,7 @@
 		date (static.core/parse-date "yyyy-MM-dd" "dd MMM yyyy" 
 					     (re-find #"\d*-\d*-\d*" f))]
 	   [:li [:span date] [:a {:href url} (:title metadata)]]) 
-	 (take 3 (shuffle (into [] (.list (java.io.File. 
+	 (take 5 (shuffle (into [] (.list (java.io.File. 
 					   (static.io/dir :posts)))))))]])
 
     [:div {:id "disqus"} 
