@@ -76,4 +76,4 @@ For some reason defaults did not like Emacs.app even though it is
 visible from command line, it gets removed as soon as Accounts
 preferences is open.
 
-For bug reports/fixes/help See [Contact](/contact.markdown)
+For bug reports/fixes/help See [Contact](/contact.html)

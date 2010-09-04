@@ -55,6 +55,6 @@ Application logo by
 Applications Icons by [Akhtar
 Sheikha](http://www.iconfinder.com/icondetails/37079/48/).
 
-For bug reports/fixes/help See [Contact](/contact.markdown)
+For bug reports/fixes/help See [Contact](/contact.html)
 
-Any feature requests are also welcome see [Contact](/contact.markdown)
+Any feature requests are also welcome see [Contact](/contact.html)

@@ -28,4 +28,4 @@ systems but i only tested on,
  - [Jar File](http://cloud.github.com/downloads/nakkaya/regexBuilder/regexBuilder.jar)
  - [Source Code via GitHub](http://github.com/nakkaya/regexBuilder/tree/master)
 
-For bug reports/fixes/help See [Contact](/contact.markdown)
+For bug reports/fixes/help See [Contact](/contact.html)

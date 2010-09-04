@@ -5,7 +5,7 @@ tags: clojure net-eval distributed-computing
 
 [newlisp](http://newlisp.org) has this function called net-eval which
 allows you to distribute work across a bunch of remote nodes. Over the
-weekend I have put together a small [library](/net-eval.markdown), which
+weekend I have put together a small [library](/net-eval.html), which
 more or less works the same way. The idea behind net-eval is simple, you
 fire up a REPL server on the remote nodes, expressions are transferred
 through a socket evaluated and results returned.

@@ -105,7 +105,7 @@ belongs to the first node on the ring.
 
 This is all the code that is needed to implement consistent hashing, now
 we can implement our own distributed hash table using the
-[net-eval](http://nakkaya.com/net-eval.markdown) library,
+[net-eval](http://nakkaya.com/net-eval.html) library,
 
      (deftask init-cache []
        (def consistent-cache (ref {})))

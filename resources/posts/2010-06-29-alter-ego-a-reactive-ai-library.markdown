@@ -3,7 +3,7 @@ title: alter-ego - A Reactive AI Library
 tags: alter-ego clojure robocode
 ---
 
-[alter-ego](/alter-ego.markdown) is a reactive AI library based on the
+[alter-ego](/alter-ego.html) is a reactive AI library based on the
 concept of behavior trees. Behavior trees combines a number of AI
 techniques such as Hierarchical State Machines, Scheduling, Planning,
 and Action Execution. Their strength comes from the fact that it is very
@@ -109,7 +109,7 @@ on using it.
 
 Files,
 
- - [alter-ego](/alter-ego.markdown)
+ - [alter-ego](/alter-ego.html)
  - [build.xml](/code/clojure/alter-ego-demo-robocode/build.xml)
  - [tank.clj](/code/clojure/alter-ego-demo-robocode/tank.clj)
  - [tank.bt](/code/clojure/alter-ego-demo-robocode/tank.bt)

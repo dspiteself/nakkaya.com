@@ -93,7 +93,7 @@ Project is hosted at github, grab it
 Beerware Revision 42
 
 <script type="text/javascript">
-	var flattr_url = 'http://nakkaya.com/clodiuno.markdown';
+	var flattr_url = 'http://nakkaya.com/clodiuno.html';
 </script>
 <script src="http://api.flattr.com/button/load.js" type="text/javascript"></script>
 <br>

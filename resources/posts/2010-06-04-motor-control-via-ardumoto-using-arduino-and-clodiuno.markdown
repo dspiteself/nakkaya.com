@@ -6,7 +6,7 @@ tags: clojure clodiuno arduino
 Here is another post that is partly for documentation and partly for
 safekeeping. Following snippet which I ripped from another robot we have
 been working on, demonstrates how to control the Ardumoto motor driver
-shield using [Clodiuno](/clodiuno.markdown).
+shield using [Clodiuno](/clodiuno.html).
 
 
 Control for motor attached to OUT 1-2 is connected to digital line 12

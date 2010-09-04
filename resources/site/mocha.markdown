@@ -79,12 +79,12 @@ in order to create a jar file use target jar after target linux.
 
 Application logo by [VisualPharm](http://www.visualpharm.com)
 
-For bug reports/fixes/help See [Contact](/contact.markdown)
+For bug reports/fixes/help See [Contact](/contact.html)
 
-Any feature requests are also welcome see [Contact](/contact.markdown)
+Any feature requests are also welcome see [Contact](/contact.html)
 
 <script type="text/javascript">
-	var flattr_url = 'http://nakkaya.com/mocha.markdown';
+	var flattr_url = 'http://nakkaya.com/mocha.html';
 </script>
 <script src="http://api.flattr.com/button/load.js" type="text/javascript"></script>
 <br>

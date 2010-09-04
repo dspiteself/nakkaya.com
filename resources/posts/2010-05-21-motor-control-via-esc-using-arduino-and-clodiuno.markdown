@@ -4,7 +4,7 @@ tags: arduino clodiuno clojure
 ---
 
 This post is partly for safe keeping and partly for providing more
-documentation for [Clodiuno](/clodiuno.markdown). Basically
+documentation for [Clodiuno](/clodiuno.html). Basically
 [ESCs](http://en.wikipedia.org/wiki/Electronic_speed_control) are
 [PWM](http://en.wikipedia.org/wiki/Pulse-width_modulation) controllers
 for electric motors (or more simply put they allow you to alter the
