@@ -16,6 +16,7 @@ and Linux
  - [Clodiuno](/clodiuno.html) - Clojure API for Arduino.
  - [net-eval](/net-eval.html) - Simple distributed computing.
  - [turtle-graphics](/2010/01/09/a-simple-turtle-graphics-implementation-in-clojure/)  - Turtle Graphics Implementation for Clojure
+ - [vector-2d](http://github.com/nakkaya/vector-2d) - Collection of 2D Vector Operations.
 
 Stuff below this point is highly experimental, I played with them at
 some point, they should work but not guaranteed.
