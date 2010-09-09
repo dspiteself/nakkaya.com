@@ -6,9 +6,4 @@
  :default-template "default.clj"
  :encoding "UTF-8"
  :posts-per-page 2
- :blog-as-index true
-
- :host "nakkaya.com"
- :user "nakkaya"
- :deploy-dir "./www/nakkaya.com/site/"
- ]
+ :blog-as-index true]
