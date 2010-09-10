@@ -96,13 +96,12 @@
 	(map 
 	 #(let [f %
 		url (static.core/post-url f)
-		[metadata _] (static.io/read-markdown 
-			      (str (static.io/dir :posts) f))
-		date (static.core/parse-date "yyyy-MM-dd" "dd MMM yyyy" 
-					     (re-find #"\d*-\d*-\d*" f))]
+		[metadata _] (static.io/read-markdown f)
+		date (static.core/parse-date 
+		      "yyyy-MM-dd" "dd MMM yyyy" 
+		      (re-find #"\d*-\d*-\d*" (str f)))]
 	   [:li [:span date] [:a {:href url} (:title metadata)]]) 
-	 (take 5 (shuffle (into [] (.list (java.io.File. 
-					   (static.io/dir :posts)))))))]])
+	 (take 5 (shuffle (static.io/list-files :posts))))]])
 
     [:div {:id "disqus"} 
      (if (= (:type metadata) :post) 
