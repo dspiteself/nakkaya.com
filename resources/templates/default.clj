@@ -15,6 +15,11 @@
   [:link
    {:rel "alternate", :type "application/rss+xml",
     :title (:site-title (static.config/config)), :href "/rss-feed"}]
+
+  (if (= (:type metadata) :post)
+    [:link {:rel "canonical" 
+	    :href (str "http://nakkaya.com" (:url metadata))}])
+
   [:script {:src "/highlight.pack.js", :type "text/javascript"}]
   [:script {:type "text/javascript"} "hljs.initHighlightingOnLoad();"]
   [:title (:title metadata)]]
