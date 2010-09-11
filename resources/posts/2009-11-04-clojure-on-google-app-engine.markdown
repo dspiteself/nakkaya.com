@@ -5,7 +5,7 @@ tags: clojure
 
 I was moving some compojure applications to Google Application
 Engine. After creating the same directory structure and same
-configuration three times, i wanted to automate this. So i build an ant
+configuration three times, I wanted to automate this, So I build an ant
 script to automate the creation of the necessary directory
 structure and source files. Download and setup SDK and compojure.
 
