@@ -11,7 +11,7 @@ other people will find these posts helpful, relevant, or interesting.
 You can reach me at [nurullah@nakkaya.com](mailto:nurullah@nakkaya.com
 "nurullah@nakkaya.com")
 
-![Nurullah Akkaya](http://farm4.static.flickr.com/3460/3266648516\_a62aba87af.jpg "Nurullah Akkaya")
+![Nurullah Akkaya](/images/nurullahAkkaya.jpeg)
 
 #### Other Places I am At
 

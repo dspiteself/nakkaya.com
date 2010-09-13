@@ -105,7 +105,15 @@ Note that when loading the tree you can provide your own blackboard or
 one will be automatically provided for your nodes even if you don't plan
 on using it.
 
-<object type="application/x-shockwave-flash" width="650" height="406" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=1b4182492a&photo_id=4732500548&hd_default=false"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=1b4182492a&photo_id=4732500548&hd_default=false" height="406" width="650"></embed></object>
+<p id='preview'>Player</p>
+<script type='text/javascript' src='/swfobject.js'></script>
+<script type='text/javascript'>
+	var s1 = new SWFObject('/player.swf','player','650','406','9');
+	s1.addParam('allowfullscreen','true');
+	s1.addParam('allowscriptaccess','always');
+	s1.addParam('flashvars','file=/video/alter-ego-robocode-1.mp4');
+	s1.write('preview');
+</script>
 
 Files,
 

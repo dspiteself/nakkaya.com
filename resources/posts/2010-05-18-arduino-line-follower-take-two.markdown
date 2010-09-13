@@ -27,13 +27,13 @@ Pin arrangement for this particular project,
  - Reflectance Sensor #7 Digital Pin 8
  - Reflectance Sensor #8 Digital Pin 9
 
-![arduino line follower 1](http://farm2.static.flickr.com/1010/4609096396\_81577aa0c1.jpg)
+![arduino line follower 1](/images/post/arduino-line-follower.jpeg)
 
-![arduino line follower 2](http://farm4.static.flickr.com/3355/4609096630\_bc55bd8ce6.jpg)
+![arduino line follower 2](/images/post/arduino-line-follower-2.jpeg)
 
-![arduino line follower 3](http://farm4.static.flickr.com/3345/4608490781\_af7c81e6f6.jpg)
+![arduino line follower 3](/images/post/arduino-line-follower-3.jpeg)
 
-![arduino line follower 4](http://farm4.static.flickr.com/3342/4608490585\_89ec72c236.jpg)
+![arduino line follower 4](/images/post/arduino-line-follower-4.jpeg)
 
 Code for this project is divided into two modules, engine and
 navigation. Engine is responsible for all movement while navigation is
@@ -334,6 +334,22 @@ in config.h). We set the motor speeds to these freshly calculated motor
 speeds. These pretty much covers the meat of the code, following videos
 shows the robot in action.
 
-<object type="application/x-shockwave-flash" width="650" height="488" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=7636fd3d01&photo_id=4609098500"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=7636fd3d01&photo_id=4609098500" height="488" width="650"></embed></object>
+<p id='preview'>Player</p>
+<script type='text/javascript' src='/swfobject.js'></script>
+<script type='text/javascript'>
+	var s1 = new SWFObject('/player.swf','player','650','488','9');
+	s1.addParam('allowfullscreen','true');
+	s1.addParam('allowscriptaccess','always');
+	s1.addParam('flashvars','file=/video/arduino-line-follower.mp4');
+	s1.write('preview');
+</script>
 
-<object type="application/x-shockwave-flash" width="650" height="488" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=6a2ff33496&photo_id=4609097466"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=6a2ff33496&photo_id=4609097466" height="488" width="650"></embed></object>
+<p id='preview2'>Player</p>
+<script type='text/javascript' src='/swfobject.js'></script>
+<script type='text/javascript'>
+	var s2 = new SWFObject('/player.swf','player','650','488','9');
+	s2.addParam('allowfullscreen','true');
+	s2.addParam('allowscriptaccess','always');
+	s2.addParam('flashvars','file=/video/arduino-line-follower-1.mp4');
+	s2.write('preview2');
+</script>

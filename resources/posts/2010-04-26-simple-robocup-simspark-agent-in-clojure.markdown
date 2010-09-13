@@ -14,7 +14,15 @@ how to install SimSpark you can checkout their
 pages. (For Mac OS X they provide pre-compiled binaries check out their
 sourceforge download section.)
 
-<object type="application/x-shockwave-flash" width="650" height="406" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=9ab528db10&photo_id=4548107457"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=9ab528db10&photo_id=4548107457" height="406" width="650"></embed></object>
+<p id='preview'>Player</p>
+<script type='text/javascript' src='/swfobject.js'></script>
+<script type='text/javascript'>
+	var s1 = new SWFObject('/player.swf','player','650','406','9');
+	s1.addParam('allowfullscreen','true');
+	s1.addParam('allowscriptaccess','always');
+	s1.addParam('flashvars','file=/video/robocup-simspark-agent.mp4');
+	s1.write('preview');
+</script>
 
      (defn connect [ip port]
        (let [socket (Socket. ip port)

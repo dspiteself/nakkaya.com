@@ -38,8 +38,15 @@ composite nodes exists which shuffle their children prior to execution
 such as the one used in the *Strafe* branch which gives us some degree
 of non determinism.
 
-
-<object type="application/x-shockwave-flash" width="670" height="419" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=ca49759dd2&photo_id=4777243989&hd_default=false"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=ca49759dd2&photo_id=4777243989&hd_default=false" height="419" width="670"></embed></object>
+<p id='preview'>Player</p>
+<script type='text/javascript' src='/swfobject.js'></script>
+<script type='text/javascript'>
+	var s1 = new SWFObject('/player.swf','player','670','419','9');
+	s1.addParam('allowfullscreen','true');
+	s1.addParam('allowscriptaccess','always');
+	s1.addParam('flashvars','file=/video/alter-ego-robocode-2.mp4');
+	s1.write('preview');
+</script>
 
  - [gez.clj](/code/clojure/alter-ego-demo-robocode/gez.clj)
  - [gez.bt](/code/clojure/alter-ego-demo-robocode/gez.bt)

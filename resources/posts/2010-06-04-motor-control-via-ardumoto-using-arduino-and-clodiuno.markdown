@@ -14,7 +14,15 @@ Control for motor attached to OUT 1-2 is connected to digital line 12
 3-4 is connected to digital line 13 (direction) and digital line 11
 (PWM).
 
-<object type="application/x-shockwave-flash" width="660" height="495" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=a4c0a19562&photo_id=4667494778"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=a4c0a19562&photo_id=4667494778" height="495" width="660"></embed></object>
+<p id='preview'>Player</p>
+<script type='text/javascript' src='/swfobject.js'></script>
+<script type='text/javascript'>
+	var s1 = new SWFObject('/player.swf','player','660','495','9');
+	s1.addParam('allowfullscreen','true');
+	s1.addParam('allowscriptaccess','always');
+	s1.addParam('flashvars','file=/video/clodiuno-ardumoto.mp4');
+	s1.write('preview');
+</script>
 
      (ns ardumoto.core
        (:use [clojure.contrib.swing-utils :only [add-action-listener]])

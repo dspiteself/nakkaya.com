@@ -8,7 +8,15 @@ device. I've put together a sample application which uses difference
 between frames to detect movement and perform collision detection with
 objects on the screen.
 
-<object type="application/x-shockwave-flash" width="640" height="400" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=b3cdc9dace&photo_id=4281814684&hd_default=false"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=b3cdc9dace&photo_id=4281814684&hd_default=false" height="400" width="640"></embed></object>
+<p id='preview'>Player</p>
+<script type='text/javascript' src='/swfobject.js'></script>
+<script type='text/javascript'>
+	var s1 = new SWFObject('/player.swf','player','650','406','9');
+	s1.addParam('allowfullscreen','true');
+	s1.addParam('allowscriptaccess','always');
+	s1.addParam('flashvars','file=/video/opencv-motion-detection.mp4');
+	s1.write('preview');
+</script>
 
 [movement-detect.clj](/code/clojure/movement-detect.clj)
 

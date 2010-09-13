@@ -17,13 +17,13 @@ Stuff you will need,
  - [Ardumoto - Motor Driver Shield](http://www.sparkfun.com/commerce/product_info.php?products_id=9213)
  - A cheap RC car
 
-![hardware](http://farm3.static.flickr.com/2628/4170781364_68408bcc0c.jpg)
+![hardware](/images/post/poor-mans-arduino-line-follower-hardware.jpeg)
 
 #### Hardware
 
 Wiring looks like the following,
 
-![line follower](http://farm5.static.flickr.com/4038/4169796553_1e568d9905.jpg)
+![hardware](/images/post/poor-mans-arduino-line-follower-circuit.jpeg)
 
 Fritzing project can be downloaded
 [here](/code/arduino/line-follower/line-follower-1.fzz). Sorry about the
@@ -38,7 +38,7 @@ this project we used, digital pins 5 through 7.
  - Sensor in the middle is connected to digital pin 6
  - Sensor on the right is connected to digital pin 7
 
-![sensors](http://farm3.static.flickr.com/2647/4170781644_49f959c24d.jpg)
+![hardware](/images/post/poor-mans-arduino-line-follower-sensors.jpeg)
 
 An LED is connected to digital pin 8, and a push button is connected to
 digital pin 2, refer to the fritzing diagram for their wiring.
@@ -199,7 +199,12 @@ In the main arduino loop we just call steer function over and over again,
 
 When everything wired and code uploaded, it works like this,
 
-<object type="application/x-shockwave-flash" width="400" height="300" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=86bc46b5b9&photo_id=4163125335"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=86bc46b5b9&photo_id=4163125335" height="300" width="400"></embed></object>
-
-For more pictures and videos check out my flickr
-[set](http://www.flickr.com/photos/nakkaya/sets/72157622790593009/).
+<p id='preview'>Player</p>
+<script type='text/javascript' src='/swfobject.js'></script>
+<script type='text/javascript'>
+	var s1 = new SWFObject('/player.swf','player','400','300','9');
+	s1.addParam('allowfullscreen','true');
+	s1.addParam('allowscriptaccess','always');
+	s1.addParam('flashvars','file=/video/poor-mans-arduino-line-follower.mp4');
+	s1.write('preview');
+</script>

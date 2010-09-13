@@ -3,13 +3,13 @@ title: Etch A Sketch
 tags: clojure arduino clodiuno
 ---
 
-![clodiuno etch a sketch](http://farm5.static.flickr.com/4052/4322207526\_3384ff2e84.jpg)
+![clodiuno etch a sketch](/images/post/clodiuno-etch-a-sketch.jpeg)
 
 A small Sunday hack inspired by the classical children's toy, for this
 project you need two potentiometers, connected to analog pins 0 and 1,
 you can grab the fritzing file [here](/code/clodiuno/sketch/sketch.fz),
 
-![etch a sketch clodiuno](http://farm5.static.flickr.com/4011/4322207530\_259a12f8e2\_o.png)
+![clodiuno etch a sketch](/images/post/clodiuno-etch-a-sketch-circuit.png)
 
 Idea behind the project is simple, we read potentiometers, turn the
 values read into x and y coordinates for the turtle then command turtle

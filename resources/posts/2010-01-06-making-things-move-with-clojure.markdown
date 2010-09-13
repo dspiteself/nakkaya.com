@@ -18,7 +18,7 @@ from an analog input in this case a
 Connections for the board looks like the following, fritzing project is
 also available [here](/code/clodiuno/servo/servo.fz),
 
-![servo setup](http://farm3.static.flickr.com/2682/4249344881\_f068095571\_o.png)
+![servo setup](/images/post/pot-servo-circuit.png)
 
 
 Code is made up of two functions, one of which I stole directly from the
@@ -74,4 +74,12 @@ Now we are ready to read input, map it into an angle, then write it to servo,
  - [servo.clj](/code/clodiuno/servo/servo.clj)
  - [servo.fz](/code/clodiuno/servo/servo.fz)
 
-<object type="application/x-shockwave-flash" width="400" height="300" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=756ac83e82&photo_id=4249343911"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=756ac83e82&photo_id=4249343911" height="300" width="400"></embed></object>
+<p id='preview'>Player</p>
+<script type='text/javascript' src='/swfobject.js'></script>
+<script type='text/javascript'>
+	var s1 = new SWFObject('/player.swf','player','400','300','9');
+	s1.addParam('allowfullscreen','true');
+	s1.addParam('allowscriptaccess','always');
+	s1.addParam('flashvars','file=/video/arduino-servo-clojure.mp4');
+	s1.write('preview');
+</script>

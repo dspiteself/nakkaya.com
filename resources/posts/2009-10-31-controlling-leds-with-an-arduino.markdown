@@ -12,7 +12,7 @@ using a LED, a second LED is used to indicate the end of SOS cycle.
 
 I used the following hook-up,
 
-![circuit](http://farm3.static.flickr.com/2478/4059787347_3566ecebb3.jpg)
+![circuit](/images/post/arduino-led-circuit.jpeg)
 
 Both LED's are connected the same way except to different pins (Digital
 10 and 9). +5V is connected to the resistor which is connected to the +
@@ -22,8 +22,7 @@ ground.
 Any resistor that is bigger than 330 ohms can be used, but keep in mind
 that the smaller the resistance the bigger the glow.
 
-
-![circuit](http://farm4.static.flickr.com/3256/4060493030_5c6e2fd9c0.jpg)
+![circuit](/images/post/arduino-led-circuit-2.jpeg)
 
 Completed circuit looks like the picture above.
 
@@ -49,7 +48,7 @@ element, after each letter we'll have 1 second delay.
     int letterS[] = {0, 0, 0};
     int letterO[] = {1, 1, 1};
 
-To represent the letters, i used an array, 1 to represent a long
+To represent the letters, I used an array, 1 to represent a long
 element, 0 to represent a short element.
 
     void blinkLetter(int* letter){
@@ -103,4 +102,12 @@ signal us that the cycle is complete.
 When the circuit is hooked-up and code uploaded, it should look like
 this.
 
-<object type="application/x-shockwave-flash" width="400" height="300" data="http://www.flickr.com/apps/video/stewart.swf?v=71377" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"> <param name="flashvars" value="intl_lang=en-us&photo_secret=2cedf2491c&photo_id=4060504016"></param> <param name="movie" value="http://www.flickr.com/apps/video/stewart.swf?v=71377"></param> <param name="bgcolor" value="#000000"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/video/stewart.swf?v=71377" bgcolor="#000000" allowfullscreen="true" flashvars="intl_lang=en-us&photo_secret=2cedf2491c&photo_id=4060504016" height="300" width="400"></embed></object>
+<p id='preview'>Player</p>
+<script type='text/javascript' src='/swfobject.js'></script>
+<script type='text/javascript'>
+	var s1 = new SWFObject('/player.swf','player','400','300','9');
+	s1.addParam('allowfullscreen','true');
+	s1.addParam('allowscriptaccess','always');
+	s1.addParam('flashvars','file=/video/arduino-led.mp4');
+	s1.write('preview');
+</script>
