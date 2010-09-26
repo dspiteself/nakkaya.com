@@ -48,10 +48,12 @@ a binary file (video, music etc.) and saving it to a file on disk,
              (do
                (println r "/" size)
                (.write out buffer 0 g)
-               (recur (.read in buffer) (+ r g)))))))
+               (recur (.read in buffer) (+ r g)))))
+         (.close in)
+         (.close out)
+         (.disconnect con)))
 
      (fetch-data "http://google.com")
-
 
 Or if you prefer interacting with the socket directly,
 
