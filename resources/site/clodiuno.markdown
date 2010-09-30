@@ -82,6 +82,7 @@ API, I also have the following hacks using Clodiuno,
  - [ESC Control](/2010/05/21/motor-control-via-esc-using-arduino-and-clodiuno/)
  - [Ardumoto Control](/2010/06/04/motor-control-via-ardumoto-using-arduino-and-clodiuno/)
  - [Using WiShield and Firmata Together](/2010/08/09/wishield-support-for-clodiuno/)
+ - [Clodiuno/Processing ADXL335 Accelerometer](/2010/09/28/clodiuno-processing-adxl335-accelerometer/)
 
 #### Source
 
