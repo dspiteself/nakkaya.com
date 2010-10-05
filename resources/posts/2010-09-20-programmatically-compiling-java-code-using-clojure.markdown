@@ -11,24 +11,32 @@ API](http://download.oracle.com/javase/6/docs/api/javax/tools/package-summary.ht
 hoping it would save me some time later. Below snippet allows you to
 compile and execute Java code from a string,
 
-     (defn javac [src]
+     (defn javac [src & interface]
        (let [name (gensym)
              kind javax.tools.JavaFileObject$Kind/SOURCE
              extension (.extension kind)
              uri (java.net.URI.  (str "string:///dummy/" name extension))
              class-path ["-classpath" (System/getProperty "java.class.path")]
              src (proxy [javax.tools.SimpleJavaFileObject] [uri kind]
-                    (getCharContent 
-                     [_] 
-                     (str "package dummy;" "public class " name " {" src "}")))]
+                   (getCharContent 
+                    [_] 
+                    (if (= :interface interface)
+                      (str "package dummy;" "public interface " name " {" src "}")
+                      (str "package dummy;" "public class " name " {" src "}"))))
+             file-filter (proxy [java.io.FilenameFilter] []
+                           (accept
+                            [dir, fname]
+                            (not (nil? (re-matches
+                                        (re-pattern (str name ".*\\.class"))
+                                        fname)))))
+             dummy-dir (java.io.File. "./dummy")]
          (-> (javax.tools.ToolProvider/getSystemJavaCompiler)
              (.getTask nil nil nil class-path nil [src]) 
              .call)
-         (let [fc (java.io.File. (str name ".class"))
-               fd (java.io.File. "./dummy")] 
-           (if (not (.exists fd)) 
-             (.mkdir fd))
-           (.renameTo fc (java.io.File. fd (str fc))))
+         (if (not (.exists dummy-dir)) 
+           (.mkdir dummy-dir))
+         (doseq [fc (.listFiles (java.io.File. "./") file-filter)] 
+           (.renameTo fc (java.io.File. dummy-dir (str fc))))
          name))
 
 This scheme isn't perfect, compiled class will be written to the current
