@@ -5,14 +5,14 @@ tags: clojure jna c
 
 I tried to pick up
 [JNI](http://en.wikipedia.org/wiki/Java_Native_Interface) multiple times
-but in the end, i got bored. There is so much boiler plate code that you
-have to write even for trivial things. A while ago i stumbled upon
+but in the end, I got bored. There is so much boiler plate code that you
+have to write even for trivial things. A while ago I stumbled upon
 a project called [JNA](https://jna.dev.java.net/) (Java Native Access),
 it allows you to access [native shared
 libraries](http://en.wikipedia.org/wiki/Shared_library#Shared_libraries)
 from Java without using the Java Native Interface. I have been meaning
-to play with it for a while, last night i had some free time, i thought
-i give it a shot.
+to play with it for a while, last night i had some free time, I thought
+I give it a shot.
 
 I have created two implementations, first one is the
 [documented](http://en.wikipedia.org/wiki/Java_Native_Access) way of
@@ -32,7 +32,7 @@ In order to represent this struct, in Java one would use,
     // Equivalent JNA mapping
     class Point extends Structure { public int x, y; }
 
-which can't be done in Clojure, at first i thought i was stuck, but
+which can't be done in Clojure, at first I thought I was stuck, but
 turns out there are workarounds.
 
 First, documented way of calling printf,
@@ -53,9 +53,8 @@ Obvious problem here, is that this will only work for simple functions,
 pretty much all functions that does something interesting, will expect
 some sort of structure as a parameter which we can not emulate in
 Clojure.
-
  
-While digging through the documentation, i found the
+While digging through the documentation, I found the
 [Function](https://jna.dev.java.net/javadoc/com/sun/jna/Function.html)
 class which allows you to make calls without creating an interface, with
 it we can now pass variables as an array which allows us to call printf
@@ -76,9 +75,9 @@ With a simple macro we can now make any native call we want,
     (jna-call :c "rmdir" Integer "/tmp/jnatesttempas")
 
 
-Armed with this macro, i thought i can solve the age old Java question,
+Armed with this macro, I thought I can solve the age old Java question,
 How to find the free space available on the disk? (Pre 1.6). This is
-where i hit the second wall, the call to get free space on my Mac OS X
+where I hit the second wall, the call to get free space on my Mac OS X
 is,
 [statvfs](http://developer.apple.com/mac/library/documentation/Darwin/Reference/ManPages/man3/statvfs.3.html) 
 which expects a string pointing to the directory and a struct that it
