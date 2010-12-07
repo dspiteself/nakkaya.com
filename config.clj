@@ -6,4 +6,5 @@
  :default-template "default.clj"
  :encoding "UTF-8"
  :posts-per-page 2
- :blog-as-index true]
+ :blog-as-index true
+ :emacs "/Users/nakkaya/Dropbox/Applications/Emacs.app/Contents/MacOS/Emacs"]

@@ -101,7 +101,7 @@
 	(map 
 	 #(let [f %
 		url (static.core/post-url f)
-		[metadata _] (static.io/read-markdown f)
+		[metadata _] (static.io/read-doc f)
 		date (static.core/parse-date 
 		      "yyyy-MM-dd" "dd MMM yyyy" 
 		      (re-find #"\d*-\d*-\d*" (str f)))]
