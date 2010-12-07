@@ -21,7 +21,12 @@
 	    :href (str "http://nakkaya.com" (:url metadata))}])
 
   [:script {:src "/highlight.pack.js", :type "text/javascript"}]
-  [:script {:type "text/javascript"} "hljs.initHighlightingOnLoad();"]
+  [:script {:src "/jquery.js", :type "text/javascript"}]
+  [:script {:type "text/javascript"}
+   "$(document).ready(function() {
+        $(\"pre\").wrapInner(\"<code></code>\");
+        hljs.initHighlightingOnLoad();
+    });"]
   [:title (:title metadata)]]
  [:body
   "<script type=\"text/javascript\">
