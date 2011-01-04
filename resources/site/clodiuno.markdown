@@ -54,7 +54,7 @@ clojars.
                       [org.clojure/clojure-contrib "1.1.0"]
                       [clodiuno "0.0.2-SNAPSHOT"]]
        :native-dependencies [[org.clojars.nakkaya/rxtx-macosx-native-deps "2.1.7"]]
-       :dev-dependencies [[native-deps "1.0.0"]])
+       :dev-dependencies [[native-deps "1.0.5"]])
 
 #### For Firmata Interface
 
@@ -83,6 +83,7 @@ API, I also have the following hacks using Clodiuno,
  - [Ardumoto Control](/2010/06/04/motor-control-via-ardumoto-using-arduino-and-clodiuno/)
  - [Using WiShield and Firmata Together](/2010/08/09/wishield-support-for-clodiuno/)
  - [Clodiuno/Processing ADXL335 Accelerometer](/2010/09/28/clodiuno-processing-adxl335-accelerometer/)
+ - [Duck Hunt Experiment](/2011/01/04/duck-hunt-experiment/)
 
 #### Source
 
