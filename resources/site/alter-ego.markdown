@@ -2,6 +2,7 @@
 title: alter-ego - A Reactive AI Library
 description: alter-ego is a reactive AI library based on the concept of behavior trees.
 tags: clojure alter-ego behavior-tree
+flatter: yes
 ---
 
 alter-ego is a reactive AI library for Clojure based on the concept of

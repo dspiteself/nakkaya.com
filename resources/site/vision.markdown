@@ -2,6 +2,7 @@
 title: Vision - OpenCV wrapper for Clojure
 description: Vision is a OpenCV wrapper for Clojure.
 tags: clojure opencv
+flatter: yes
 ---
 
 Vision is a OpenCV wrapper for Clojure.
@@ -44,9 +45,3 @@ Project is hosted at github, grab it
 #### License
 
 Beerware Revision 42
-
-<script type="text/javascript">
-	var flattr_url = 'http://nakkaya.com/vision.html';
-</script>
-<script src="http://api.flattr.com/button/load.js" type="text/javascript"></script>
-<br>

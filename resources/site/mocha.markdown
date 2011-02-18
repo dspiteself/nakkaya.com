@@ -2,6 +2,7 @@
 title: Mocha: ARPWatch / Log Watcher for Mac OS X and Linux
 tags: mocha arp
 description: Mocha: ARPWatch / Log Watcher for Mac OS X and Linux
+flatter: yes
 ---
 
 ![Mocha](images/mocha/mocha256.png "Mocha") Mocha is a tool that monitors
@@ -82,9 +83,3 @@ Application logo by [VisualPharm](http://www.visualpharm.com)
 For bug reports/fixes/help See [Contact](/contact.html)
 
 Any feature requests are also welcome see [Contact](/contact.html)
-
-<script type="text/javascript">
-	var flattr_url = 'http://nakkaya.com/mocha.html';
-</script>
-<script src="http://api.flattr.com/button/load.js" type="text/javascript"></script>
-<br>

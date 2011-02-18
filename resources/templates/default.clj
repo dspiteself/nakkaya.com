@@ -82,7 +82,8 @@
      	[:div {:class "post-tags"} "Tags: "] 
      	(.split (:tags metadata) " ")))
      
-     (if (= (:type metadata) :post)
+     (if (or (= (:type metadata) :post)
+             (:flatter metadata))
        (let [title (.replace (:title metadata) \' \space)]
 	 (str "<script type=\"text/javascript\">"
 	      "var flattr_btn = 'compact';"
@@ -96,6 +97,8 @@
 	      "var flattr_hide = 'true';"
 	      "</script>"
 	      "<script src=\"http://api.flattr.com/button/load.js\" type=\"text/javascript\"></script>")))]
+    
+    (if (:flatter metadata) [:br])
 
     (if (= (:type metadata) :post)
       [:div

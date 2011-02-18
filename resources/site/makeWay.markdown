@@ -1,6 +1,7 @@
 ---
 title: makeWay
 tags: makeWay arp
+flatter: yes
 ---
 
 makeWay will poison the gateway's IP entry for all hosts in the
