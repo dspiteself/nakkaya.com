@@ -34,6 +34,10 @@ For Linux
     /sbin/iptables -A INPUT -j LOG --log-prefix "IPTABLES: " \\
           -m limit --limit \$LOGLIMIT --limit-burst \$LOGLIMITBURST
 
+Gentoo users can compile Mocha from source using,
+
+    # sudo layman -a betagarden
+    # sudo emerge -av net-misc/mocha
 
 #### Requirements
 
@@ -51,10 +55,14 @@ from source use target app in OS X which will build and create an
 application bundle, and target linux on linux which will just build it
 in order to create a jar file use target jar after target linux.
 
+    # ant linux 
+    # ant jar
+    # cd build && java -jar mocha.jar
+
 
 #### Download
  - Application - 
-[Mac OS X](http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.1.dmg)
+[Mac OS X](http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.1.dmg)/
 [Linux](http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.1.jar)
  - [Source Code](http://github.com/nakkaya/mocha/tree/master) 
 (Released under GPL via GitHub)
@@ -68,15 +76,6 @@ in order to create a jar file use target jar after target linux.
 ##### Arp Table 
 
 ![Arp Table](images/mocha/gui2.png "Arp Table")
-
-#### Changelog
- - Oct 10, 2009 - Minor Bug Fixes.
- - May 31, 2009  - New interface, Option to import/export arp table,
-   Notifications can now be delivered via mail.
- - April 12, 2009 - Added option to suppress new host messages.
- - December 20 , 2008 - Added Network info window.
- - November 14 , 2008 - New version with minor bug fixes and debian
-   compatibility.
 
 Application logo by [VisualPharm](http://www.visualpharm.com)
 
