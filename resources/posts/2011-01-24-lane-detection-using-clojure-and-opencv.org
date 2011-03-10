@@ -110,6 +110,12 @@ frame.
 Instead of a camera we will be capturing from a video file, we
 initialize the capture and call process-frame for each frame.
 
+#+BEGIN_QUOTE
+EDIT: I did not record the following video, it belongs to Kenneth
+Dawson-Howe. I made a copy of it for people to play with the code in
+case the original gets deleted.
+#+END_QUOTE
+
 #+BEGIN_HTML
 <ul>
  <li><a href="/video/StayingInLane_MPEG4.avi">StayingInLane_MPEG4.avi</a></li>
