@@ -37,7 +37,7 @@ For Mac OS X users they are located inside the application bundle,
 
     open /Applications/Arduino.app/Contents/Resources/Java/
 
-Also if you are on Mac OS X, make sure you use 32 bit Java 1.5.0,
+Also if you are on Mac OS X, make sure you use 32 bit Java,
 otherwise RXTX won't work.
 
 #### Dependencies (WiShield)
@@ -51,11 +51,14 @@ for now only Mac OS X native dependencies are available on
 clojars.
 
      (defproject arduino-project "1.0.0-SNAPSHOT"
-       :dependencies [[org.clojure/clojure "1.1.0"]
-                      [org.clojure/clojure-contrib "1.1.0"]
-                      [clodiuno "0.0.2-SNAPSHOT"]]
+       :dependencies [[org.clojure/clojure "1.2.0"]
+                      [org.clojure/clojure-contrib "1.2.0"]
+                      [clodiuno "0.0.3-SNAPSHOT"]]
        :native-dependencies [[org.clojars.nakkaya/rxtx-macosx-native-deps "2.1.7"]]
-       :dev-dependencies [[native-deps "1.0.5"]])
+       :dev-dependencies [[native-deps "1.0.5"]]
+       :jvm-opts ["-Djava.library.path=./native/macosx/x86/"
+                  "-d32"
+                  "-server"])
 
 #### For Firmata Interface
 
