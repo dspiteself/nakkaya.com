@@ -131,7 +131,11 @@ object *fn_cond (object *args, object *env) {
 
   while (args != NULL && args->type == CONS){
     object *list = car(args);
-    object *pred = eval(car(list), env);
+    object *pred = nil;
+
+    if (car(list) != nil)
+      pred = eval(car(list), env);
+
     object *ret = car(cdr(list));
 
     if(pred != nil)
