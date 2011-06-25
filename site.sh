@@ -24,9 +24,6 @@ then
 
     rm -rf /tmp/site/
     java -jar static-1.0.0-SNAPSHOT-standalone.jar -b
-
-    rm -rf /tmp/site/
-    mv site/ /tmp/
     mv static-1.0.0-SNAPSHOT-standalone.jar /tmp/
 
     git checkout gh-pages
