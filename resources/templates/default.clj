@@ -122,7 +122,7 @@
    [:div
     {:id "footer"}
     [:a {:href "/rss-feed"} " RSS Feed"]
-    [:p "&copy; 2010" 
+    [:p "&copy; 2011" 
      [:a {:href "/contact.html"} " Nurullah Akkaya"]]]]
   ;;
   ;;
