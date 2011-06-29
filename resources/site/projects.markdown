@@ -8,6 +8,7 @@ description: Projects that I'm working on.
  - [Mocha](/mocha.html) - Mocha: ARPWatch / Log Watcher for Mac OS X
 and Linux 
  - [makeWay](/makeWay.html)
+ - [ferret](/2011/06/29/ferret-an-experimental-clojure-compiler/) - An Experimental Clojure Compiler
 
 #### Libraries
 
