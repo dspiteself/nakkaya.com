@@ -16,5 +16,4 @@ You can reach me at [nurullah@nakkaya.com](mailto:nurullah@nakkaya.com
 #### Other Places I am At
 
  - [Github](http://github.com/nakkaya)
- - [Flickr](http://www.flickr.com/photos/nakkaya/sets/)
  - [Twitter](http://twitter.com/nakkaya)
