@@ -7,4 +7,4 @@
  :encoding "UTF-8"
  :posts-per-page 2
  :blog-as-index true
- :emacs "/Applications/Emacs.app/Contents/MacOS/Emacs"]
+ :emacs "/usr/bin/emacs"]

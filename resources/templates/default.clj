@@ -27,7 +27,7 @@
         $(\"pre\").wrapInner(\"<code></code>\");
         hljs.initHighlightingOnLoad();
     });"]
-  [:title (:title metadata)]]
+  [:title (str (:title metadata) " (by Nurullah Akkaya)")]]
  [:body
   "<script type=\"text/javascript\">
   var _gaq = _gaq || [];
@@ -84,7 +84,7 @@
      
      (if (or (= (:type metadata) :post)
              (:flatter metadata))
-       (let [title (.replace (:title metadata) \' \space)]
+       (let [title (.replace (str (:title metadata) " (by Nurullah Akkaya)") \' \space)]
 	 (str "<script type=\"text/javascript\">"
 	      "var flattr_btn = 'compact';"
 	      "var flattr_uid = '27677';"
@@ -123,7 +123,7 @@
     {:id "footer"}
     [:a {:href "/rss-feed"} " RSS Feed"]
     [:p "&copy; 2011" 
-     [:a {:href "/contact.html"} " Nurullah Akkaya"]]]]
+     [:a {:href "http://nakkaya.com"} " Nurullah Akkaya"]]]]
   ;;
   ;;
   (if (= (:type metadata) :post) 
