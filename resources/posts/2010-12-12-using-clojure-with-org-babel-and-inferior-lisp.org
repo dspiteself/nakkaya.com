@@ -45,6 +45,14 @@ confirmation before every evaluation you need to add the following,
   (setq org-confirm-babel-evaluate nil)
 #+END_SRC
 
+and to make org-mode use the same window for editing (otherwise it
+will rearrange windows everytime you edit source effectively hiding
+REPL),
+
+#+begin_src emacs-lisp
+  (setq org-src-window-setup 'current-window)
+#+end_src
+
 Thats pretty much all the setup needed, assuming you have a org file
 with the following code block in it,
 
