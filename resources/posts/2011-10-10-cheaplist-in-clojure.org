@@ -1,5 +1,5 @@
 #+title: Cheaplist in Clojure
-#+tags: clojure
+#+tags: clojure path-finding
 
 Following is the implementation of the cheap list data structure from
 [[http://www.aiwisdom.com/bookshelf_aiwisdom.html][AI Game Programming Wisdom]] (Lighting-Fast A*), a cheap-list

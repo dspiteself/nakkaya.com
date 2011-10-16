@@ -1,5 +1,5 @@
 #+title: Path Finding Using A-Star in Clojure
-#+tags: clojure
+#+tags: clojure path-finding
 
 For a recent project, I had to implement A* (A-Star) in Clojure, since
 it's a very popular path finding algorithm used in gaming I thought it
