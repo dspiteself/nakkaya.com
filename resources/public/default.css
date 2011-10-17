@@ -68,12 +68,18 @@ blockquote {
 pre { 
     font-family: Monaco, Courier;
     background: #191919;
-    border: dashed 2px #e5e5e5;
     width: 650px;
     padding: 5px;
     font-size:1em;
     line-height: 2em;
     clear:both;
+
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.23);
+    -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.23);
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.23);
 }
 
 pre code { 
