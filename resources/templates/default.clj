@@ -24,7 +24,7 @@
   [:script {:src "/jquery.js", :type "text/javascript"}]
   [:script {:type "text/javascript"}
    "$(document).ready(function() {
-        $(\"pre\").wrapInner(\"<code></code>\");
+        $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
         hljs.initHighlightingOnLoad();
     });"]
   [:title (str (:title metadata) " (by Nurullah Akkaya)")]]

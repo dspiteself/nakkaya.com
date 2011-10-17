@@ -7,4 +7,11 @@
  :encoding "UTF-8"
  :posts-per-page 2
  :blog-as-index true
- :emacs "/Applications/Emacs.app/Contents/MacOS/Emacs"]
+ :emacs "/opt/local/bin/emacs"
+ :emacs-eval ['(font-lock-mode)
+              '(require 'clojure-mode)
+              '(set-face-foreground 'font-lock-string-face "#afafff")
+              '(set-face-foreground 'font-lock-keyword-face "#ff5f00")
+              '(set-face-foreground 'font-lock-function-name-face "#d7af00")
+              '(set-face-foreground 'font-lock-builtin-face "#afd700")
+              '(set-face-foreground 'font-lock-comment-face "#008787")]]
