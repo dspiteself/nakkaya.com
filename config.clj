@@ -2,7 +2,7 @@
  :site-description "Random bits and pieces on stuff that I find interesting."
  :site-url "http://nakkaya.com"
  :in-dir "resources/"
- :out-dir "/tmp/site/"
+ :out-dir "/Users/nakkaya/Dropbox/www/nakkaya.com/"
  :default-template "default.clj"
  :encoding "UTF-8"
  :posts-per-page 2
