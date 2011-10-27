@@ -21,4 +21,4 @@ with this scheme.
 
 Finally append your public key to the available keys,
 
-    $ cat id_dsa.pub >> .ssh/authorized_keys
+    $ cat id_rsa.pub >> .ssh/authorized_keys
