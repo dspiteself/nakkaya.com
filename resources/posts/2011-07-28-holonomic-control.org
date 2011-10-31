@@ -13,17 +13,23 @@ other motors. Speed doesn't matter, just the ratios and to rotate at
 some particular speed, we must add or subtract equally from the motor
 speed of each motor.
 
-These ratios can be calculated using the following formula assuming /n >
-3/, 
+These ratios can be calculated using the following formula assuming /n
+\ge 3/,
 
-|   |                 |       |   | \lceil  | -- sin\theta_1 cos\theta_1 1 | \rceil  |        |   |             |     |
-| [ | v_1 v_2 v_3 v_4 | ]^T = |   |         | -- sin\theta_2 cos\theta_2 1 |         | \times | [ | v_x v_y R_w | ]^T |
-|   |                 |       |   |         | ..   ..   ..  ..   ..   ..   |         |        |   |             |     |
-|   |                 |       |   | \lfloor | -- sin\theta_n cos\theta_n 1 | \rfloor |        |   |             |     |
+#+begin_html
+  \[
+  \begin{bmatrix} v_1&v_2&v_3&v_4 \end{bmatrix}^T = 
+  \begin{bmatrix}
+    -sin\theta_1&cos\theta_1&1\\
+    -sin\theta_2&cos\theta_2&1\\
+    .. & .. & .. \\
+    -sin\theta_n&cos\theta_n&1\\
+  \end{bmatrix}
+  \times
+  \begin{bmatrix} v_x&v_y&R_W \end{bmatrix}^T
+  \]
+#+end_html
 
-#+BEGIN_HTML
-</br>
-#+END_HTML
 
 The idea is really simple, in a nutshell each motor pushes the robot
 in two directions /X/ and /Y/ (their /sin/ and /cos/
@@ -82,15 +88,17 @@ base motor speed.
 Or calculate proper velocity that will get you to your target. Above
 is the arrive behavior from [[http://www.red3d.com/cwr/steer/][Steering Behaviors For Autonomous
 Characters]], you can then convert that velocity to motor speeds using the
-following formula, assuming your velocity is in meters/second you can
-convert it to radians/second using,
+following formula, assuming your velocity is in \(\frac{meter}{sec}\) you can
+convert it to \(\frac{radian}{sec}\) using,
 
-W = (2 * v) / d
+\begin{equation}
+  W = \frac{2 \times v}{d}
+\end{equation}
 
 where,
 
-   - w -> angular speed (rad/sec)
-   - v -> linear speed (meter/sec)
+   - w -> angular speed (\(\frac{radian}{sec}\))
+   - v -> linear speed (\(\frac{meter}{sec}\))
    - d -> diameter (meter)
 
 #+begin_src clojure

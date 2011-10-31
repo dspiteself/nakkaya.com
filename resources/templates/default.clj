@@ -20,6 +20,8 @@
     [:link {:rel "canonical" 
 	    :href (str "http://nakkaya.com" (:url metadata))}])
 
+  [:script {:src "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML",
+            :type "text/javascript"}]
   [:script {:src "/highlight.pack.js", :type "text/javascript"}]
   [:script {:src "/jquery.js", :type "text/javascript"}]
   [:script {:type "text/javascript"}
