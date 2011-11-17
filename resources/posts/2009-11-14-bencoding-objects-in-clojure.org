@@ -2,8 +2,8 @@
 #+tags: clojure bencode
 
 I plan on playing with the Bittorrent protocol, I already have a
-[[http://nakkaya.com/2009/11/02/decoding-bencoded-streams-in-clojure/][bencode decoder]] to play with torrent files, but since i need to
-communicate with trackers, i need encoding. This post will walk
+[[http://nakkaya.com/2009/11/02/decoding-bencoded-streams-in-clojure/][bencode decoder]] to play with torrent files, but since I need to
+communicate with trackers, I need encoding. This post will walk
 through the steps required to encode objects using bencoding,
 
 #+begin_src clojure

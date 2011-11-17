@@ -89,7 +89,7 @@ to have a more uniform distribution of keys on the hash ring.
 #+end_src
 
 Creating the consistent hash is pretty straight forward, for every node
-we want to add, we add *node\*replicas* number of points to the map, when
+we want to add, we add node replicas number of points to the map, when
 we want to remove a node we just reverse the process.
 
 #+begin_src clojure

@@ -1,14 +1,9 @@
----
-title: Distributed Clojure Using RMI
-tags: clojure rmi distributed-computing
----
+#+title: Distributed Clojure Using RMI
+#+tags: clojure rmi distributed-computing
 
-The [Java Remote Method Invocation
-API](http://java.sun.com/javase/technologies/core/basic/rmi/index.jsp),
-or RMI is the Java way of doing [remote procedure
-calls](http://en.wikipedia.org/wiki/Remote_procedure_call) (RPC). Remote
-Method Invocation (RMI) facilitates object function calls between [Java
-Virtual Machines](http://en.wikipedia.org/wiki/Java_Virtual_Machine)
+The [[http://java.sun.com/javase/technologies/core/basic/rmi/index.jsp][Java Remote Method Invocation API]], or RMI is the Java way of doing
+[[http://en.wikipedia.org/wiki/Remote_procedure_call][remote procedure calls]] (RPC). Remote Method Invocation (RMI)
+facilitates object function calls between [[http://en.wikipedia.org/wiki/Java_Virtual_Machine][Java Virtual Machines]]
 (JVMs). JVMs can be located on separate computers, one JVM can invoke
 methods belonging to an object stored in another JVM. I have been
 meaning to play with RMI from Clojure for a while, so I have put

@@ -83,7 +83,7 @@ map. There are various map projections with different usages, and
 specific advantages and disadvantages (for more info read [[http://www.radicalcartography.net/?projectionref][this]]), the one we
 will be using is called [[http://en.wikipedia.org/wiki/Equirectangular_projection][Equirectangular projection]]. With
 this projection latitudes and longitudes can be mapped directly onto the
-cartesian coordinate system. Wikipedia has a [[http://en.wikipedia.org/wiki/File:Afghanistan_location_map.svg][map of Afghanistan]]
+cartesian coordinate system. Wikipedia has a map of Afghanistan
 that uses Equirectangular projection covering, 
 
  - N: 38.8° N
@@ -168,6 +168,3 @@ All woundings,
 #+begin_html
   <p><img src="/images/post/incanter-all-woundings.png" alt="incanter-all-woundings" /></p>
 #+end_html
-
- - [[https://github.com/nakkaya/war-logs/blob/master/resources/war-log.xls][war-log.xls]]
- - [[https://github.com/nakkaya/war-logs/blob/master/resources/afghan.png][afghan.png]]

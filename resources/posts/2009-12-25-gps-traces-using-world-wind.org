@@ -1,7 +1,5 @@
----
-title: GPS Traces Using World Wind
-tags: clojure world-wind
----
+#+title: GPS Traces Using World Wind
+#+tags: clojure world-wind
 
 I have a lot of [[http://en.wikipedia.org/wiki/GPS_eXchange_Format][GPX]] files lying around from various biking trips. I
 don't have much use for them other than loading them in to Google

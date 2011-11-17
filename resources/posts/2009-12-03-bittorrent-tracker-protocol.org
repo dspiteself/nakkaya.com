@@ -78,8 +78,7 @@ long. Result is a hash such as the following,
 #+end_example
 
 If you don't pay attention to the spec and send this directly to tracker
-you will get an error this should be in [URL
-Encoded](http://en.wikipedia.org/wiki/Percent-encoding) form. Padding
+you will get an error this should be in [[http://en.wikipedia.org/wiki/Percent-encoding][URL Encoded]] form. Padding
 every two chars with % sign also doesn't work, been there done that
 don't waste your time. Any hex in the hash that corresponds to a
 unreserved character should be replaced, 

@@ -1,7 +1,5 @@
----
-title: Visualizing Maps Using Incanter
-tags: incanter clojure
----
+#+title: Visualizing Maps Using Incanter
+#+tags: incanter clojure
 
 When I first saw [[http://en.wikipedia.org/wiki/Mathematica][Mathematica]]'s [[http://documents.wolfram.com/mathematica/Add-onsLinks/StandardPackages/Miscellaneous/WorldPlot.html][WorldPlot]] function I was impressed, its
 a nice way to visualize various forms of geographical data, for some
