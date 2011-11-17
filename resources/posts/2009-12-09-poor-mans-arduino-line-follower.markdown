@@ -21,14 +21,6 @@ Stuff you will need,
 
 #### Hardware
 
-Wiring looks like the following,
-
-![hardware](/images/post/poor-mans-arduino-line-follower-circuit.jpeg)
-
-Fritzing project can be downloaded
-[here](/code/arduino/line-follower/line-follower-1.fzz). Sorry about the
-crappy diagram, but I just suck at it.
-
 Two sensors track the black area to the sides, one sensor tracks the
 white line in the middle. Each sensor has 3 pins on them, VIN GROUND and
 OUT. VIN and GROUND goes to +5V and GROUND, OUT goes to digital pin. For
@@ -37,8 +29,6 @@ this project we used, digital pins 5 through 7.
  - Sensor on the left is connected to digital pin 5
  - Sensor in the middle is connected to digital pin 6
  - Sensor on the right is connected to digital pin 7
-
-![hardware](/images/post/poor-mans-arduino-line-follower-sensors.jpeg)
 
 An LED is connected to digital pin 8, and a push button is connected to
 digital pin 2, refer to the fritzing diagram for their wiring.
