@@ -75,23 +75,23 @@ using the draw function. Because there will be no output you need to run
 the script in REPL and call draw to look at it.
 
 #+begin_src clojure
-  (defn point-to-coordinate [width height [real imag]]
-    [(int (+ (* 0.3 width (+ real 0.5)) (/ width 2)))
-     (int (+ (* 0.3 height imag) (/ height 2)))])
+  (defn point-to-coordinate [size [real imag]]
+    [(int (+ (* 0.3 size (+ real 0.5)) (/ size 2)))
+     (int (+ (* 0.3 size imag) (/ size 2)))])
   
-  (defn buffer-set [{width :width height :height buffer :buffer} point]
-    (let  [[x y] (point-to-coordinate width height point)]
+  (defn buffer-set [{size :size buffer :buffer} point]
+    (let  [[x y] (point-to-coordinate size point)]
       (if (and (> x 0)
                (> y 0)
-               (< x width)
-               (< y height))
+               (< x size)
+               (< y size))
         (aset buffer y x (+ 1 (aget buffer y x))))))
   
   (defn generate [fractal]
     (let  [{:keys [buffer iteration]} fractal]
       (doseq [point (iterate inc 1)]
-        (let  [x    (- (* 6 (rand)) 3)
-               y    (- (* 6 (rand)) 3)
+        (let  [x    (- (rand 6) 3)
+               y    (- (rand 6) 3)
                path (calc-path x y iteration)]
   
           (if (= (mod point 1000000) 0)
@@ -111,8 +111,8 @@ the mandelbrot set,
     [iteration max-iterations]
     (let [gray (int (/ (* iteration 255) max-iterations))
           r    gray
-          g    (Math/min (int ( / (* 5 ( * gray gray)) 255)) 255)
-          b    (Math/min (int (+ 40 ( / (* 5 (* gray gray)) 255))) 255)]
+          g    (min (int ( / (* 5 ( * gray gray)) 255)) 255)
+          b    (min (int (+ 40 ( / (* 5 (* gray gray)) 255))) 255)]
       (try
         (Color. r g b)
         (catch Exception e (new Color 0 0 0)))))
@@ -122,34 +122,31 @@ We iterate through the array paint everything on an BufferedImage then
 draw that on a JLabel.
 
 #+begin_src clojure
-  (defn paint-canvas [buffer width height graphics]
+  (defn paint-canvas [buffer size graphics]
     (let  [biggest  (apply max (map #(apply max %) buffer))]
-      (doseq [y (range height)
-              x (range width)]
+      (doseq [y (range size)
+              x (range size)]
         
-        (if  (> (aget buffer y x) 0)
-          (do
-            (.setColor graphics (calc-pixel-color (aget buffer y x) biggest))
-            (.drawLine graphics x y x y))))))
+        (.setColor graphics (calc-pixel-color (aget buffer y x) biggest))
+        (.drawLine graphics x y x y))))
   
-  (defn draw [{buffer :buffer height :height width :width}]
-    (let [image  (BufferedImage. width height BufferedImage/TYPE_INT_RGB)
+  (defn draw [{buffer :buffer size :size}]
+    (let [image  (BufferedImage. size size BufferedImage/TYPE_INT_RGB)
           canvas (proxy [JLabel] []
                    (paint [g] (.drawImage g image 0 0 this)))]
   
-      (paint-canvas buffer width height (.createGraphics image))
+      (paint-canvas buffer size (.createGraphics image))
   
       (doto (JFrame.)
         (.add canvas)
-        (.setSize (Dimension. width height))
+        (.setSize (Dimension. size size))
         (.show))))
 #+end_src
 
 To play with the script, define a fractal
 
 #+begin_src clojure
-  (def fractal {:buffer (make-array Integer/TYPE 800 800)
-                :width 800 :height 800 :iteration 50})
+  (def fractal {:buffer (make-array Integer/TYPE 800 800) :size 800 :iteration 50})
 #+end_src
 
 Start calculations,
