@@ -22,8 +22,8 @@ Now specs out of the way, let's dissect the code,
             (= (char indicator) \d) (decode-map stream))))
 #+end_src
 
-decode will read one byte from the stream determine it's type and call
-the appropirate function.
+decode will read one byte from the stream determine its type and call
+the appropriate function.
 
 #+begin_src clojure
   (defn- decode-number [stream delimeter & ch]

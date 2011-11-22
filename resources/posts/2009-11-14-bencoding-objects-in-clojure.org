@@ -43,7 +43,7 @@ An encoded string has the format,
   4:spam -> "spam" 
 #+end_example
 
-so what we do is we turn the string in to a byte array, calculate it's
+so what we do is we turn the string in to a byte array, calculate its
 length write everything to stream according to the format.
 
 #+begin_src clojure
