@@ -82,25 +82,7 @@
      	(fn[h v]
      	  (conj h [:a {:href (str "/tags/#" v)} (str v " ")]))
      	[:div {:class "post-tags"} "Tags: "] 
-     	(.split (:tags metadata) " ")))
-     
-     (if (or (= (:type metadata) :post)
-             (:flatter metadata))
-       (let [title (.replace (str (:title metadata) " (by Nurullah Akkaya)") \' \space)]
-	 (str "<script type=\"text/javascript\">"
-	      "var flattr_btn = 'compact';"
-	      "var flattr_uid = '27677';"
-	      "var flattr_tle = '" title "';"
-	      "var flattr_dsc = '" title "';"
-	      "var flattr_cat = 'text';"
-	      "var flattr_lng = 'en_GB';"
-	      "var flattr_tag = '" (:tags meta) "';"
-	      "var flattr_url = 'http://nakkaya.com" (:url metadata) "';"
-	      "var flattr_hide = 'true';"
-	      "</script>"
-	      "<script src=\"http://api.flattr.com/button/load.js\" type=\"text/javascript\"></script>")))]
-    
-    (if (:flatter metadata) [:br])
+     	(.split (:tags metadata) " ")))]
 
     (if (= (:type metadata) :post)
       [:div

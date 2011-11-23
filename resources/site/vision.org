@@ -1,7 +1,6 @@
 #+title: Vision - OpenCV wrapper for Clojure
 #+tags: clojure opencv
 #+description: Vision is a OpenCV wrapper for Clojure.
-#+flatter: yes
 
 Vision is a OpenCV wrapper for Clojure.
 

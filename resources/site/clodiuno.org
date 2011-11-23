@@ -1,7 +1,6 @@
 #+title: Clodiuno - Clojure API for Arduino
 #+tags: clojure clodiuno arduino
 #+description: Clodiuno is a Clojure API for Arduino.
-#+flatter: yes
 
 Clodiuno is a library that allows you to control Arduino using Clojure
 allowing Clojure developers to interface with real world using Arduino

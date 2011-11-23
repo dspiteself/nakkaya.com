@@ -1,7 +1,6 @@
 #+title: net-eval - Simple distributed computing.
 #+tags: clojure net-eval distributed-computing
 #+description: Simple and powerful distributed computing.
-#+flatter: yes
 
 net-eval allows you to evaluate expressions in parallel on remote
 network nodes. net-eval handles all the work necessary to communicate to

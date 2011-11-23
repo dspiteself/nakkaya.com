@@ -1,6 +1,5 @@
 #+title: makeWay
 #+tags: makeWay arp
-#+flatter: yes
 
 makeWay will poison the gateway's IP entry for all hosts in the
 network. It will replace the victim's gateway ARP entry with the hosts

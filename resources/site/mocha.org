@@ -1,7 +1,6 @@
 #+title: Mocha: ARPWatch / Log Watcher for Mac OS X and Linux
 #+tags: mocha arp
 #+description: Mocha: ARPWatch / Log Watcher for Mac OS X and Linux
-#+flatter: yes
 
 Mocha is a tool that monitors your network activity and keeps a record
 of Ip / Mac address pairings and firewall logs. It will give a warning
