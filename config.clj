@@ -5,8 +5,6 @@
  :out-dir "/Users/nakkaya/Dropbox/www/nakkaya.com/"
  :default-template "default.clj"
  :encoding "UTF-8"
- ;;:posts-per-page 2
- ;;:blog-as-index true
  :emacs "/opt/local/bin/emacs"
  :emacs-eval ['(font-lock-mode)
               '(require 'clojure-mode)
