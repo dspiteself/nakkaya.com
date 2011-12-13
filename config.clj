@@ -6,7 +6,10 @@
  :default-template "default.clj"
  :encoding "UTF-8"
  :emacs "/opt/local/bin/emacs"
- :emacs-eval ['(font-lock-mode)
+ :emacs-eval ['(add-to-list 'load-path "~/Dropbox/code/emacs/ext/org-mode/lisp/")
+              '(require 'org)
+              '(require 'ob)
+              '(font-lock-mode)
               '(require 'clojure-mode)
               '(set-face-foreground 'font-lock-string-face "#afafff")
               '(set-face-foreground 'font-lock-keyword-face "#ff5f00")
