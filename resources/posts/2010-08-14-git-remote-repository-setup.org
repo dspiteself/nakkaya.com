@@ -1,7 +1,7 @@
 #+title: Git Remote Repository Setup
 #+tags: git
 
-Note to self, make sure everyone can [[/2009/05/20/passwordless-logins-with-ssh/][login without a password]]. Setup
+Note to self, make sure everyone can [[http://nakkaya.com/2009/05/20/passwordless-logins-with-ssh/][login without a password]]. Setup
 the remote repository,
 
 #+begin_src sh

@@ -4,7 +4,7 @@
 World Wind is a [[http://en.wikipedia.org/wiki/Virtual_globe][virtual globe]], developed by [[http://www.nasa.gov/][NASA]], it gives us the
 ability to add [[http://earth.google.com/][Google Earth]] like functionality to our applications.
 
-In my previous post [[/2009/12/17/mashups-using-clojure/][Mashups Using Clojure]], I produced a HTML file and
+In my previous post [[http://nakkaya.com/2009/12/17/mashups-using-clojure/][Mashups Using Clojure]], I produced a HTML file and
 used Google Maps to visualize the data, with world wind we can
 integrate the map directly into the application.
 
@@ -13,7 +13,7 @@ integrate the map directly into the application.
 #+end_html
 
 I am going to be using the same parsing routines that I used for the
-[[/2009/12/17/mashups-using-clojure/][Mashups Using Clojure]] post so I am going to skip explaining those and
+[[http://nakkaya.com/2009/12/17/mashups-using-clojure/][Mashups Using Clojure]] post so I am going to skip explaining those and
 jump directly to World Wind stuff.
 
 #+begin_src clojure

@@ -6,7 +6,7 @@ create an application that plays well with OS X. It will work on Linux
 , Mac or Windows but you can't compile it under a non Apple machine
 because it uses non standard apple libraries (com.apple) which are not
 available under Linux or Windows. To overcome this problem we can use
-the Java Reflections API. Following these tips [[/2009/04/19/java-osx-integration/][Java & OS X Integration]]
+the Java Reflections API. Following these tips [[http://nakkaya.com/2009/04/19/java-osx-integration/][Java & OS X Integration]]
 you can stick all your Mac specific code under a single class and you
 can load it using reflections api. when you do that compiler will not
 complain about missing libraries since you are not accessing any Mac

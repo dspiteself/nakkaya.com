@@ -1,7 +1,7 @@
 #+title: Processing XML With Clojure
 #+tags: clojure xml
 
-Although XML is nice in theory, i have always hated dealing with it. It
+Although XML is nice in theory, I have always hated dealing with it. It
 requires so much boiler plate code just to parse or create a simple XML
 file. Recently I needed to do some XML processing and I still can't
 believe how easy it was to create and parse XML in clojure.

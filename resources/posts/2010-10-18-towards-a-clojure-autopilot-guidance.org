@@ -1,7 +1,7 @@
 #+title: Towards a Clojure Autopilot - Guidance
 #+tags: clojure flightgear
 
-Now that we have covered the [[/2010/10/07/towards-a-clojure-autopilot-first-steps/][basics]] , we can move on to the fun stuff,
+Now that we have covered the [[http://nakkaya.com/2010/10/07/towards-a-clojure-autopilot-first-steps/][basics]] , we can move on to the fun stuff,
 getting from /A/ to /B/ by following a set of GPS coordinates. To
 actually fly from one way point to another we need two sets of
 controllers, the ones we defined earlier (roll and pitch hold) will

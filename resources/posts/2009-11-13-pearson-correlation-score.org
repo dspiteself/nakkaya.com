@@ -14,7 +14,7 @@ the following,
 #+end_html
 
 This calculation returns a value between -1 and 1. Two users with a
-similarity of 1 have rated every item identically. Unlike [[/2009/11/11/euclidean-distance-score/][Euclidean Distance Score]]
+similarity of 1 have rated every item identically. Unlike [[http://nakkaya.com/2009/11/11/euclidean-distance-score/][Euclidean Distance Score]]
 this formula doesn't need to be normalized. Pearson correlation score,
 also accounts for average ratings for each user, a user that rates
 everything 5 and a user that rates everything 1 will have a similarity
@@ -40,7 +40,7 @@ situation.
             (double (/ num den))) ))))
 #+end_src
 
-Using the same critics map from [[/2009/11/11/euclidean-distance-score/][Euclidean Distance Score]],
+Using the same critics map from [[http://nakkaya.com/2009/11/11/euclidean-distance-score/][Euclidean Distance Score]],
 
 #+begin_example
   user=> (pearson (critics "Lisa Rose") (critics "Gene Seymour"))

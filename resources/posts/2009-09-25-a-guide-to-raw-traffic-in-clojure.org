@@ -16,7 +16,6 @@ Preflight Checks,
 
  - Install libpcap if not installed.
  - Build and install jpcap.
- - Download the [script](/code/clojure/arp-sweep.clj)
 
 Code needs to run as root if you want it to capture anything.
 

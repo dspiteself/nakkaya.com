@@ -2,7 +2,7 @@
 #+tags: clojure arduino pong
 
 This write up is part two of cloning pong, we will modify the pong
-game we created in [[/2009/12/19/cloning-pong-part-1/][part one]], to be able to control it with knobs, like
+game we created in [[http://nakkaya.com/2009/12/19/cloning-pong-part-1/][part one]], to be able to control it with knobs, like
 the original using [[http://www.arduino.cc/][Arduino]].
 
 #+begin_html

@@ -108,7 +108,7 @@ circle with a new one and repaint the panel to reflect changes.
 
 This covers the meat of the code, I have skipped some boiler plate
 code such as setting up OpenCV or building images which I already
-covered [[/2010/01/12/fun-with-clojure-opencv-and-face-detection/][here]]. If you end up making anything cool with it, please leave
+covered [[http://nakkaya.com/2010/01/12/fun-with-clojure-opencv-and-face-detection/][here]]. If you end up making anything cool with it, please leave
 a comment with a link. I'd love to see it.
 
 #+begin_src clojure

@@ -24,7 +24,7 @@ specifically crafted TTL values. Since I did this just as a proof of
 concenpt it didn't bother me, if you need real traceroute use traceroute
 command or whatever is its equivalent in windows.
 
-I am going to skip some functions which I already covered in [[/2009/09/25/a-guide-to-raw-traffic-in-clojure/][A Guide
+I am going to skip some functions which I already covered in [[http://nakkaya.com/2009/09/25/a-guide-to-raw-traffic-in-clojure/][A Guide
 to Raw Traffic in Clojure]], and go over the meat of the code. For this
 example we need to create our own ICMP packets and capture traffic
 going through our network interface for that you need [[http://www.tcpdump.org/][libpcap]] and
