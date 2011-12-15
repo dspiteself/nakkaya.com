@@ -5,6 +5,7 @@
  :out-dir "/Users/nakkaya/Dropbox/www/nakkaya.com/"
  :default-template "default.clj"
  :encoding "UTF-8"
+ :blog-as-index false
  :emacs "/opt/local/bin/emacs"
  :emacs-eval ['(add-to-list 'load-path "~/Dropbox/code/emacs/ext/org-mode/lisp/")
               '(require 'org)
