@@ -34,8 +34,8 @@ by the library or Clojure itself if you want to do some preprocessing.
 
 *** Examples
 
- - [[/2010/06/29/alter-ego-a-reactive-ai-library/][Overview of the Library and a Sample Robocode Agent]]
- - [[/2010/07/13/modifying-behaviors-using-decorators/][Modifying Behaviors Using Decorators]]
+ - [[http://nakkaya.com/2010/06/29/alter-ego-a-reactive-ai-library/][Overview of the Library and a Sample Robocode Agent]]
+ - [[http://nakkaya.com/2010/07/13/modifying-behaviors-using-decorators/][Modifying Behaviors Using Decorators]]
 
 *** Further Reading
 

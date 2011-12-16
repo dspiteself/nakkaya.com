@@ -38,7 +38,7 @@ In addition, you must have *vision.jar* and *jna.jar* on your classpath.
 resources/examples/ folder contains examples to give a feel for the
 API, I also have the following hacks using Vision,
 
- - [[/2011/01/24/lane-detection-using-clojure-and-opencv/][Lane Detection using Clojure and OpenCV]]
+ - [[http://nakkaya.com/2011/01/24/lane-detection-using-clojure-and-opencv/][Lane Detection using Clojure and OpenCV]]
 
 *** Source
 

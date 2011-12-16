@@ -68,6 +68,6 @@ in order to create a jar file use target jar after target linux.
 
 Application logo by [[http://www.visualpharm.com][VisualPharm]]
 
-For bug reports/fixes/help, see [[/contact.html][contact]].
+For bug reports/fixes/help, see [[http://nakkaya.com/contact.html][contact]].
 
-Any feature requests are also welcome see [[/contact.html][contact]].
+Any feature requests are also welcome see [[http://nakkaya.com/contact.html][contact]].
