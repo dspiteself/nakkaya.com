@@ -85,7 +85,7 @@ the script in REPL and call draw to look at it.
                (> y 0)
                (< x size)
                (< y size))
-        (aset buffer y x (+ 1 (aget buffer y x))))))
+        (aset-int buffer y x (+ 1 (aget buffer y x))))))
   
   (defn generate [fractal]
     (let  [{:keys [buffer iteration]} fractal]
