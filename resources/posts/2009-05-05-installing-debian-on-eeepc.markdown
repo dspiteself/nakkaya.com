@@ -3,8 +3,8 @@ title: Installing Debian on EeePc
 tags: linux debian
 ---
 
-Following documents the experience i had while installing Debian on my EeePC
-701. This page servers as a reference to myself cause i rarely re format
+Following documents the experience I had while installing Debian on my EeePC
+701. This page servers as a reference to me, cause I rarely re format
 my linux or mac boxes. Installation was smooth. All hardware  on my
 eee was supported  out of the box. 
 [debian.org](http://wiki.debian.org/DebianEeePC/) 
@@ -12,6 +12,7 @@ has a great wiki with more instructions tips and tricks
 also model specific data. 
 
 #### On Mac
+
  - Plug in your USB drive.
  - Open disk utility right click on the USB drive and select info.
    Note your disk identifier.
@@ -34,6 +35,7 @@ Just follow the on screen instructions, and install a basic
 system. You can add additional applications later.
 
 #### Disk Arrangement
+
 I have a 2 GB internal card and a 8 GB card on the reader.
 
  - / 2 GB (internal)
@@ -51,7 +53,6 @@ I have a 2 GB internal card and a 8 GB card on the reader.
 
     apt-get install gnome-core
     gconftool-2 -t bool -s /apps/metacity/general/reduced_resources true
-
 
 #### Networking
 
