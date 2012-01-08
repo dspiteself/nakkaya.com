@@ -106,7 +106,7 @@
    [:div
     {:id "footer"}
     [:a {:href "/rss-feed"} " RSS Feed"]
-    [:p "&copy; 2011" 
+    [:p "&copy; 2012" 
      [:a {:href "http://nakkaya.com"} " Nurullah Akkaya"]]]]
   ;;
   ;;
