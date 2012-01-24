@@ -1,4 +1,4 @@
-#+title: Debian VNC sever setup
+#+title: Debian VNC server setup
 #+tags: linux debian ssh
 
 Note to self, grab the required packages,
