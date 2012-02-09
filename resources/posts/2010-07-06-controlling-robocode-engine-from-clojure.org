@@ -28,7 +28,7 @@ from Clojure.
 
 #+begin_src clojure
   (ns robocode-engine
-    (:use clojure.contrib.shell-out)
+    (:use clojure.java.shell)
     (:import (java.io File)
              (robocode.control 
               RobocodeEngine BattlefieldSpecification BattleSpecification)
