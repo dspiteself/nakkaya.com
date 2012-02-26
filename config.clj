@@ -6,8 +6,11 @@
  :default-template "default.clj"
  :encoding "UTF-8"
  :blog-as-index false
- :emacs "/opt/local/bin/emacs"
+ :emacs "/Applications/Emacs.app/Contents/MacOS/Emacs"
  :emacs-eval ['(add-to-list 'load-path "~/Dropbox/code/emacs/ext/org-mode/lisp/")
+              '(add-to-list 'load-path "~/Dropbox/code/emacs/ext/org-mode/contrib/lisp/")
+              '(add-to-list 'load-path "~/Dropbox/code/emacs/ext/clojure-mode/")   
+              '(require 'htmlize)
               '(require 'org)
               '(require 'ob)
               '(font-lock-mode)
