@@ -57,7 +57,7 @@
      {:class "pages"}
      [:a {:href "/", :class "page"} "Home"] " | "
      [:a {:href "/projects.html", :class "page"} "Projects"] " | "
-     [:a {:href "/archives/", :class "page"} "Archives"] " | "
+     [:a {:href "/archives.html", :class "page"} "Archives"] " | "
      [:a {:href "/tags/", :class "page"} "Tags"] " | "
      [:a {:href "/contact.html", :class "page"} "About"]
 
