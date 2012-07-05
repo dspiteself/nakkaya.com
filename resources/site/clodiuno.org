@@ -10,52 +10,15 @@ Currently Clodiuno supports two interfaces, you can either use the USB
 connection via Firmata or you can connect to your Arduino using WiFi via
 WiShield.
 
-*** Dependencies (Firmata)
-
-Firmata is a serial binary protocol, to get Java communicate via Serial
-Port there are two options, [[http://java.sun.com/products/javacomm/][JavaComm]] API and [[http://users.frii.com/jarvi/rxtx/][rxtx]] API. Clodiuno uses rxtx,
-because thats what Arduino IDE uses, you already have the Jars required
-installed with your Arduino installation.
-
-From your Arduino installation copy,
-
- - RXTXcomm.jar
- - librxtxSerial.jnilib (OS X Users)
- - librxtxSerial.dll (Windows Users)
- - librxtxSerial.so (Linux Users)
-
-into your Java extensions folder, if you choose to place the Jars
-somewhere else make sure to set your Java library path to point to that
-folder too.
-
-For Mac OS X users they are located inside the application bundle,
-
-#+begin_example
-   open /Applications/Arduino.app/Contents/Resources/Java/
-#+end_example
-
-Also if you are on Mac OS X, make sure you use 32 bit Java,
-otherwise RXTX won't work.
-
-*** Dependencies (WiShield)
-
-None.
-
 *** Installation
 
-Clodiuno is also available via [[http://clojars.org/clodiuno][Clojars]], for now only Mac OS X native
-dependencies are available on clojars.
+Clodiuno is also available via [[http://clojars.org/clodiuno][Clojars]],
 
 #+begin_src clojure
   (defproject arduino-project "1.0.0-SNAPSHOT"
     :dependencies [[org.clojure/clojure "1.2.0"]
                    [org.clojure/clojure-contrib "1.2.0"]
-                   [clodiuno "0.0.3-SNAPSHOT"]]
-    :native-dependencies [[org.clojars.nakkaya/rxtx-macosx-native-deps "2.1.7"]]
-    :dev-dependencies [[native-deps "1.0.5"]]
-    :jvm-opts ["-Djava.library.path=./native/macosx/x86/"
-               "-d32"
-               "-server"])
+                   [clodiuno "0.0.3-SNAPSHOT"]])
 #+end_src
 
 *** For Firmata Interface
