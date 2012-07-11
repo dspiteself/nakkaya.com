@@ -16,20 +16,17 @@ speed of each motor.
 These ratios can be calculated using the following formula assuming /n
 \ge 3/,
 
-#+begin_html
-  \[
-  \begin{bmatrix} v_1&v_2&v_3&v_4 \end{bmatrix}^T = 
-  \begin{bmatrix}
-    -sin\theta_1&cos\theta_1&1\\
-    -sin\theta_2&cos\theta_2&1\\
-    .. & .. & .. \\
-    -sin\theta_n&cos\theta_n&1\\
-  \end{bmatrix}
-  \times
-  \begin{bmatrix} v_x&v_y&R_W \end{bmatrix}^T
-  \]
-#+end_html
-
+  \begin{equation} 
+    \begin{bmatrix} v_1&amp;v_2&amp;v_3&amp;v_4 \end{bmatrix}^T = 
+    \begin{bmatrix}
+      -sin\theta_1&amp;cos\theta_1&amp;1\\
+      -sin\theta_2&amp;cos\theta_2&amp;1\\
+      .. &amp; .. &amp; .. \\
+      -sin\theta_n&amp;cos\theta_n&amp;1\\
+    \end{bmatrix}
+    \times
+    \begin{bmatrix} v_x&amp;v_y&amp;R_W \end{bmatrix}^T
+  \end{equation}
 
 The idea is really simple, in a nutshell each motor pushes the robot
 in two directions /X/ and /Y/ (their /sin/ and /cos/
