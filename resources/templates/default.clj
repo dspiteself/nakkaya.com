@@ -29,7 +29,7 @@
         $('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
         hljs.initHighlightingOnLoad();
     });"]
-  [:title (str (:title metadata) " (by Nurullah Akkaya)")]]
+  [:title (:title metadata)]]
  [:body
   "<script type=\"text/javascript\">
   var _gaq = _gaq || [];

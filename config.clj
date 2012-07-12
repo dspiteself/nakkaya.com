@@ -16,7 +16,7 @@
               '(require 'htmlize)
               '(require 'org)
               '(require 'ob)
-              '(font-lock-mode)
+              '(global-font-lock-mode 1)
               '(require 'clojure-mode)
               '(set-face-foreground 'font-lock-string-face "#afafff")
               '(set-face-foreground 'font-lock-keyword-face "#ff5f00")
