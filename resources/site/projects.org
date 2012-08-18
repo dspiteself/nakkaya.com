@@ -7,6 +7,10 @@
  - [[http://nakkaya.com/mocha.html][Mocha]] - Mocha: ARPWatch / Log Watcher for Mac OS X and Linux 
  - [[http://nakkaya.com/makeWay.html][makeWay]]
  - [[http://nakkaya.com/2011/06/29/ferret-an-experimental-clojure-compiler/][ferret]] - An Experimental Clojure Compiler
+ - [[http://nakkaya.com/inbox-feed.html][inbox-feed]] - A tool for retrieving content from RSS/ATOM feeds and
+   mailing it.
+ - [[http://nakkaya.com/static.html][static]] - Static is a simple static site generator written in
+   Clojure.
 
 *** Libraries
 
