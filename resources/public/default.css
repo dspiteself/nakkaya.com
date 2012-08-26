@@ -78,6 +78,11 @@ blockquote p {
     margin: 0px 0px 0px 0px;
 }
 
+blockquote pre {
+    margin: 0px 0px 0px 0px;
+    width: 745px;
+}
+
 pre { 
     font-family: Monaco, Courier;
     background: #191919;
