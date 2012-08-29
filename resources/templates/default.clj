@@ -59,7 +59,7 @@
      [:a {:href "/projects.html", :class "page"} "Projects"] " | "
      [:a {:href "/archives.html", :class "page"} "Archives"] " | "
      [:a {:href "/tags/", :class "page"} "Tags"] " | "
-     [:a {:href "/contact.html", :class "page"} "About"]
+     [:a {:href "/contact.html", :class "page" :rel "author"} "About"]
 
      [:form {:method "get" 
 	     :action "http://www.google.com/search" :id "searchform"}
