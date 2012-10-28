@@ -9,6 +9,7 @@
  :blog-as-index false
  :create-archives false
  :emacs "/Applications/Emacs.app/Contents/MacOS/Emacs"
+ :emacsclient "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
  ;;:emacs "/home/nakkaya/emacs24/bin/emacs"
  :emacs-eval ['(add-to-list 'load-path "~/Dropbox/code/emacs/ext/org-mode/lisp/")
               '(add-to-list 'load-path "~/Dropbox/code/emacs/ext/org-mode/contrib/lisp/")
