@@ -11,10 +11,16 @@ for clojure-mode and advises to use slime and swank-clojure. Slime is
 nice but I wanted my inferior-lisp support back.
 
 If you don't have any setup for inferior-lisp support use the following
-snippet, setting the classpath according to your needs,
+snippet,
 
 #+begin_src emacs-lisp
   (setq inferior-lisp-program "/path/to/lein repl")
+#+end_src
+
+or if you prefer a dumb repl,
+
+#+begin_src emacs-lisp
+  (setq inferior-lisp-program "/path/to/lein trampoline run -m clojure.main/main")
 #+end_src
 
 This will let inferior-lisp to run clojure REPL, to be able to send
@@ -22,13 +28,6 @@ code from your clojure buffer to inferior-lisp buffer use the
 following key bindings.
 
 #+begin_src emacs-lisp
-  (defun na-load-buffer ()
-    (interactive)
-    (point-to-register 5)
-    (mark-whole-buffer)
-    (lisp-eval-region (point) (mark) nil)
-    (jump-to-register 5))
-  
   (add-hook 'clojure-mode-hook
             '(lambda ()
                (define-key clojure-mode-map 
@@ -40,7 +39,9 @@ following key bindings.
                (define-key clojure-mode-map 
                  "\C-c\C-r" 'lisp-eval-region)
                (define-key clojure-mode-map 
-                 "\C-c\C-l" 'na-load-buffer)
+                 "\C-c\C-c" '(lambda ()
+                               (interactive)
+                               (lisp-eval-string (buffer-string))))
                (define-key clojure-mode-map 
                  "\C-c\C-z" 'run-lisp)))
 #+end_src
