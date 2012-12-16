@@ -63,7 +63,7 @@ in order to create a jar file use target jar after target linux.
 #+end_example
 
 *** Download
- - Application - [[http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.1.dmg][Mac OS X]]/[[http://cloud.github.com/downloads/nakkaya/mocha/Mocha-1.1.1.jar][Linux]]
+ - Application - [[http://dropbox.nakkaya.com/builds/Mocha-1.1.1.dmg][Mac OS X]]/[[http://dropbox.nakkaya.com/builds/Mocha-1.1.1.jar][Linux]]
  - [[http://github.com/nakkaya/mocha/tree/master][Source Code]] (Released under GPL via GitHub)
 
 Application logo by [[http://www.visualpharm.com][VisualPharm]]

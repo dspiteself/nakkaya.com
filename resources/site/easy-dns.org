@@ -8,7 +8,7 @@ A dynamic DNS client for easyDNS.
  
     Simply download the following jar file,
     
-    - [[https://github.com/downloads/nakkaya/easy-dns/easy-dns.jar][easy-dns.jar]]
+    - [[http://dropbox.nakkaya.com/builds/easy-dns.jar][easy-dns.jar]]
 
  
 *** Usage
