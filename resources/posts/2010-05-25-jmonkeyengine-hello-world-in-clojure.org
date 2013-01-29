@@ -10,13 +10,14 @@ head start, I have uploaded all necessary jars to Clojars, use lein to
 grab everything you need,
 
 #+begin_src clojure
-  (defproject monkey-test "1.0.0-SNAPSHOT"
-    :description "FIXME: write"
-    :dependencies [[org.clojure/clojure "1.1.0"]
-                   [org.clojure/clojure-contrib "1.1.0"]
-                   [org.clojars.nakkaya.jmonkeyengine/jme "2.0.1"]]
-    :native-dependencies [[penumbra/lwjgl "2.4.2"]]
-    :dev-dependencies    [[native-deps "1.0.0"]])
+  (defproject monkey-test "0.1.0-SNAPSHOT"
+    :description "FIXME: write description"
+    :url "http://example.com/FIXME"
+    :license {:name "Eclipse Public License"
+              :url "http://www.eclipse.org/legal/epl-v10.html"}
+    :dependencies [[org.clojure/clojure "1.4.0"]
+                   [org.clojars.nakkaya.jmonkeyengine/jme "2.0.1"]
+                   [penumbra/lwjgl "2.4.2"]])
 #+end_src
 
 All tutorials on jMonkeyEngine wiki, makes use of SimpleGame class, we
