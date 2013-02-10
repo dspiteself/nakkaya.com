@@ -168,17 +168,14 @@ and execute it,
       (exec (forever tree))))
 #+end_src
 
-#+begin_html
-  <p id='preview'>Player</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s1 = new SWFObject('/player.swf','player','650','406','9');
-          s1.addParam('allowfullscreen','true');
-          s1.addParam('allowscriptaccess','always');
-          s1.addParam('flashvars','file=/video/alter-ego-robocode-1.mp4');
-          s1.write('preview');
-  </script>
-#+end_html
+#+BEGIN_HTML
+  <p>
+    <video src="/video/alter-ego-robocode-1.mp4" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/alter-ego-robocode-1.mp4">here</a>.
+    </video>
+  </p>
+#+END_HTML
 
 Appendix in the [[https://raw.github.com/nakkaya/nakkaya.com/master/resources/posts/2010-06-29-alter-ego-a-reactive-ai-library.org][raw]] file contains instructions on how to extract the
 source and interact with robocode.

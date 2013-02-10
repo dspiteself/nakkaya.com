@@ -362,23 +362,19 @@ speeds. These pretty much covers the meat of the code, following videos
 shows the robot in action.
 
 #+BEGIN_HTML
-  <p id='preview'>Player</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s1 = new SWFObject('/player.swf','player','650','488','9');
-          s1.addParam('allowfullscreen','true');
-          s1.addParam('allowscriptaccess','always');
-          s1.addParam('flashvars','file=/video/arduino-line-follower.mp4');
-          s1.write('preview');
-  </script>
-  
-  <p id='preview2'>Player</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s2 = new SWFObject('/player.swf','player','650','488','9');
-          s2.addParam('allowfullscreen','true');
-          s2.addParam('allowscriptaccess','always');
-          s2.addParam('flashvars','file=/video/arduino-line-follower-1.mp4');
-          s2.write('preview2');
-  </script>
+  <p>
+    <video src="/video/arduino-line-follower.m4v" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/arduino-line-follower.m4v">here</a>.
+    </video>
+  </p>
+#+END_HTML
+
+#+BEGIN_HTML
+  <p>
+    <video src="/video/arduino-line-follower-1.m4v" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/arduino-line-follower-1.m4v">here</a>.
+    </video>
+  </p>
 #+END_HTML

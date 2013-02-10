@@ -40,14 +40,11 @@ through Firmata to another Arduino,
   ;;(close wishield)
 #+end_src
 
-#+begin_html
-  <p id='preview'>Player</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s1 = new SWFObject('/player.swf','player','400','300','9');
-          s1.addParam('allowfullscreen','true');
-          s1.addParam('allowscriptaccess','always');
-          s1.addParam('flashvars','file=/video/wishield-demo.mp4');
-          s1.write('preview');
-  </script>
-#+end_html
+#+BEGIN_HTML
+  <p>
+    <video src="/video/wishield-demo.mp4" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/wishield-demo.mp4">here</a>.
+    </video>
+  </p>
+#+END_HTML

@@ -36,17 +36,14 @@ composite nodes exists which shuffle their children prior to execution
 such as the one used in the *Strafe* branch which gives us some degree
 of non determinism.
 
-#+begin_html
-  <p id='preview'>Player</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s1 = new SWFObject('/player.swf','player','670','419','9');
-          s1.addParam('allowfullscreen','true');
-          s1.addParam('allowscriptaccess','always');
-          s1.addParam('flashvars','file=/video/alter-ego-robocode-2.mp4');
-          s1.write('preview');
-  </script>
-#+end_html
+#+BEGIN_HTML
+  <p>
+    <video src="/video/alter-ego-robocode-2.mp4" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/alter-ego-robocode-2.mp4">here</a>.
+    </video>
+  </p>
+#+END_HTML
 
 #+begin_src clojure :mkdirp yes :tangle source/src/gez.clj
   (ns gez

@@ -6,17 +6,15 @@ tools suite, /libgphoto2/ library allows other frontends to be written
 for it, the idea here was to see if I can control a camera from
 Clojure because a drone without a camera is useless.
 
-#+begin_html
-  <p id='timelapse-preview'>You should see a video here...</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s1 = new SWFObject('/player.swf','player','320','240','9');
-          s1.addParam('allowfullscreen','true');
-          s1.addParam('allowscriptaccess','always');
-          s1.addParam('flashvars','file=/video/gphoto-time-lapse.mp4');
-          s1.write('timelapse-preview');
-  </script>
-#+end_html
+
+#+BEGIN_HTML
+  <p>
+    <video src="/video/gphoto-time-lapse.mp4" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/gphoto-time-lapse.mp4">here</a>.
+    </video>
+  </p>
+#+END_HTML
 
 This time instead of calling /libgphoto2/ functions directly, I used a
 custom library to interact with /libgphoto2/ that way I only

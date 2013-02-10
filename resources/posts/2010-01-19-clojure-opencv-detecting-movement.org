@@ -6,17 +6,14 @@ device. I've put together a sample application which uses difference
 between frames to detect movement and perform collision detection with
 objects on the screen.
 
-#+begin_html
-  <p id='preview'>Player</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s1 = new SWFObject('/player.swf','player','650','406','9');
-          s1.addParam('allowfullscreen','true');
-          s1.addParam('allowscriptaccess','always');
-          s1.addParam('flashvars','file=/video/opencv-motion-detection.mp4');
-          s1.write('preview');
-  </script>
-#+end_html
+#+BEGIN_HTML
+  <p>
+    <video src="/video/opencv-motion-detection.mp4" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/opencv-motion-detection.mp4">here</a>.
+    </video>
+  </p>
+#+END_HTML
 
 #+begin_src clojure
   (ns movement-detect

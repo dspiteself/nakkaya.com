@@ -189,12 +189,9 @@ In the main arduino loop we just call steer function over and over again,
 
 When everything wired and code uploaded, it works like this,
 
-<p id='preview'>Player</p>
-<script type='text/javascript' src='/swfobject.js'></script>
-<script type='text/javascript'>
-	var s1 = new SWFObject('/player.swf','player','400','300','9');
-	s1.addParam('allowfullscreen','true');
-	s1.addParam('allowscriptaccess','always');
-	s1.addParam('flashvars','file=/video/poor-mans-arduino-line-follower.mp4');
-	s1.write('preview');
-</script>
+<p>
+  <video src="/video/poor-mans-arduino-line-follower.mp4" width="80%" controls>
+    Looks like HTML5 Video tag did not work you can download
+    the video <a href="/video/poor-mans-arduino-line-follower.mp4">here</a>.
+  </video>
+</p>

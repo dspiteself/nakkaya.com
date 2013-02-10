@@ -5,17 +5,14 @@ This write up is part two of cloning pong, we will modify the pong
 game we created in [[http://nakkaya.com/2009/12/19/cloning-pong-part-1/][part one]], to be able to control it with knobs, like
 the original using [[http://www.arduino.cc/][Arduino]].
 
-#+begin_html
-  <p id='preview'>Player</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s1 = new SWFObject('/player.swf','player','400','300','9');
-          s1.addParam('allowfullscreen','true');
-          s1.addParam('allowscriptaccess','always');
-          s1.addParam('flashvars','file=/video/clojure-arduino-pong.mp4');
-          s1.write('preview');
-  </script>
-#+end_html
+#+BEGIN_HTML
+  <p>
+    <video src="/video/clojure-arduino-pong.mp4" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/clojure-arduino-pong.mp4">here</a>.
+    </video>
+  </p>
+#+END_HTML
 
 To get Java communicate via Serial Port there are two options,
 [[http://java.sun.com/products/javacomm/][JavaComm]] API and [[http://users.frii.com/jarvi/rxtx/][rxtx]] API. Arduino uses rxtx so I went with

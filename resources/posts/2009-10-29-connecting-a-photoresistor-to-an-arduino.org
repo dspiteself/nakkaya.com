@@ -47,14 +47,11 @@ So I picked a number in between and used it as threshold, if the reading
 is above the threshold it turns the LED on when its below threshold it
 turns the LED off.
 
-#+begin_html
-  <p id='preview'>Player</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s1 = new SWFObject('/player.swf','player','400','300','9');
-          s1.addParam('allowfullscreen','true');
-          s1.addParam('allowscriptaccess','always');
-          s1.addParam('flashvars','file=/video/arduino-photoresistor.mp4');
-          s1.write('preview');
-  </script>
-#+end_html
+#+BEGIN_HTML
+  <p>
+    <video src="/video/arduino-photoresistor.mp4" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/arduino-photoresistor.mp4">here</a>.
+    </video>
+  </p>
+#+END_HTML

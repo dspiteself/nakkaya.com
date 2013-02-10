@@ -19,17 +19,14 @@ of my old estimate of the measurement, and only trust this new data
 point 20%"). It does get rid of the jiggling behaviour but introduces
 latency.
 
-#+begin_html
-  <p id='preview'>You should see a video here...</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s1 = new SWFObject('/player.swf','player','670','400','9');
-          s1.addParam('allowfullscreen','true');
-          s1.addParam('allowscriptaccess','always');
-          s1.addParam('flashvars','file=/video/accelerometer.m4v');
-          s1.write('preview');
-  </script>
-#+end_html
+#+BEGIN_HTML
+  <p>
+    <video src="/video/accelerometer.m4v" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/accelerometer.m4v">here</a>.
+    </video>
+  </p>
+#+END_HTML
 
 #+begin_src clojure
   (ns acc.core

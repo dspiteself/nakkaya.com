@@ -9,17 +9,14 @@ it here, the only difference is that instead of dropping a sphere onto
 a surface, this example stacks some boxes on top of each other and
 shoots them with a sphere. You can grab JBullet from [[http://clojars.org/org.clojars.nakkaya/jbullet][Clojars]].
 
-#+begin_html
-  <p id='jbullet-preview'>You should see a video here...</p>
-  <script type='text/javascript' src='/swfobject.js'></script>
-  <script type='text/javascript'>
-          var s1 = new SWFObject('/player.swf','player','670','400','9');
-          s1.addParam('allowfullscreen','true');
-          s1.addParam('allowscriptaccess','always');
-          s1.addParam('flashvars','file=/video/jbullet-collision.m4v');
-          s1.write('jbullet-preview');
-  </script>
-#+end_html
+#+BEGIN_HTML
+  <p>
+    <video src="/video/jbullet-collision.mp4" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/jbullet-collision.mp4">here</a>.
+    </video>
+  </p>
+#+END_HTML
 
 #+begin_src clojure
   (ns ball.core

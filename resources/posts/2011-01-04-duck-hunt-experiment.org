@@ -12,15 +12,12 @@ on the frame white and takes another reading the difference between the
 two is used to determine if the gun is pointing to the target or not.
 
 #+BEGIN_HTML
-<p id='preview-duck-hunt'>You should see a video here...</p>
-<script type='text/javascript' src='/swfobject.js'></script>
-<script type='text/javascript'>
-	var s1 = new SWFObject('/player.swf','player','640','480','9');
-	s1.addParam('allowfullscreen','true');
-	s1.addParam('allowscriptaccess','always');
-	s1.addParam('flashvars','file=/video/duck-hunt.m4v');
-	s1.write('preview-duck-hunt');
-</script>
+  <p>
+    <video src="/video/duck-hunt.m4v" width="80%" controls>
+      Looks like HTML5 Video tag did not work you can download
+      the video <a href="/video/duck-hunt.m4v">here</a>.
+    </video>
+  </p>
 #+END_HTML
 
 #+begin_src clojure
