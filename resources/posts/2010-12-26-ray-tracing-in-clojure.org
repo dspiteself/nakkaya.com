@@ -86,7 +86,7 @@ and the surface normal of a hit.
       (max 0 (+ (* (:x ray) (:x normal))
                 (* (:y ray) (:y normal))
                 (* (:z ray) (:z normal))))))  
-
+  
   (defn first-hit [world pt ray]
     (->> (reduce (fn[h v]
                    (if-let [i (sphere-intersect v pt ray)]
@@ -96,12 +96,12 @@ and the surface normal of a hit.
   
   (defn send-ray [world src ray]
     (if-let [[loc obj] (first-hit world src ray)]
-      (* (lambert obj ray loc) (:color obj))
+      (* (lambert obj loc ray) (:color obj))
       0))
   
   (defn color-at [world eye x y]
     (let [ray (normalize (subtract (v3d x y 0) eye))]
-      (* (send-ray world eye ray) 255)))
+      (send-ray world eye ray)))
   
   (defn ray-trace [world eye w h]
     (let [buffered-image (java.awt.image.BufferedImage.
@@ -110,7 +110,9 @@ and the surface normal of a hit.
           colors (pmap #(let [[x y] %]
                            [x y (color-at world eye x y)]) coords)]
       (doseq [[x y c] colors]
-        (.setRGB buffered-image x y c))
+        (.setRGB buffered-image x y
+                 (.getRGB (java.awt.Color.
+                           (float c) (float c) (float c)))))
       buffered-image))
 #+end_src
 
@@ -133,14 +135,28 @@ the unit vector L from the point to the light source.
       (.setSize (.getWidth image) (.getHeight image))
       (.setResizable false)
       (.setVisible true)))
-
-  (let [eye (v3d 150 150 200)
-        world [(sphere (v3d 150 150 -600) 400 0.5)]
-        image (ray-trace world eye 300 300)]
-    (view image))
 #+end_src
 
 Once the image is rendered all thats left to do is to paint it on a panel,
+
+#+begin_src clojure
+  (comment
+  
+    (let [eye (v3d 150 150 200)
+          world [(sphere (v3d 150 150 -600) 400 0.8)]
+          image (ray-trace world eye 300 300)]
+      (view image))
+  
+    (let [eye (v3d 150 150 200)
+          world [(sphere (v3d 150 150 -600) 400 0.85)
+                 (sphere (v3d 250 200 -600) 400 0.85)
+                 (sphere (v3d 200 100 -600) 400 0.65)
+                 ]
+          image (ray-trace world eye 300 300)]
+      (view image))
+    
+    )
+#+end_src
 
 #+BEGIN_HTML
   <img src="/images/post/ray-tracing.png" />
