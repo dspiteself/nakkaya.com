@@ -6,7 +6,7 @@
 Title pretty much says it all, a simple breakout clone using
 ClojureScript and canvas. Click here for the [[http://dl.dropbox.com/u/11332353/demo/breakout/breakout.html][demo]].
 
-#+srcname: game-state
+#+name: game-state
 #+begin_src clojure
   (def paddle-height 15)
   (def paddle-width 150)
@@ -15,8 +15,8 @@ ClojureScript and canvas. Click here for the [[http://dl.dropbox.com/u/11332353/
   (def brick-width 100)
   
   (def ball-radius 10)
-
-  (defn init-round [[_ width height]]
+  
+  (defn init-round [[_ width height]] 
     {:ball [(/ width 2) (/ height 2) 4 8]
   
      :bricks (for [x (range 0 width brick-width)
@@ -33,7 +33,7 @@ ClojureScript and canvas. Click here for the [[http://dl.dropbox.com/u/11332353/
 Game state is kept in a map containing the location of the ball,
 location of each corner for each brick and the location of the paddle.
 
-#+srcname: graphics
+#+name: graphics
 #+begin_src clojure
   (defn surface []
     (let [surface (dom/getElement "surface")]
@@ -63,7 +63,7 @@ I've started with Google Closure's CanvasGraphics, but unless I
 missed something obvious it was dog slow, takes around 3 seconds to
 paint a bunch of boxes, so I ended up wrapping Canvas methods.
 
-#+srcname: paint-canvas
+#+name: paint-canvas
 #+begin_src clojure
   (defn update-canvas [state surface]
     (let [{:keys [ball paddle bricks]} state
@@ -83,7 +83,7 @@ paint a bunch of boxes, so I ended up wrapping Canvas methods.
 Once graphics routines are defined, we are ready to paint the current
 state of the game on to the canvas.
 
-#+srcname: collision-detection
+#+name: collision-detection
 #+begin_src clojure
   (let [clamp (fn [x min max]
                 (cond
@@ -107,7 +107,7 @@ state of the game on to the canvas.
         (< (+ (srq dist-x) (srq dist-y)) (srq r)))))
 #+end_src
 
-#+srcname: ball-collision
+#+name: ball-collision
 #+begin_src clojure
   (defn ball-collision? [state pts]
     (let [[x y] (:ball state)]
@@ -124,7 +124,7 @@ intersection occurs. (Even though the name of the function is
 line instead of four representing rectangle it would also act as
 /line-circle-collision/.)
 
-#+srcname: brick-collision
+#+name: brick-collision
 #+begin_src clojure
   (defn handle-brick-collision [state]
     (let [{:keys [ball bricks]} state
@@ -141,7 +141,7 @@ each brick to see if there is collision, when there is collision we
 reverse the direction of the ball and remove the brick/s that the ball
 has collided, otherwise state is returned untouched.
 
-#+srcname: paddle-collision
+#+name: paddle-collision
 #+begin_src clojure
   (defn handle-paddle-collision [state]
     (let [{:keys [ball paddle]} state
@@ -158,7 +158,7 @@ Same goes for paddle collision the only difference being that we check
 for a line collision (surface of the paddle) instead of a rectangle
 collision.
 
-#+srcname: tick-ball
+#+name: tick-ball
 #+begin_src clojure
   (defn tick-ball [state [_ width height]]
     (let [[x y dx dy] (:ball state)
@@ -175,7 +175,7 @@ Finally we need a way to move the ball, everytime /tick-ball/ is
 called it will check for a collision with the sides and the top of the
 canvas bouncing the ball if it collides then move the ball.
 
-#+srcname: game
+#+name: game
 #+begin_src clojure
   (defn game [timer state surface]
     (let [[_ width height] surface]
@@ -186,7 +186,8 @@ canvas bouncing the ball if it collides then move the ball.
                          (handle-brick-collision)
                          (handle-paddle-collision))))
   
-      (when (ball-collision? @state [[0 height] [width height]])
+      (when (or (ball-collision? @state [[0 height] [width height]])
+                (empty? (:bricks @state)))
         (. timer (stop))
         (update-canvas (init-round surface) surface))))
 #+end_src
@@ -195,7 +196,7 @@ A single round of breakout is simply taking the initial state and
 running the above transformations until the ball hits the bottom
 wall.
 
-#+srcname: init
+#+name: init
 #+begin_src clojure
   (defn mouse-move [state [_ width height] event]
     (let [x (.-clientX event)
